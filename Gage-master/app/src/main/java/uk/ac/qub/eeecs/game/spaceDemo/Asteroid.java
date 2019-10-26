@@ -40,6 +40,7 @@ public class Asteroid extends SpaceEntity {
         super(startX, startY, getBoundaries(), getBoundaries(), null, gameScreen);
 
         Random random = new Random();
+        int x = 7;
 
         mBitmap = gameScreen.getGame().getAssetManager()
                 .getBitmap(asteroidImg());
@@ -52,8 +53,8 @@ public class Asteroid extends SpaceEntity {
     }
 
     public static float getBoundaries(){
-        Random rand = new Random();
-        float bound = (rand.nextFloat() * DEFAULT_RADIUS) + 10;
+        Random random = new Random();
+        float bound = (random.nextFloat() * DEFAULT_RADIUS) + 10;
         return bound;
     }
 

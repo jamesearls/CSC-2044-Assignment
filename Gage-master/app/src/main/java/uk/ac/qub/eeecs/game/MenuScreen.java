@@ -15,7 +15,7 @@ import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.cardDemo.CardDemoScreen;
 import uk.ac.qub.eeecs.game.miscDemos.DemoMenuScreen;
 import uk.ac.qub.eeecs.game.platformDemo.PlatformDemoScreen;
-import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipDemoScreen;
+import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipSelectScreen;
 
 /**
  * An exceedingly basic menu screen with a couple of touch buttons
@@ -107,7 +107,7 @@ public class MenuScreen extends GameScreen {
             mDemosButton.update(elapsedTime);
 
             if (mSpaceshipDemoButton.isPushTriggered())
-                mGame.getScreenManager().addScreen(new SpaceshipDemoScreen(mGame));
+                mGame.getScreenManager().addScreen(new SpaceshipSelectScreen(mGame));
             else if (mCardDemoButton.isPushTriggered())
                 mGame.getScreenManager().addScreen(new CardDemoScreen(mGame));
             else if (mPlatformDemoButton.isPushTriggered())

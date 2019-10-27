@@ -64,6 +64,13 @@ public class SpaceshipDemoScreen extends GameScreen {
     private final int NUM_TURRETS = 40;
 
     /**
+     * Define the Strings for holding the sprite selections
+     */
+    private String chosenSeekerSpaceship;
+    private String chosenTurret;
+
+
+    /**
      * Define storage for the space entities (non-player)
      */
     private List<SpaceEntity> mSpaceEntities;
@@ -96,8 +103,11 @@ public class SpaceshipDemoScreen extends GameScreen {
      *
      * @param game Game to which this screen belongs
      */
-    public SpaceshipDemoScreen(Game game) {
+    public SpaceshipDemoScreen(Game game, String AiSpaceship, String aiTurret) {
         super("SpaceshipDemoScreen", game);
+
+        chosenSeekerSpaceship = AiSpaceship;
+        chosenTurret = aiTurret;
 
         // There are two types of object defined within the spaceship demo screen.
         // Firstly, game objects such as spaceships, asteroids, etc. that are defined
@@ -166,12 +176,12 @@ public class SpaceshipDemoScreen extends GameScreen {
         // Create a number of randomly positioned AI controlled seekers
         for (int idx = 0; idx < NUM_SEEKERS; idx++)
             mSpaceEntities.add(new Seeker(random.nextFloat() * LEVEL_WIDTH,
-                    random.nextFloat() * LEVEL_HEIGHT, this));
+                    random.nextFloat() * LEVEL_HEIGHT, this, chosenSeekerSpaceship));
 
         // Create a number of randomly positioned AI controlled turrets
         for (int idx = 0; idx < NUM_TURRETS; idx++)
             mSpaceEntities.add(new Turret(random.nextFloat() * LEVEL_WIDTH,
-                    random.nextFloat() * LEVEL_HEIGHT, this));
+                    random.nextFloat() * LEVEL_HEIGHT, this, chosenTurret));
     }
 
     /**

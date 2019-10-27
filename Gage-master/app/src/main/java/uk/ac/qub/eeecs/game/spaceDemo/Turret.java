@@ -38,14 +38,14 @@ public class Turret extends SpaceEntity {
      * @param startY        y location of the AI turret
      * @param gameScreen    Gamescreen to which AI belongs
      */
-    public Turret(float startX, float startY, SpaceshipDemoScreen gameScreen) {
+    public Turret(float startX, float startY, SpaceshipDemoScreen gameScreen, String AiTurret) {
         super(startX, startY, DEFAULT_RADIUS*2.0f, DEFAULT_RADIUS*2.0f, null, gameScreen);
 
         maxAcceleration = 0.0f;
         maxVelocity = 0.0f;
         maxAngularVelocity = 50.0f;
         maxAngularAcceleration = 50.0f;
-        mBitmap = gameScreen.getGame().getAssetManager().getBitmap("Turret");
+        mBitmap = gameScreen.getGame().getAssetManager().getBitmap("Turret1");
 
         mRadius = DEFAULT_RADIUS;
         mMass = 10000.0f;

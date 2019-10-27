@@ -103,11 +103,11 @@ public class SpaceshipDemoScreen extends GameScreen {
      *
      * @param game Game to which this screen belongs
      */
-    public SpaceshipDemoScreen(Game game, String AiSpaceship, String aiTurret) {
+    public SpaceshipDemoScreen(Game game, String AiSpaceship, String AiTurret) {
         super("SpaceshipDemoScreen", game);
 
         chosenSeekerSpaceship = AiSpaceship;
-        chosenTurret = aiTurret;
+        chosenTurret = AiTurret;
 
         // There are two types of object defined within the spaceship demo screen.
         // Firstly, game objects such as spaceships, asteroids, etc. that are defined

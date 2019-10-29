@@ -72,7 +72,7 @@ public class Seeker extends SpaceEntity {
      * @param startY        y location of the AI spaceship
      * @param gameScreen    Gamescreen to which AI belongs
      */
-    public Seeker(float startX, float startY, SpaceshipDemoScreen gameScreen) {
+    public Seeker(float startX, float startY, SpaceshipDemoScreen gameScreen, String seekerChoice) {
         super(startX, startY, getBounds(), getBounds(), null, gameScreen);
 
         // Define movement variables for the seeker
@@ -85,7 +85,7 @@ public class Seeker extends SpaceEntity {
         mMass = 10.0f;
 
         // Define the appearance of the seeker
-        mBitmap = gameScreen.getGame().getAssetManager().getBitmap("Spaceship2");
+        mBitmap = gameScreen.getGame().getAssetManager().getBitmap(seekerChoice);
 
         // Create an offset for the movement emitter based on the size of the spaceship
         movementEmitterOffset = new Vector2(-DEFAULT_RADIUS, 0.0f);

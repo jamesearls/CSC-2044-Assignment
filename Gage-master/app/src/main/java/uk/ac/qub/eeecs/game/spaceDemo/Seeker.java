@@ -5,9 +5,11 @@ import java.util.Random;
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.particle.Emitter;
 import uk.ac.qub.eeecs.gage.engine.particle.ParticleSystemManager;
+import uk.ac.qub.eeecs.gage.util.BoundingBox;
 import uk.ac.qub.eeecs.gage.util.MathsHelper;
 import uk.ac.qub.eeecs.gage.util.SteeringBehaviours;
 import uk.ac.qub.eeecs.gage.util.Vector2;
+import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipDemoScreen;
 
 /**
  * AI controlled spaceship that will seek towards the player.
@@ -156,5 +158,6 @@ public class Seeker extends SpaceEntity {
         MathsHelper.rotateOffsetAboutCentre(
                 position, movementEmitterOffset, orientation, movementEmitterLocation);
         movementEmitter.setPosition(movementEmitterLocation.x, movementEmitterLocation.y);
+
     }
 }

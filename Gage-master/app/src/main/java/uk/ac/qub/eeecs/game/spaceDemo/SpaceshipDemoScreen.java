@@ -3,6 +3,7 @@ package uk.ac.qub.eeecs.game.spaceDemo;
 import android.graphics.Color;
 import android.widget.Space;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -38,8 +39,8 @@ public class SpaceshipDemoScreen extends GameScreen {
     /**
      * Width and height of the level
      */
-    private final float LEVEL_WIDTH = 2000.0f;
-    private final float LEVEL_HEIGHT = 2000.0f;
+    public final float LEVEL_WIDTH = 2000.0f;
+    public final float LEVEL_HEIGHT = 2000.0f;
 
     /**
      * Define a viewport for the game objects (spaceships, asteroids)
@@ -74,6 +75,7 @@ public class SpaceshipDemoScreen extends GameScreen {
      * Define storage for the space entities (non-player)
      */
     private List<SpaceEntity> mSpaceEntities;
+    private List<Seeker> mSeekers;
 
     /**
      * Define a particle system manager
@@ -166,6 +168,7 @@ public class SpaceshipDemoScreen extends GameScreen {
 
         // Create storage for the space entities
         mSpaceEntities = new ArrayList<>(NUM_ASTEROIDS+NUM_SEEKERS+NUM_TURRETS);
+        mSeekers = new ArrayList<>(NUM_SEEKERS);
 
         // Create a number of randomly positioned asteroids
         Random random = new Random();
@@ -174,9 +177,14 @@ public class SpaceshipDemoScreen extends GameScreen {
                     random.nextFloat() * LEVEL_HEIGHT, this));
 
         // Create a number of randomly positioned AI controlled seekers
-        for (int idx = 0; idx < NUM_SEEKERS; idx++)
-            mSpaceEntities.add(new Seeker(random.nextFloat() * LEVEL_WIDTH,
-                    random.nextFloat() * LEVEL_HEIGHT, this, chosenSeekerSpaceship));
+        for (int idx = 0; idx < NUM_SEEKERS; idx++) {
+            float sx = random.nextFloat();
+            float sy = random.nextFloat();
+            Seeker seeker = new Seeker(sx * LEVEL_WIDTH,
+                    sy * LEVEL_HEIGHT, this, chosenSeekerSpaceship);
+            mSpaceEntities.add(seeker);
+            mSeekers.add(seeker);
+        }
 
         // Create a number of randomly positioned AI controlled turrets
         for (int idx = 0; idx < NUM_TURRETS; idx++)
@@ -238,6 +246,7 @@ public class SpaceshipDemoScreen extends GameScreen {
      * @return List of space entities (non-player)
      */
     public List<SpaceEntity> getSpaceEntities() { return mSpaceEntities; }
+    public List<Seeker> getmSeekers(){return mSeekers;}
 
     /**
      * Return the particle system manager
@@ -323,8 +332,22 @@ public class SpaceshipDemoScreen extends GameScreen {
             mSpaceLayerViewport.y -= (mSpaceLayerViewport.getTop() - LEVEL_HEIGHT);
 
         // Update each of the space entities
+        for (Seeker s : mSeekers){
+            BoundingBox entityBound = s.getBound();
+            if (entityBound.getLeft() < 0)
+                s.position.x -= entityBound.getLeft();
+            else if (entityBound.getRight() > LEVEL_WIDTH)
+                s.position.x -= (entityBound.getRight() - LEVEL_WIDTH);
+
+            if (entityBound.getBottom() < 0)
+                s.position.y -= entityBound.getBottom();
+            else if (entityBound.getTop() > LEVEL_HEIGHT)
+                s.position.y -= (entityBound.getTop() - LEVEL_HEIGHT);
+        }
+
         for (SpaceEntity spaceEntity : mSpaceEntities)
             spaceEntity.update(elapsedTime);
+
 
         // Check for and resolve collisions between the space entities
         for(int entityIdx = 0; entityIdx < mSpaceEntities.size(); entityIdx++) {

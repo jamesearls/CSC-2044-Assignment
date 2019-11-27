@@ -1,4 +1,8 @@
-package uk.ac.qub.eeecs.game.MatchAttax;
+
+//Naming doesn't allow me to set (line 4) to what it is, it wants it as MatchAttax, but there wasn't originally a matchattax package, but there now is
+//The best way to fix this would be to delete all of carddemo and load it in again
+
+//package uk.ac.qub.eeecs.game.CardDemo.;
 
 import android.graphics.Color;
 
@@ -20,7 +24,7 @@ public class CardDemoScreen extends GameScreen {
     // /////////////////////////////////////////////////////////////////////////
 
     // Define a card to be displayed
-    private Card card;
+  private Card card;
 
     // /////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -40,7 +44,7 @@ public class CardDemoScreen extends GameScreen {
 
 
         // Create a new, centered card
-        card = new Card(mDefaultLayerViewport.x, mDefaultLayerViewport.y, this);
+   //     card = new Card(mDefaultLayerViewport.x, mDefaultLayerViewport.y, this);
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -58,9 +62,9 @@ public class CardDemoScreen extends GameScreen {
         Input input = mGame.getInput();
 
         // Update the card
-        card.angularVelocity = 0.0f;
+     //   card.angularVelocity = 0.0f;
 
-        card.update(elapsedTime);
+    //    card.update(elapsedTime);
     }
 
     /**
@@ -74,7 +78,7 @@ public class CardDemoScreen extends GameScreen {
         graphics2D.clear(Color.WHITE);
 
         // Draw the card
-        card.draw(elapsedTime, graphics2D,
-                mDefaultLayerViewport, mDefaultScreenViewport);
+  //      card.draw(elapsedTime, graphics2D,
+    //            mDefaultLayerViewport, mDefaultScreenViewport);
     }
 }

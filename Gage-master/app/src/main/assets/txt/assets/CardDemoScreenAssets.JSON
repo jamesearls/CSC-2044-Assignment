@@ -59,6 +59,11 @@
       "type": "Bitmap",
       "name": "0",
       "file": "img/0.png"
+    },
+    {
+      "type": "Music",
+      "name": "CoconutMall",
+      "file": "sound/CoconutMall.mp3"
     }
-    ]
+  ]
 }

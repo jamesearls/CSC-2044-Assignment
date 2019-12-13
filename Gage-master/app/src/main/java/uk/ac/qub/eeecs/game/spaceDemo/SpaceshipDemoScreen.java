@@ -354,7 +354,7 @@ public class SpaceshipDemoScreen extends GameScreen {
             SpaceEntity entity = mSpaceEntities.get(entityIdx);
             checkForAndResolveCollisions(entity, mPlayerSpaceship);
             for(int entityIdxOther = entityIdx+1;
-                    entityIdxOther < mSpaceEntities.size(); entityIdxOther++) {
+                entityIdxOther < mSpaceEntities.size(); entityIdxOther++) {
                 checkForAndResolveCollisions(entity, mSpaceEntities.get(entityIdxOther));
             }
         }
@@ -376,7 +376,7 @@ public class SpaceshipDemoScreen extends GameScreen {
 
         // Separate if the collision bounds overlap
         if(separation.lengthSquared() <
-            (entityOne.mRadius+entityTwo.mRadius) * (entityOne.mRadius+entityTwo.mRadius)) {
+                (entityOne.mRadius+entityTwo.mRadius) * (entityOne.mRadius+entityTwo.mRadius)) {
             // Determine the amount of overlap (to be corrected) and the separating vector
             float overlap = entityOne.mRadius + entityTwo.mRadius - separation.length();
             separation.normalise();
@@ -384,7 +384,7 @@ public class SpaceshipDemoScreen extends GameScreen {
             // Move the ship with the amount of movement based on the mass of the entities
             float entityOneMovePercentage = 1.0f - entityOne.mMass / (entityOne.mMass+entityTwo.mMass);
             entityOne.position.add( -overlap * separation.x * entityOneMovePercentage,
-                                -overlap * separation.y * entityOneMovePercentage);
+                    -overlap * separation.y * entityOneMovePercentage);
             entityTwo.position.add( overlap * separation.x * (1.0f-entityOneMovePercentage),
                     overlap * separation.y * (1.0f-entityOneMovePercentage));
         }

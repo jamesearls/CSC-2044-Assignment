@@ -59,6 +59,16 @@
       "type": "Bitmap",
       "name": "0",
       "file": "img/0.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "BlueButton",
+      "file": "img/BlueButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "BlueButtonActive",
+      "file": "img/BlueButtonActive.png"
     }
     ]
 }

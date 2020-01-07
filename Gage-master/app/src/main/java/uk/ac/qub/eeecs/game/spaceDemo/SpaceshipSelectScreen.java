@@ -12,7 +12,7 @@ import uk.ac.qub.eeecs.gage.engine.input.Input;
 import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
-import uk.ac.qub.eeecs.game.cardDemo.CardDemoScreen;
+import uk.ac.qub.eeecs.game.MatchAttax.CardDemoScreen;
 import uk.ac.qub.eeecs.game.miscDemos.DemoMenuScreen;
 import uk.ac.qub.eeecs.game.platformDemo.PlatformDemoScreen;
 import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipDemoScreen;
@@ -48,7 +48,7 @@ public class SpaceshipSelectScreen extends GameScreen {
     public SpaceshipSelectScreen(Game game) {
         super("MenuScreen", game);
 
-        // Load in the bitmaps used on the main menu screen
+        // Load in the bitmaps used on the spaceship select menu screen
         AssetManager assetManager = mGame.getAssetManager();
         assetManager.loadAndAddBitmap("Spaceship2", "img/Spaceship2.png");
         assetManager.loadAndAddBitmap("Spaceship3", "img/Spaceship3.png");

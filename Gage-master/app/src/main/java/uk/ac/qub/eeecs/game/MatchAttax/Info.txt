@@ -1,0 +1,4 @@
+JSON file containing card (40) information 
+read info into CardReader.java
+inherit CardReader.java method into Cards.java and place the information passed in 
+as the parameters from the constructor of Cards.java

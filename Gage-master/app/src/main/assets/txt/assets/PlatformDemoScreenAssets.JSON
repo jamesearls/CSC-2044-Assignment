@@ -39,6 +39,11 @@
       "type": "Bitmap",
       "name": "UpArrowSelected",
       "file": "img/UpArrowSelected.png"
+    },
+    {
+      "type": "Music",
+      "name": "CoconutMall",
+      "file": "sound/CoconutMall.mp3"
     }
   ]
 }

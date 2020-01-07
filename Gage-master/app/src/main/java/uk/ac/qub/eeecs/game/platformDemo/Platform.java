@@ -85,7 +85,8 @@ public class Platform extends GameObject {
      * being drawn.
      */
     private BoundingBox tileBound = new BoundingBox();
-
+    //bounding box for different platform
+    private BoundingBox tileBound2 = new BoundingBox();
     /**
      * Draw the game platform
      *
@@ -106,16 +107,20 @@ public class Platform extends GameObject {
 
             // Define the tile size
             tileBound.halfWidth = bound.halfWidth / mTileXCount;
+            tileBound2.halfWidth = bound.halfWidth / mTileXCount;
             float tileWidth = 2.0f * tileBound.halfWidth;
             tileBound.halfHeight = bound.halfHeight / mTileYCount;
+            tileBound2.halfHeight = bound.halfHeight / mTileXCount;
             float tileHeight = 2.0f * tileBound.halfHeight;
+            float tileWidth2 = 2.0f * tileBound2.halfWidth;
+            float tileHeight2 = 4.0f * tileBound2.halfHeight;
 
             // Store the bottom left corner of the platform
             float platformLeft = bound.getLeft();
             float platformBottom = bound.getBottom();
 
             // Consider drawing each tile
-            for (int tileXIdx = 0; tileXIdx < mTileXCount; tileXIdx++)
+            for (int tileXIdx = 0; tileXIdx < mTileXCount; tileXIdx++) {
                 for (int tileYIdx = 0; tileYIdx < mTileYCount; tileYIdx++) {
 
                     // Build a layer bound for the tile
@@ -129,6 +134,24 @@ public class Platform extends GameObject {
                                 .drawBitmap(mBitmap, drawSourceRect, drawScreenRect, null);
                     }
                 }
+            }
+            //drawing each rectangle shaped tile
+
+            for (int tileXIdx = 0; tileXIdx < mTileXCount; tileXIdx++) {
+                for (int tileYIdx = 0; tileYIdx < mTileYCount; tileYIdx++) {
+
+                    // Build a layer bound for the tile
+                    tileBound2.x = platformLeft + (tileXIdx + 0.5f) * tileWidth2;
+                    tileBound2.y = platformBottom + (tileYIdx + 0.5f) * tileHeight2;
+
+                    // If the layer tile is visible then draw tne tile
+                    if (GraphicsHelper.getClippedSourceAndScreenRect(
+                            tileBound2, mBitmap, layerViewport, screenViewport, drawSourceRect, drawScreenRect)) {
+                        graphics2D
+                                .drawBitmap(mBitmap, drawSourceRect, drawScreenRect, null);
+                    }
+                }
+            }
         }
     }
 }

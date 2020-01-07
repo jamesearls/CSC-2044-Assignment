@@ -9,6 +9,8 @@ import java.util.Random;
 import uk.ac.qub.eeecs.gage.Game;
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
+//importing audiomanager to enable music to play
+import uk.ac.qub.eeecs.gage.engine.audio.AudioManager;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.util.BoundingBox;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
@@ -174,6 +176,10 @@ public class PlatformDemoScreen extends GameScreen {
             mPlatformLayerViewport.y -= mPlatformLayerViewport.getBottom();
         else if (mPlatformLayerViewport.getTop() > LEVEL_HEIGHT)
             mPlatformLayerViewport.y -= (mPlatformLayerViewport.getTop() - LEVEL_HEIGHT);
+
+
+        // calling the play music method
+        playBackgroundMusic();
     }
 
     /**
@@ -197,5 +203,16 @@ public class PlatformDemoScreen extends GameScreen {
         // Draw the controls last of all
         for (PushButton control : mControls)
             control.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+    }
+
+
+    //adding in background music
+    //playing background music
+
+    private void playBackgroundMusic() {
+        AudioManager audioManager = getGame().getAudioManager();
+        if(!audioManager.isMusicPlaying())
+            audioManager.playMusic(
+                    getGame().getAssetManager().getMusic("CoconutMall"));
     }
 }

@@ -1,4 +1,4 @@
-package uk.ac.qub.eeecs.game;
+package uk.ac.qub.eeecs.game.matchAttax.screens;
 
 import android.graphics.Color;
 
@@ -12,7 +12,6 @@ import uk.ac.qub.eeecs.gage.engine.input.Input;
 import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
-import uk.ac.qub.eeecs.game.matchAttax.CardDemoScreen;
 import uk.ac.qub.eeecs.game.miscDemos.DemoMenuScreen;
 import uk.ac.qub.eeecs.game.platformDemo.PlatformDemoScreen;
 import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipSelectScreen;
@@ -22,7 +21,7 @@ import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipSelectScreen;
  *
  * @version 1.0
  */
-public class MenuScreen extends GameScreen {
+public class MainMenu extends GameScreen {
 
     // /////////////////////////////////////////////////////////////////////////
     // Properties
@@ -45,7 +44,7 @@ public class MenuScreen extends GameScreen {
      *
      * @param game Game to which this screen belongs
      */
-    public MenuScreen(Game game) {
+    public MainMenu(Game game) {
         super("MenuScreen", game);
 
         // Load in the bitmaps used on the main menu screen
@@ -108,8 +107,6 @@ public class MenuScreen extends GameScreen {
 
             if (mSpaceshipDemoButton.isPushTriggered())
                 mGame.getScreenManager().addScreen(new SpaceshipSelectScreen(mGame));
-            else if (mCardDemoButton.isPushTriggered())
-                mGame.getScreenManager().addScreen(new CardDemoScreen(mGame));
             else if (mPlatformDemoButton.isPushTriggered())
                 mGame.getScreenManager().addScreen(new PlatformDemoScreen(mGame));
             else if (mDemosButton.isPushTriggered())
@@ -135,3 +132,4 @@ public class MenuScreen extends GameScreen {
         mCardDemoButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
     }
 }
+

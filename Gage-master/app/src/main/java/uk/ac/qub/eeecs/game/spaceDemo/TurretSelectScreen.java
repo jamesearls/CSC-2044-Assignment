@@ -12,10 +12,6 @@ import uk.ac.qub.eeecs.gage.engine.input.Input;
 import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
-import uk.ac.qub.eeecs.game.MatchAttax.CardDemoScreen;
-import uk.ac.qub.eeecs.game.miscDemos.DemoMenuScreen;
-import uk.ac.qub.eeecs.game.platformDemo.PlatformDemoScreen;
-import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipDemoScreen;
 
 /**
  * A menu screen to select the turret sprite

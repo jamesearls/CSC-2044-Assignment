@@ -1,4 +1,4 @@
-package uk.ac.qub.eeecs.game.MatchAttax;
+package uk.ac.qub.eeecs.game.CardDemo;
 
 import android.graphics.Color;
 

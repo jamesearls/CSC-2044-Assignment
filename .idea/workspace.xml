@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f03e5fa2-e124-4a73-8a26-9c37ed3f92ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f03e5fa2-e124-4a73-8a26-9c37ed3f92ad" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,22 +17,23 @@
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
+    <option name="x" value="-9" />
     <option name="width" value="975" />
-    <option name="height" value="1049" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="csc2044-45-1920-g49" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Git refresh" type="e9137016:NonAndroidModuleNode" />
+              <item name="Android Studio Projects" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Android Studio Projects" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -42,28 +41,11 @@
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Gage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Gage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Gage" type="462c0819:PsiDirectoryNode" />
-              <item name="Gage-master" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="C:/Apps/Android/SDK" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Gage-master" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RunDashboard">
@@ -107,10 +89,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16040269" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1609808" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />

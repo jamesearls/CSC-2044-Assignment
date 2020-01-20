@@ -335,14 +335,14 @@ public class SpaceshipDemoScreen extends GameScreen {
         for (Seeker s : mSeekers){
             BoundingBox entityBound = s.getBound();
             if (entityBound.getLeft() < 0)
-                s.position.x -= entityBound.getLeft();
+                s.position.x = 0 + entityBound.getWidth();
             else if (entityBound.getRight() > LEVEL_WIDTH)
-                s.position.x -= (entityBound.getRight() - LEVEL_WIDTH);
+                s.position.x = LEVEL_WIDTH - entityBound.getWidth();
 
             if (entityBound.getBottom() < 0)
-                s.position.y -= entityBound.getBottom();
+                s.position.y = 0 + entityBound.getHeight();
             else if (entityBound.getTop() > LEVEL_HEIGHT)
-                s.position.y -= (entityBound.getTop() - LEVEL_HEIGHT);
+                s.position.y = (LEVEL_HEIGHT - entityBound.getHeight());
         }
 
         for (SpaceEntity spaceEntity : mSpaceEntities)

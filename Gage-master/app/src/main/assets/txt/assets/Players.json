@@ -4,95 +4,84 @@
     "team": "Liverpool",
     "fname": "Mohammed",
     "sname": "Salah",
-    "attack": 93,
-    "defence": 50
+    "overall": 9
   },
   {
     "league": "Bundesliga",
     "team": "Dortmund",
     "fname": "Jaden",
     "sname": "Sancho",
-    "attack": 89,
-    "defence": 43
+    "overall": 7
   },
   {
-    "league": "Premier League",
-    "team": "Chelsea",
+    "league": "La Liga",
+    "team": "Real Madrid",
     "fname": "Eden",
     "sname": "Hazard",
-    "attack": 94,
-    "defence": 43
+    "overall": 8
   },
   {
     "league": "Ligue 1",
     "team": "PSG",
     "fname": "Kylian",
     "sname": "Mbappe",
-    "attack": 94,
-    "defence": 38
+    "overall": 7
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Lionel",
     "sname": "Messi",
-    "attack": 95,
-    "defence": 40
+    "overall": 10
   },
   {
     "league": "Premier League",
     "team": "Spurs",
     "fname": "Harry",
     "sname": "Kane",
-    "attack": 93,
-    "defence": 42
+    "overall": 7
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "Raheem",
     "sname": "Sterling",
-    "attack": 94,
-    "defence": 57
+    "overall": 8
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Pierre-Emerick",
     "sname": "Aubameyang",
-    "attack": 92,
-    "defence": 35
+    "overall": 6
   },
   {
     "league": "Premier League",
     "team": "Man United",
     "fname": "Marcus",
     "sname": "Rashford",
-    "attack": 87,
-    "defence": 36
+    "overall": 6
   },
   {
     "league": "Premier League",
     "team": "Chelsea",
     "fname": "Christian",
     "sname": "Pulisic",
-    "attack": 78,
-    "defence": 43
+    "overall": 5
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Luis",
     "sname": "Suarez",
-    "attack": 92,
-    "defence": 55
+    "overall": 7
   },
   {
     "league": "Serie A",
     "team": "Juventus",
     "fname": "Cristiano",
     "sname": "Ronaldo",
-    "attack": 97,
+    "overall": 97,
     "defence": 36
   },
   {
@@ -100,223 +89,195 @@
     "team": "Man City",
     "fname": "Sergio",
     "sname": "Aguero",
-    "attack": 96,
-    "defence": 29
+    "overall": 9
   },
   {
     "league": "Premier League",
     "team": "Liverpool",
     "fname": "Virgil",
     "sname": "Van Dijk",
-    "attack": 49,
-    "defence": 97
+    "overall": 10
   },
   {
     "league": "La Liga",
     "team": "Real Madrid",
     "fname": "Sergio",
     "sname": "Ramos",
-    "attack": 67,
-    "defence": 94
+    "overall": 8
   },
   {
     "league": "Bundesliga",
     "team": "Bayern Munich",
     "fname": "Manuel",
     "sname": "Neuer",
-    "attack": 7,
-    "defence": 94
+    "overall": 6
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "Leroy",
     "sname": "Sane",
-    "attack": 90,
-    "defence": 38
+    "overall": 6
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "Kevin",
     "sname": "De Bruyne",
-    "attack": 95,
-    "defence": 69
+    "overall": 9
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "David",
     "sname": "Silva",
-    "attack": 85,
-    "defence": 50
+    "overall": 6
   },
   {
     "league": "Premier League",
     "team": "Chelsea",
     "fname": "César",
     "sname": "Azpilicueta",
-    "attack": 53,
-    "defence": 95
+    "overall": 5
   },
   {
     "league": "Premier League",
     "team": "Spurs",
     "fname": "Harry",
     "sname": "Winks",
-    "attack": 76,
-    "defence": 77
+    "overall": 4
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Alexandre",
     "sname": "Lacazette",
-    "attack": 93,
-    "defence": 51
+    "overall": 6
   },
   {
     "league": "Premier League",
     "team": "Wolves",
     "fname": "Diego",
     "sname": "Jota",
-    "attack": 85,
-    "defence": 47
+    "overall": 5
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Frankie",
     "sname": "De Jong",
-    "attack": 92,
-    "defence": 83
+    "overall": 7
   },
   {
     "league": "La Liga",
     "team": "Real Madrid",
     "fname": "Raphael",
     "sname": "Varane",
-    "attack": 49,
-    "defence": 99
+    "overall": 7
   },
   {
     "league": "La Liga",
     "team": "Atletico Madrid",
     "fname": "Jorge",
     "sname": "Koke",
-    "attack": 88,
-    "defence": 73
+    "overall": 6
   },
   {
     "league": "Premier League",
     "team": "Bayern Munich",
     "fname": "Serge",
     "sname": "Gnabry",
-    "attack": 91,
-    "defence": 55
+    "overall": 7
   },
   {
     "league": "Ligue 1",
     "team": "PSG",
     "fname": "Angel",
     "sname": "Di Maria",
-    "attack": 89,
-    "defence": 66
+    "overall": 8
   },
   {
     "league": "Serie A",
     "team": "Inter Milan",
     "fname": "Radja",
     "sname": "Nainggolan",
-    "attack": 80,
-    "defence": 90
+    "overall": 5
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "David",
     "sname": "Luiz",
-    "attack": 60,
-    "defence": 84
+    "overall": 4
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Hector",
     "sname": "Bellerin",
-    "attack": 62,
-    "defence": 75
+    "overall": 6
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Jordi",
     "sname": "Alba",
-    "attack": 65,
-    "defence": 85
+    "overall": 7
   },
   {
     "league": "Ligue 1",
     "team": "PSG",
     "fname": "Thiago",
     "sname": "Silva",
-    "attack": 32,
-    "defence": 88
+    "overall": 5
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Gerard",
     "sname": "Pique",
-    "attack": 51,
-    "defence": 90
+    "overall": 5
   },
   {
     "league": "Serie A",
     "team": "Inter Milan",
     "fname": "Samir",
     "sname": "Handanovic",
-    "attack": 3,
-    "defence": 88
+    "overall": 7
   },
   {
     "league": "Premier League",
     "team": "Man United",
     "fname": "David",
     "sname": "De Gea",
-    "attack": 6,
-    "defence": 91
+    "overall": 8
   },
   {
     "league": "La Liga",
     "team": "Inter Milan",
     "fname": "Jan",
     "sname": "Oblak",
-    "attack": 6,
-    "defence": 95
+    "overall": 9
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Marc-Andre",
     "sname": "Ter Stegan",
-    "attack": 3,
-    "defence": 89
+    "overall": 8
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Bernd",
     "sname": "Leno",
-    "attack": 1,
-    "defence": 82
+    "overall": 7
   },
   {
     "league": "Premier League",
     "team": "Chelsea",
     "fname": "Ngolo",
     "sname": "Kante",
-    "attack": 68,
-    "defence": 93
+    "overall": 8
   }
 ]

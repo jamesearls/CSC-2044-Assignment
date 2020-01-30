@@ -4,280 +4,319 @@
     "team": "Liverpool",
     "fname": "Mohammed",
     "sname": "Salah",
-    "overall": 9
+    "overall": 9,
+    "portrait": "img/Cards/Salah.png"
   },
   {
     "league": "Bundesliga",
     "team": "Dortmund",
     "fname": "Jaden",
     "sname": "Sancho",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Sancho.png"
   },
   {
     "league": "La Liga",
     "team": "Real Madrid",
     "fname": "Eden",
     "sname": "Hazard",
-    "overall": 8
+    "overall": 8,
+    "portrait": "img/Cards/EHazard.png"
   },
   {
     "league": "Ligue 1",
     "team": "PSG",
     "fname": "Kylian",
     "sname": "Mbappe",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Mbappe.png"
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Lionel",
     "sname": "Messi",
-    "overall": 10
+    "overall": 10,
+    "portrait": "img/Cards/Messi.png"
   },
   {
     "league": "Premier League",
     "team": "Spurs",
     "fname": "Harry",
     "sname": "Kane",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Kane.png"
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "Raheem",
     "sname": "Sterling",
-    "overall": 8
+    "overall": 8,
+    "portrait": "img/Cards/Sterling.png"
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Pierre-Emerick",
     "sname": "Aubameyang",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Aubameyang.png"
   },
   {
     "league": "Premier League",
     "team": "Man United",
     "fname": "Marcus",
     "sname": "Rashford",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Rashford.png"
   },
   {
     "league": "Premier League",
     "team": "Chelsea",
     "fname": "Christian",
     "sname": "Pulisic",
-    "overall": 5
+    "overall": 5,
+    "portrait": "img/Cards/Pulisic.png"
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Luis",
     "sname": "Suarez",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Suarez.png"
   },
   {
     "league": "Serie A",
     "team": "Juventus",
     "fname": "Cristiano",
     "sname": "Ronaldo",
-    "overall": 97,
-    "defence": 36
+    "overall": 10,
+    "portrait": "img/Cards/Ronaldo.png"
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "Sergio",
     "sname": "Aguero",
-    "overall": 9
+    "overall": 9,
+    "portrait": "img/Cards/Aguero.png"
   },
   {
     "league": "Premier League",
     "team": "Liverpool",
     "fname": "Virgil",
     "sname": "Van Dijk",
-    "overall": 10
+    "overall": 10,
+    "portrait": "img/Cards/VVD.png"
   },
   {
     "league": "La Liga",
     "team": "Real Madrid",
     "fname": "Sergio",
     "sname": "Ramos",
-    "overall": 8
+    "overall": 8,
+    "portrait": "img/Cards/Ramos.png"
   },
   {
     "league": "Bundesliga",
     "team": "Bayern Munich",
     "fname": "Manuel",
     "sname": "Neuer",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Neuer.png"
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "Leroy",
     "sname": "Sane",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Sane.png"
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "Kevin",
     "sname": "De Bruyne",
-    "overall": 9
+    "overall": 9,
+    "portrait": "img/Cards/KDB.png"
   },
   {
     "league": "Premier League",
     "team": "Man City",
     "fname": "David",
     "sname": "Silva",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Silva.png"
   },
   {
     "league": "Premier League",
     "team": "Chelsea",
     "fname": "César",
     "sname": "Azpilicueta",
-    "overall": 5
+    "overall": 5,
+    "portrait": "img/Cards/Azpi.png"
   },
   {
     "league": "Premier League",
     "team": "Spurs",
     "fname": "Harry",
     "sname": "Winks",
-    "overall": 4
+    "overall": 4,
+    "portrait": "img/Cards/Winks.png"
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Alexandre",
     "sname": "Lacazette",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Lacazette.png"
   },
   {
     "league": "Premier League",
     "team": "Wolves",
     "fname": "Diego",
     "sname": "Jota",
-    "overall": 5
+    "overall": 5,
+    "portrait": "img/Cards/Jota.png"
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Frankie",
     "sname": "De Jong",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/FDeJong.png"
   },
   {
     "league": "La Liga",
     "team": "Real Madrid",
     "fname": "Raphael",
     "sname": "Varane",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Varane.png"
   },
   {
     "league": "La Liga",
     "team": "Atletico Madrid",
     "fname": "Jorge",
     "sname": "Koke",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Koke.png"
   },
   {
     "league": "Premier League",
     "team": "Bayern Munich",
     "fname": "Serge",
     "sname": "Gnabry",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Gnabry.png"
   },
   {
     "league": "Ligue 1",
     "team": "PSG",
     "fname": "Angel",
     "sname": "Di Maria",
-    "overall": 8
+    "overall": 8,
+    "portrait": "img/Cards/DiMaria.png"
   },
   {
     "league": "Serie A",
     "team": "Inter Milan",
     "fname": "Radja",
     "sname": "Nainggolan",
-    "overall": 5
+    "overall": 5,
+    "portrait": "img/Cards/Nainggolan.png"
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "David",
     "sname": "Luiz",
-    "overall": 4
+    "overall": 4,
+    "portrait": "img/Cards/Luiz.png"
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Hector",
     "sname": "Bellerin",
-    "overall": 6
+    "overall": 6,
+    "portrait": "img/Cards/Bellerin.png"
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Jordi",
     "sname": "Alba",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Alba.png"
   },
   {
     "league": "Ligue 1",
     "team": "PSG",
     "fname": "Thiago",
     "sname": "Silva",
-    "overall": 5
+    "overall": 5,
+    "portrait": "img/Cards/TSilva.png"
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Gerard",
     "sname": "Pique",
-    "overall": 5
+    "overall": 5,
+    "portrait": "img/Cards/Pique.png"
   },
   {
     "league": "Serie A",
     "team": "Inter Milan",
     "fname": "Samir",
     "sname": "Handanovic",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Handanovic.png"
   },
   {
     "league": "Premier League",
     "team": "Man United",
     "fname": "David",
     "sname": "De Gea",
-    "overall": 8
+    "overall": 8,
+    "portrait": "img/Cards/DDG.png"
   },
   {
     "league": "La Liga",
     "team": "Inter Milan",
     "fname": "Jan",
     "sname": "Oblak",
-    "overall": 9
+    "overall": 9,
+    "portrait": "img/Cards/Oblak.png"
   },
   {
     "league": "La Liga",
     "team": "Barcelona",
     "fname": "Marc-Andre",
     "sname": "Ter Stegan",
-    "overall": 8
+    "overall": 8,
+    "portrait": "img/Cards/TStegen.png"
   },
   {
     "league": "Premier League",
     "team": "Arsenal",
     "fname": "Bernd",
     "sname": "Leno",
-    "overall": 7
+    "overall": 7,
+    "portrait": "img/Cards/Leno.png"
   },
   {
     "league": "Premier League",
     "team": "Chelsea",
     "fname": "Ngolo",
     "sname": "Kante",
-    "overall": 8
+    "overall": 8,
+    "portrait": "img/Cards/Kante.png"
   }
 ]

@@ -110,6 +110,21 @@ public class Seeker extends SpaceEntity {
 
     }
 
+    public void checkInBounds(final float LEVEL_WIDTH, final float LEVEL_HEIGHT, ElapsedTime elapsedTime){
+        BoundingBox entityBound = this.getBound();
+        if (entityBound.getLeft() < 0)
+            this.position.x = 0 + entityBound.getWidth();
+        else if (entityBound.getRight() > LEVEL_WIDTH)
+            this.position.x = LEVEL_WIDTH - entityBound.getWidth();
+
+        if (entityBound.getBottom() < 0)
+            this.position.y = 0 + entityBound.getHeight();
+        else if (entityBound.getTop() > LEVEL_HEIGHT)
+            this.position.y = (LEVEL_HEIGHT - entityBound.getHeight());
+
+        this.update(elapsedTime);
+    }
+
     // /////////////////////////////////////////////////////////////////////////
     // Methods
     // /////////////////////////////////////////////////////////////////////////

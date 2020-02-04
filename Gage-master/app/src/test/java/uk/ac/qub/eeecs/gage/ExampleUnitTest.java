@@ -111,7 +111,7 @@ public class ExampleUnitTest {
         float expectedMaxAngularAcceleration = 50.0f;
 
         // Create a new aiSpaceship turret instance
-        Turret turret = new Turret(expectedXPosition, expectedYPosition, spaceshipDemoScreen);
+        Turret turret = new Turret(expectedXPosition, expectedYPosition, spaceshipDemoScreen, "Turret1.png");
 
         // Test that the constructed values are as expected
         assertTrue(turret.position.x == expectedXPosition);

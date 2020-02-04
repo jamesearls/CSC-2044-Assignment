@@ -333,20 +333,13 @@ public class SpaceshipDemoScreen extends GameScreen {
 
         // Update each of the space entities
         for (Seeker s : mSeekers){
-            BoundingBox entityBound = s.getBound();
-            if (entityBound.getLeft() < 0)
-                s.position.x = 0 + entityBound.getWidth();
-            else if (entityBound.getRight() > LEVEL_WIDTH)
-                s.position.x = LEVEL_WIDTH - entityBound.getWidth();
-
-            if (entityBound.getBottom() < 0)
-                s.position.y = 0 + entityBound.getHeight();
-            else if (entityBound.getTop() > LEVEL_HEIGHT)
-                s.position.y = (LEVEL_HEIGHT - entityBound.getHeight());
+            s.checkInBounds(LEVEL_WIDTH, LEVEL_HEIGHT, elapsedTime);
         }
 
         for (SpaceEntity spaceEntity : mSpaceEntities)
             spaceEntity.update(elapsedTime);
+        /*for (Seeker s : mSeekers)
+            s.update(elapsedTime);*/
 
 
         // Check for and resolve collisions between the space entities

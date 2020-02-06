@@ -40,8 +40,8 @@ public class Cards extends Sprite{
     public Cards(float x, float y, GameScreen gameScreen, int overallValue, String league, String club, String firstName, String surname, Bitmap cardPortrait){
         super(x, y, DEFAULT_CARD_WIDTH, DEFAULT_CARD_HEIGHT, null, gameScreen);
 
-        AssetManager assetManager = new AssetManager();
-        String jsonToBeLoaded;
+        AssetManager assetManager = gameScreen.getGame().getAssetManager();
+        String jsonToBeLoaded = "";
         try
         {
             jsonToBeLoaded = assetManager.getFileIO().loadJSON("txt/assets/Players.json");

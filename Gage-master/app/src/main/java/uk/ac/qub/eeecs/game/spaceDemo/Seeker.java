@@ -75,7 +75,7 @@ public class Seeker extends SpaceEntity {
      * @param gameScreen    Gamescreen to which AI belongs
      */
     public Seeker(float startX, float startY, SpaceshipDemoScreen gameScreen, String seekerChoice) {
-        super(startX, startY, getBounds(), getBounds(), null, gameScreen);
+        super(startX, startY, DEFAULT_RADIUS, DEFAULT_RADIUS, null, gameScreen);
 
         // Define movement variables for the seeker
         maxAcceleration = 30.0f;
@@ -106,7 +106,7 @@ public class Seeker extends SpaceEntity {
         float num = rand.nextFloat();
 
         setWidth((getWidth() * num) +10);
-        setHeight((getWidth() * num) +10);
+        setHeight(getWidth());
 
     }
 
@@ -114,12 +114,12 @@ public class Seeker extends SpaceEntity {
         BoundingBox entityBound = this.getBound();
         if (entityBound.getLeft() < 0)
             this.position.x = 0 + entityBound.getWidth();
-        else if (entityBound.getRight() > LEVEL_WIDTH)
+        if (entityBound.getRight() > LEVEL_WIDTH)
             this.position.x = LEVEL_WIDTH - entityBound.getWidth();
 
         if (entityBound.getBottom() < 0)
             this.position.y = 0 + entityBound.getHeight();
-        else if (entityBound.getTop() > LEVEL_HEIGHT)
+        if (entityBound.getTop() > LEVEL_HEIGHT)
             this.position.y = (LEVEL_HEIGHT - entityBound.getHeight());
 
         this.update(elapsedTime);

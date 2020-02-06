@@ -13,7 +13,11 @@ import uk.ac.qub.eeecs.gage.world.LayerViewport;
 import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 import uk.ac.qub.eeecs.gage.world.Sprite;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
 
 
 public class Cards extends Sprite{
@@ -36,27 +40,42 @@ public class Cards extends Sprite{
     public Cards(float x, float y, GameScreen gameScreen, int overallValue, String league, String club, String firstName, String surname, Bitmap cardPortrait){
         super(x, y, DEFAULT_CARD_WIDTH, DEFAULT_CARD_HEIGHT, null, gameScreen);
 
+        AssetManager assetManager = new AssetManager();
+        String jsonToBeLoaded;
+        try
+        {
+            jsonToBeLoaded = assetManager.getFileIO().loadJSON("txt/assets/Players.json");
+        }
+        catch(IOException ioEx)
+        {
+            System.out.println(ioEx.getMessage());
+        }
 
-            AssetManager assetManager = gameScreen.getGame().getAssetManager();
-            assetManager.loadAssets("txt/assets/Players.JSON");
+        try
+        {
+            JSONObject players = new JSONObject(jsonToBeLoaded);
 
-            for (int i = 0; i < amountOfCardsInDatabase; i++) {
-                //Below is comments of the code im trying to achieve
-                /*overallValue = assetManager.load___("overall");
-                league = assetManager.load___("league");
-                club = assetManager.load___("team")
-                firstName = assetManager.load____("fname");
-                surname = assetManager.load_____("sname");
-                cardPortrait = assetManager.loadBitmap("portrait");
-                cardsInStore[i] = {overallValue, league, club, firstName, surname, cardPortrait};
+            for (int id = 0; id < amountOfCardsInDatabase; id++) {
+                if(id == players.getInt("id"))
+                {
+                    overallValue = players.getInt("overall");
+                    league = players.getString("league");
+                    club = players.getString("team");
+                    firstName = players.getString("fname");
+                    surname = players.getString("sname");
+                    //cardPortrait =
+                    ////cardsInStore[id] = {x, y, DEFAULT_CARD_WIDTH, DEFAULT_CARD_HEIGHT, null, gameScreen, overallValue, league, club, firstName, surname, cardPortrait};
+                }
 
-                 */
             }
-
-
-
-
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
+
+
 }
 
 

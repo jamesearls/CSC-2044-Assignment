@@ -1,5 +1,7 @@
 package uk.ac.qub.eeecs.game.matchAttax.player;
 
+import uk.ac.qub.eeecs.game.CardDemo.Card;
+
 public class Player {
 
     private Deck deck;
@@ -9,7 +11,7 @@ public class Player {
     public Player(Deck deck){
         this.deck = deck;
         score = 0;
-        endTurn = false;
+        endTurn = true;
     }
 
     public Deck getDeck() {return deck;}
@@ -20,5 +22,8 @@ public class Player {
     public void setScore(int newScore){score = newScore;}
     public void setEndTurn(boolean val){endTurn = val;}
 
+    public void playCard(Card card){
+
+    }
 
 }

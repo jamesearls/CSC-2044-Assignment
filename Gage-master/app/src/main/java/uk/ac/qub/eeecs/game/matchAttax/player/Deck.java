@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import uk.ac.qub.eeecs.game.CardDemo.Card;
+import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 import uk.ac.qub.eeecs.game.matchAttax.screens.MatchGameScreen;
 
 public class Deck {
 
     public static final int MAX_SIZE = 5;
-    public static final int AMOUNT_OF_CARDS_IN_DATABASE = 40;
 
     private List<Card> cardsInDeck;
     private MatchGameScreen gameScreen;

@@ -25,6 +25,9 @@ public class Cards extends Sprite{
     private static final int DEFAULT_CARD_HEIGHT = 100;
     private static final int DEFAULT_CARD_WIDTH = 50;
 
+    public static final float DEFAULT_CARD_X = 0.0f;
+    public static final float DEFAULT_CARD_Y = 0.0f;
+
     private final int amountOfCardsInDatabase = 40;
 
     private Cards card;

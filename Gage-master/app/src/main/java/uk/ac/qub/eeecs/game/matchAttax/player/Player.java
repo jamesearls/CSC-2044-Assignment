@@ -1,6 +1,6 @@
 package uk.ac.qub.eeecs.game.matchAttax.player;
 
-import uk.ac.qub.eeecs.game.CardDemo.Card;
+import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 
 //By Adam Kennedy
 public class Player {
@@ -26,7 +26,7 @@ public class Player {
     public void playCard(Card card){
         if(deck.getDeck().contains(card)){
             deck.getDeck().remove(card);
-            score += card.getOverall();
+            score += card.getOverallValue();
         }
     }
 

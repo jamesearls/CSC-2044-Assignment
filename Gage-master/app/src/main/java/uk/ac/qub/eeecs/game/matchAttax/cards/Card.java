@@ -21,10 +21,15 @@ public class Card extends GameObject {
     private Bitmap cardPortrait;
     private String firstName;
     private String surname;
+    private int overallValue;
 
-    public Card(GameScreen gameScreen, String firstName, String surname, Bitmap cardPortrait){
+    public Card(GameScreen gameScreen, int overallValue, String firstName, String surname, Bitmap cardPortrait){
         super(gameScreen);
 
 
+    }
+
+    public int getOverallValue(){
+        return overallValue;
     }
 }

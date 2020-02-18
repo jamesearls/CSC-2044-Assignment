@@ -69,6 +69,7 @@ public class MatchGameScreen extends GameScreen {
         }
     }
 
+
     public Card getRandomCard(){
         Random random = new Random();
         Card card = mPlayerCards.get(random.nextInt(40));

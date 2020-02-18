@@ -45,7 +45,7 @@ public class MainMenu extends GameScreen {
      * @param game Game to which this screen belongs
      */
     public MainMenu(Game game) {
-        super("MenuScreen", game);
+        super("MainMenu", game);
 
         // Load in the bitmaps used on the main menu screen
         AssetManager assetManager = mGame.getAssetManager();

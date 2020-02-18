@@ -7,6 +7,7 @@ import java.util.Random;
 import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 import uk.ac.qub.eeecs.game.matchAttax.screens.MatchGameScreen;
 
+//By Adam Kennedy
 public class Deck {
 
     public static final int MAX_SIZE = 5;
@@ -29,6 +30,13 @@ public class Deck {
                 }
             }
         }
+    }
+
+    public List<Card> getDeck(){ return cardsInDeck; }
+
+    public void setDeck(Deck deck)
+    {
+        cardsInDeck = deck.cardsInDeck;
     }
 
     public boolean cardAlreadyInDeck(Card card){

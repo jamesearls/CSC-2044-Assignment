@@ -1,0 +1,24 @@
+{
+  "assets": [
+    {
+      "type": "Bitmap",
+      "name": "PlayButton",
+      "file": "img/buttons/PlayButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "CardsButton",
+      "file": "img/buttons/CardsButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "SettingsButton",
+      "file": "img/buttons/SettingsButton.png"
+    },    
+    {
+      "type": "Music",
+      "name": "SpaceBackgroundMusic",
+      "file": "sound/SpaceMusic.mp3"
+    }
+  ]
+}

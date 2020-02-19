@@ -24,8 +24,8 @@ public class Player {
     public void setEndTurn(boolean val){endTurn = val;}
 
     public void playCard(Card card){
-        if(deck.getDeck().contains(card)){
-            deck.getDeck().remove(card);
+        if(deck.getCardsInDeck().contains(card)){
+            deck.getCardsInDeck().remove(card);
             score += card.getOverallValue();
         }
     }

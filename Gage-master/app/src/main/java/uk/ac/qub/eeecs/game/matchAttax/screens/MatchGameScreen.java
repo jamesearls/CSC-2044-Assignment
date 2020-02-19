@@ -17,6 +17,7 @@ import uk.ac.qub.eeecs.gage.world.LayerViewport;
 import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 import uk.ac.qub.eeecs.game.matchAttax.cards.Cards;
+import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
 import uk.ac.qub.eeecs.game.matchAttax.player.Player;
@@ -39,7 +40,8 @@ public class MatchGameScreen extends GameScreen {
     private int aiScore;
     private int roundNum;
 
-    private List<Card> mPlayerCards;
+    private List<PlayerCard> mPlayerCards;
+    private List<ManagerCard> mManagerCards;
     private AssetManager assetManager;
 
     public static final int AMOUNT_OF_PLAYER_CARDS = 40;
@@ -70,6 +72,9 @@ public class MatchGameScreen extends GameScreen {
 
     }
 
+    public Player getHumanPlayer(){ return humanPlayer; }
+    public Player getAiPlayer(){ return aiPlayer; }
+
     private void setupCards(){
         Bitmap cardPortrait;
         int overallValue;
@@ -77,6 +82,7 @@ public class MatchGameScreen extends GameScreen {
         String club;
         String firstName;
         String surname;
+        String imgPath;
 
         String jsonToBeLoaded = "";
         JSONObject players;
@@ -93,8 +99,11 @@ public class MatchGameScreen extends GameScreen {
                     club = players.getString("team");
                     firstName = players.getString("fname");
                     surname = players.getString("sname");
-                    cardPortrait = assetManager.getBitmap("img" + idx);
-                    Card cardToAdd = new PlayerCard(this, overallValue, league, club, firstName, surname, cardPortrait);
+                    imgPath = players.getString("portrait");
+                    loadBitmaps("player" + idx, imgPath);
+
+                    cardPortrait = assetManager.getBitmap("player" + idx);
+                    PlayerCard cardToAdd = new PlayerCard(this, overallValue, league, club, firstName, surname, cardPortrait);
                     mPlayerCards.add(cardToAdd);
                     }
             }
@@ -114,9 +123,27 @@ public class MatchGameScreen extends GameScreen {
 
     public Card getRandomManagerCard(){
         Random random = new Random();
-        Card card = mPlayerCards.get(random.nextInt(AMOUNT_OF_MANAGER_CARDS));
+        Card card = mManagerCards.get(random.nextInt(AMOUNT_OF_MANAGER_CARDS));
 
         return card;
+    }
+
+    private void loadAssets(){
+        loadMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
+        loadMusic("CoconutMall", "sound/CoconutMall.mp3");
+        loadMusic("FluorescentAdolescent", "sound/FluorescentAdolescent.mp3");
+        loadMusic("InPursuitOfSilence", "sound/InPursuitOfSilence.mp3");
+        loadMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");
+        loadMusic("WavinFlag", "sound/WavinFlag.mp3");
+        loadMusic("WhatYouKnow", "sound/WhatYouKnow.mp3");
+    }
+
+    private void loadMusic(String assetName, String fileName){
+        getGame().getAssetManager().loadAndAddMusic(assetName, fileName);
+    }
+
+    private void loadBitmaps(String assetName, String fileName){
+        getGame().getAssetManager().loadAndAddBitmap(assetName, fileName);
     }
 
     public void update(ElapsedTime elapsedTime){

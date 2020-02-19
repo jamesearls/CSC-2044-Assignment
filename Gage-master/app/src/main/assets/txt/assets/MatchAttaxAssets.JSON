@@ -14,11 +14,46 @@
       "type": "Bitmap",
       "name": "SettingsButton",
       "file": "img/buttons/SettingsButton.png"
-    },    
+    },
     {
       "type": "Music",
-      "name": "SpaceBackgroundMusic",
-      "file": "sound/SpaceMusic.mp3"
+      "name": "ChelseaDagger",
+      "file": "ChelseaDagger.mp3"
+    },
+    {
+      "type": "Music",
+      "name": "CoconutMall",
+      "file": "ChelseaDagger.mp3"
+    },
+    {
+      "type": "Music",
+      "name": "ChelseaDagger",
+      "file": "CoconutMall.mp3"
+    },
+    {
+      "type": "Music",
+      "name": "FluorescentAdolescent",
+      "file": "FluorescentAdolescent.mp3"
+    },
+    {
+      "type": "Music",
+      "name": "InPursuitOfSilence",
+      "file": "InPursuitOfSilence.mp3"
+    },
+    {
+      "type": "Music",
+      "name": "SevenNationArmy",
+      "file": "SevenNationArmy.mp3"
+    },
+    {
+      "type": "Music",
+      "name": "WavinFlag",
+      "file": "WavinFlag.mp3"
+    },
+    {
+      "type": "Music",
+      "name": "WhatYouKnow",
+      "file": "WhatYouKnow.mp3"
     }
   ]
 }

@@ -14,8 +14,8 @@ public class ManagerCard extends Card {
     private boolean type; //Addition card or a multiplier (true = add // false = multiply)
     private Cards[] cardsInStore = new Cards[amountOfCardsInDatabase];
 
-    public ManagerCard(GameScreen gameScreen, String firstName, String surname, Bitmap cardPortrait){
-        super(gameScreen, firstName, surname, cardPortrait);
+    public ManagerCard(GameScreen gameScreen, int overallValue, String firstName, String surname, Bitmap cardPortrait){
+        super(gameScreen, overallValue, firstName, surname, cardPortrait);
 
 
     }

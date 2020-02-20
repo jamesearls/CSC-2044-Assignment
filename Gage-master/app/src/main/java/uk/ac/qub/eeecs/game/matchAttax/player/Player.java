@@ -1,6 +1,6 @@
 package uk.ac.qub.eeecs.game.matchAttax.player;
 
-import uk.ac.qub.eeecs.game.CardDemo.Card;
+import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 
 //By Adam Kennedy
 public class Player {
@@ -24,9 +24,9 @@ public class Player {
     public void setEndTurn(boolean val){endTurn = val;}
 
     public void playCard(Card card){
-        if(deck.getDeck().contains(card)){
-            deck.getDeck().remove(card);
-            score += card.getOverall();
+        if(deck.getCardsInDeck().contains(card)){
+            deck.getCardsInDeck().remove(card);
+            score += card.getOverallValue();
         }
     }
 

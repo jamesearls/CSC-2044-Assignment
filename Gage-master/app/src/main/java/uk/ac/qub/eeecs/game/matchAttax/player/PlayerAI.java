@@ -1,12 +1,47 @@
 package uk.ac.qub.eeecs.game.matchAttax.player;
 
+import java.util.Random;
+
+import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
+import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 import uk.ac.qub.eeecs.game.matchAttax.screens.MatchGameScreen;
+
+import static java.lang.StrictMath.abs;
 
 //By Adam Kennedy
 public class PlayerAI extends Player {
 
+    private MatchGameScreen gameScreen;
+
     public PlayerAI(Deck deck, MatchGameScreen gameScreen){
         super(deck);
-        
+
+        this.gameScreen = gameScreen;
+    }
+
+    public Card selectCardToPlay(int playerScore, int aiScore, int roundNum){
+        int scoreDiff, closestToDiff=-1;
+        Random random = new Random();
+        Card cardToPlay = getDeck().getCardsInDeck().get(0);
+        if (playerScore > aiScore){
+            scoreDiff = playerScore - aiScore;
+            for (Card card : getDeck().getCardsInDeck()){
+                if (card.getOverallValue() == scoreDiff){
+                    cardToPlay = card;
+                    break;
+                }
+                else{
+                    if (abs(scoreDiff - card.getOverallValue()) < closestToDiff || closestToDiff == -1){
+                        closestToDiff = abs(scoreDiff - card.getOverallValue());
+                        cardToPlay = card;
+                    }
+                }
+            }
+        }
+        else {
+            cardToPlay = getDeck().getCardsInDeck().get(random.nextInt(getDeck().getCardsInDeck().size()));
+        }
+
+        return cardToPlay;
     }
 }

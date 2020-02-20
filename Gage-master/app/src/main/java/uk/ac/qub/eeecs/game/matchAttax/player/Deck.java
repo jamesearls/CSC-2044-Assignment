@@ -21,18 +21,21 @@ public class Deck {
         this.gameScreen = gameScreen;
 
         cardsInDeck = new ArrayList<>();
-        for (int idx=0; idx<MAX_SIZE; idx++){
+        Card newCard;
+        for (int idx=0; idx<MAX_SIZE-1; idx++){
             while(true) {
-                Card newCard = gameScreen.getRandomCard();
+                newCard = gameScreen.getRandomPlayerCard();
                 if(cardAlreadyInDeck(newCard)){
                     cardsInDeck.add(newCard);
                     break;
                 }
             }
         }
+        newCard = gameScreen.getRandomManagerCard();
+        cardsInDeck.add(newCard);
     }
 
-    public List<Card> getDeck(){ return cardsInDeck; }
+    public List<Card> getCardsInDeck(){ return cardsInDeck; }
 
     public void setDeck(Deck deck)
     {

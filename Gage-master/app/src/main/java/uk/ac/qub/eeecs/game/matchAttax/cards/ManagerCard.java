@@ -11,6 +11,7 @@ public class ManagerCard extends Card {
     private int overallValue;
     private String firstName;
     private String surname;
+    private int value;
     private boolean type; //Addition card or a multiplier (true = add // false = multiply)
     private Cards[] cardsInStore = new Cards[amountOfCardsInDatabase];
 

@@ -85,7 +85,7 @@ public class Cards extends Sprite{
         //else
         // { AI wins }
 
-    
+
 
     }
 

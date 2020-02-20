@@ -15,7 +15,31 @@
       "name": "SettingsButton",
       "file": "img/buttons/SettingsButton.png"
     },
-
+    {
+      "type": "Bitmap",
+      "name": "song1",
+      "file": "img/songs/song1.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "song2",
+      "file": "img/songs/song2.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "song3",
+      "file": "img/songs/song3.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "song4",
+      "file": "img/songs/song4.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "song5",
+      "file": "img/songs/song5.png"
+    },
     {
       "type": "Music",
       "name": "ChelseaDagger",

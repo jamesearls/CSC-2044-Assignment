@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import uk.ac.qub.eeecs.gage.Game;
@@ -15,6 +16,8 @@ import uk.ac.qub.eeecs.gage.engine.animation.AnimationSettings;
 import uk.ac.qub.eeecs.gage.engine.audio.Music;
 import uk.ac.qub.eeecs.gage.engine.audio.Sound;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
+import uk.ac.qub.eeecs.game.matchAttax.cards.Cards;
+import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 
 /**
  * Asset manager for holding loaded assets.
@@ -69,6 +72,8 @@ public class AssetManager {
      */
     private Game mGame;
 
+    private ArrayList<PlayerCard> cardsArrayList;
+
     // /////////////////////////////////////////////////////////////////////////
     // Constructors
     // /////////////////////////////////////////////////////////////////////////
@@ -89,11 +94,39 @@ public class AssetManager {
         mSounds = new HashMap<>();
         mFonts = new HashMap<>();
         mAnimations = new HashMap<>();
+
+        cardsArrayList = new ArrayList<PlayerCard>();
+        addCards("txt/assets/Players.json");
     }
 
     // /////////////////////////////////////////////////////////////////////////
     // Store //
     // /////////////////////////////////////////////////////////////////////////
+
+
+    //I will be using the asset manager to automatically load in the
+    public void addCards(String jsonFilePath)
+    {
+        String loadedJSON = "";
+        try
+        {
+            loadedJSON = mFileIO.loadJSON(jsonFilePath);
+        }
+        catch(IOException ioEx)
+        {
+            System.out.println(ioEx.getMessage());
+        }
+
+        try
+        {
+            JSONObject cards = new JSONObject(loadedJSON);
+            addPlayerCards(cards);
+        }
+        catch(JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
 
     /**
      * Add the specified bitmap asset to the manager
@@ -103,6 +136,8 @@ public class AssetManager {
      * @return boolean true if the asset could be added, false it not (e.g. an
      * asset with the specified name already exists).
      */
+
+
     public boolean add(String assetName, Bitmap asset) {
         if (mBitmaps.containsKey(assetName))
             return false;
@@ -342,6 +377,34 @@ public class AssetManager {
             throw new RuntimeException(
                     "AssetManager.constructor: JSON parsing error [" + e.getMessage() + "]");
         }
+    }
+
+    //Loads the players in from a JSON array into an array list
+    public void addPlayerCards(JSONObject cards)
+    {
+        try {
+            JSONArray players = cards.getJSONArray("players");
+            for (int i = 0; i < players.length(); i++) {
+                JSONObject player = players.getJSONObject(i);
+                PlayerCard playerCard = new PlayerCard(
+                        player.getInt("overall"),
+                        player.getString("league"),
+                        player.getString("team"),
+                        player.getString("fname"),
+                        player.getString("sname"),
+                        player.getString("cardPortrait"));
+                cardsArrayList.add(playerCard);
+            }
+        }
+        catch (JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+
+    public ArrayList<PlayerCard> getPlayerCards()
+    {
+        return cardsArrayList;
     }
 
     /**

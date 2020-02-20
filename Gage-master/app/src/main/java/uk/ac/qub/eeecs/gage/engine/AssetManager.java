@@ -16,6 +16,7 @@ import uk.ac.qub.eeecs.gage.engine.animation.AnimationSettings;
 import uk.ac.qub.eeecs.gage.engine.audio.Music;
 import uk.ac.qub.eeecs.gage.engine.audio.Sound;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
+import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.cards.Cards;
 import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 
@@ -380,13 +381,14 @@ public class AssetManager {
     }
 
     //Loads the players in from a JSON array into an array list
-    public void addPlayerCards(JSONObject cards)
+    public void addPlayerCards(JSONObject cards, GameScreen gameScreen)
     {
         try {
             JSONArray players = cards.getJSONArray("players");
             for (int i = 0; i < players.length(); i++) {
                 JSONObject player = players.getJSONObject(i);
                 PlayerCard playerCard = new PlayerCard(
+                        gameScreen,
                         player.getInt("overall"),
                         player.getString("league"),
                         player.getString("team"),

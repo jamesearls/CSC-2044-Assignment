@@ -37,7 +37,6 @@ public class MatchAttaxGame extends Game {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         View view = super.onCreateView(inflater, container, savedInstanceState);
-
         MainMenu mainMenu = new MainMenu(this);
         mScreenManager.addScreen(mainMenu);
 

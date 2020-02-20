@@ -37,7 +37,6 @@ public class Cards extends Sprite{
     private String firstName;
     private String surname;
     private Cards[] cardsInStore = new Cards[amountOfCardsInDatabase];
-    private totalScore;
 
 
 
@@ -79,7 +78,7 @@ public class Cards extends Sprite{
         }
 
         //calculating the total score and who wins the round
-        totalScore += overallValue;
+        //totalScore += overallValue;
         //if (players score > AI score)
         // { player wins }
         //else

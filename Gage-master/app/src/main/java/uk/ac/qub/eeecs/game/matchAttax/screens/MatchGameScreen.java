@@ -2,6 +2,8 @@ package uk.ac.qub.eeecs.game.matchAttax.screens;
 
 import android.graphics.Bitmap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -11,6 +13,9 @@ import java.util.Random;
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
+import uk.ac.qub.eeecs.gage.engine.input.Input;
+import uk.ac.qub.eeecs.gage.engine.io.FileIO;
+import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.gage.Game;
 import uk.ac.qub.eeecs.gage.world.LayerViewport;
@@ -26,6 +31,7 @@ import uk.ac.qub.eeecs.game.matchAttax.player.PlayerAI;
 public class MatchGameScreen extends GameScreen {
 
     private String gameBackground;
+    private GameObject background;
 
     private ScreenViewport mScreenViewport;
     private LayerViewport mLayerViewport;
@@ -54,9 +60,20 @@ public class MatchGameScreen extends GameScreen {
         super("MatchGameScreen", game);
 
         mScreenViewport = new ScreenViewport( 0,0, game.getScreenWidth(), game.getScreenHeight());
-        mLayerViewport = new LayerViewport(mScreenViewport.centerX(), mScreenViewport.centerY(),mScreenViewport.width / 2,mScreenViewport.height / 2);
+        mLayerViewport = new LayerViewport(mScreenViewport.centerX(),
+                mScreenViewport.centerY(),
+                mScreenViewport.width / 2,
+                mScreenViewport.height / 2);
 
-        setupCards();
+        gameBackground = "";
+        background = new GameObject(game.getScreenWidth() / 2.0f,
+                game.getScreenHeight() / 2.0f,
+                game.getScreenWidth(),
+                game.getScreenHeight(),
+                getGame().getAssetManager().getBitmap(gameBackground),
+                this);
+
+        addCards("txt/assets/Players.json");
 
         playerDeck = new Deck(this);
         aiDeck = new Deck(this);
@@ -72,51 +89,61 @@ public class MatchGameScreen extends GameScreen {
 
     }
 
-    public Player getHumanPlayer(){ return humanPlayer; }
-    public Player getAiPlayer(){ return aiPlayer; }
+    public void addCards(String jsonFilePath)
+    {
+        FileIO mFileIO = mGame.getFileIO();
+        String loadedJSON = "";
+        try
+        {
+            loadedJSON = mFileIO.loadJSON(jsonFilePath);
+        }
+        catch(IOException ioEx)
+        {
+            System.out.println(ioEx.getMessage());
+        }
 
-    private void setupCards(){
-        Bitmap cardPortrait;
-        int overallValue;
-        String league;
-        String club;
-        String firstName;
-        String surname;
-        String imgPath;
+        try
+        {
+            JSONObject cards = new JSONObject(loadedJSON);
+            assetManager.addPlayerCards(cards, this);
+        }
+        catch(JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
 
-        String jsonToBeLoaded = "";
-        JSONObject players;
+    public void addPlayerCards(JSONObject cards, GameScreen gameScreen)
+    {
         try {
-            jsonToBeLoaded = assetManager.getFileIO().loadJSON("txt/assets/Players.json");
-            players = new JSONObject(jsonToBeLoaded);
-
-            mGame.getAssetManager().loadAssets("txt/assets/Players.json");
-            for (int idx = 0; idx<AMOUNT_OF_PLAYER_CARDS; idx++){
-                if(idx == players.getInt("id"))
-                {
-                    overallValue = players.getInt("overall");
-                    league = players.getString("league");
-                    club = players.getString("team");
-                    firstName = players.getString("fname");
-                    surname = players.getString("sname");
-                    imgPath = players.getString("portrait");
-                    loadBitmaps("player" + idx, imgPath);
-
-                    cardPortrait = assetManager.getBitmap("player" + idx);
-                    PlayerCard cardToAdd = new PlayerCard(this, overallValue, league, club, firstName, surname, cardPortrait);
-                    mPlayerCards.add(cardToAdd);
-                    }
+            JSONArray players = cards.getJSONArray("players");
+            for (int i = 0; i < players.length(); i++) {
+                JSONObject player = players.getJSONObject(i);
+                PlayerCard playerCard = new PlayerCard(
+                        gameScreen,
+                        player.getInt("overall"),
+                        player.getString("league"),
+                        player.getString("team"),
+                        player.getString("fname"),
+                        player.getString("sname"),
+                        player.getString("cardPortrait"));
+                mPlayerCards.add(playerCard);
             }
         }
-        catch(Exception ex){
-            System.out.println(ex.getMessage());
+        catch (JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
         }
     }
 
 
-    public Card getRandomPlayerCard(){
+    public Player getHumanPlayer(){ return humanPlayer; }
+    public Player getAiPlayer(){ return aiPlayer; }
+
+
+    public PlayerCard getRandomPlayerCard(){
         Random random = new Random();
-        Card card = mPlayerCards.get(random.nextInt(AMOUNT_OF_PLAYER_CARDS));
+        PlayerCard card = mPlayerCards.get(random.nextInt(AMOUNT_OF_PLAYER_CARDS));
 
         return card;
     }
@@ -128,6 +155,7 @@ public class MatchGameScreen extends GameScreen {
         return card;
     }
 
+    //by Bronach
     private void loadAssets(){
         loadMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
         loadMusic("FluorescentAdolescent", "sound/FluorescentAdolescent.mp3");
@@ -147,10 +175,48 @@ public class MatchGameScreen extends GameScreen {
 
     public void update(ElapsedTime elapsedTime){
 
+        Input input = mGame.getInput();
+        //Prevents more than 1 card from being dragged (Reference - CardDefence)
+        boolean dragged =false;
+        for (Card card: getHumanPlayer().getDeck().getCardsInDeck()) {
+            if (card.getBeingDragged()) {
+                dragged=true;
+            }
+        }
+
+        // drag card (Reference - Card Defence)
+        for (int i = 0; i<getHumanPlayer().getDeck().getCardsInDeck().size(); i++ ){
+            Card card = getHumanPlayer().getDeck().getCardsInDeck().get(i);
+            if(!card.getPlaced()) {
+                if(!dragged || card.getBeingDragged()) {
+                    card.update(elapsedTime);
+                    if (card.getBeingDragged())
+                    {
+                        dragged = true;
+                    }
+                }
+            }
+            else{
+                card.setBeingDragged(false);
+            }
+        }
     }
 
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
+        background.draw(elapsedTime, graphics2D);
 
+        Input input = this.getGame().getInput();
+        int n = -1;
+        // draw cards not being dragged first
+        for(int i = 0; i< getHumanPlayer().getDeck().getCardsInDeck().size(); i++) {
+            if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getPlaced()) {
+                if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getBeingDragged()) {
+                    getHumanPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
+                } else {
+
+                }
+            }
+        }
     }
 
 }

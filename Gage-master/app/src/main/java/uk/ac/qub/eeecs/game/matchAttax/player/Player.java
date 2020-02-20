@@ -29,5 +29,4 @@ public class Player {
             score += card.getOverallValue();
         }
     }
-
 }

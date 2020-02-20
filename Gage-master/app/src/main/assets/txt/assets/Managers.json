@@ -3,42 +3,59 @@
             "firstName": "Antonio",
             "surname": "Conte",
             "type": "TRUE",
-            "value": "20"
+            "value": "20",
+            "portrait": "img/Cards/Managers/Conte.png"
         },
         {
             "firstName": "Jurgen",
             "surname": "Klopp",
             "type": "FALSE",
-            "value": "1.5"
+            "value": "1.5",
+            "portrait": "img/Cards/Managers/Klopp.png"
         },
         {
             "firstName": "Jose",
             "surname": "Mourinho",
             "type": "FALSE",
-            "value": "1.5"
+            "value": "1.5",
+            "portrait": "img/Cards/Managers/Mourinho.png"
         },
         {
             "firstName": "Pep",
             "surname": "Guardiola",
             "type": "FALSE",
-            "value": "1.5"
+            "value": "1.5",
+            "portrait": "img/Cards/Managers/Pep.png"
         },
         {
             "firstName": "Maurizio",
             "surname": "Sarri",
             "type": "TRUE",
-            "value": "25"
+            "value": "25",
+            "portrait": "img/Cards/Managers/Sarri.png"
         },
         {
             "firstName": "Diego",
             "surname": "Simeone",
             "type": "TRUE",
-            "value": "15"
+            "value": "15",
+            "portrait": "img/Cards/Managers/Simeone.png"
         },
         {
             "firstName": "Zinedine",
             "surname": "Zidane",
             "type": "TRUE",
-            "value": "30"
+            "value": "30",
+            "portrait": "img/Cards/Managers/Zidane.png"
         }
     ]
+
+
+
+
+
+    
+
+
+
+

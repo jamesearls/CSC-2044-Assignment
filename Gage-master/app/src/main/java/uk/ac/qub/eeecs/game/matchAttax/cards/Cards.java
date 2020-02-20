@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class Cards extends Sprite{
@@ -30,23 +29,23 @@ public class Cards extends Sprite{
 
     private final int amountOfCardsInDatabase = 40;
 
-    private Cards card;
-    private String cardPortraitFilepath;
+
+    private Bitmap cardPortrait;
     private int overallValue;
     private String league;
     private String club;
     private String firstName;
     private String surname;
-    private ArrayList<Cards> cardBank;
+    private Cards[] cardsInStore = new Cards[amountOfCardsInDatabase];
+    private totalScore;
 
 
 
-    public Cards(float x, float y, GameScreen gameScreen, int overallValue, String league, String club, String firstName, String surname, String cardPortraitFilepath){
+    public Cards(float x, float y, GameScreen gameScreen, int overallValue, String league, String club, String firstName, String surname, Bitmap cardPortrait){
         super(x, y, DEFAULT_CARD_WIDTH, DEFAULT_CARD_HEIGHT, null, gameScreen);
 
         AssetManager assetManager = gameScreen.getGame().getAssetManager();
         String jsonToBeLoaded = "";
-        cardBank = new ArrayList<Cards>();
         try
         {
             jsonToBeLoaded = assetManager.getFileIO().loadJSON("txt/assets/Players.json");
@@ -60,27 +59,34 @@ public class Cards extends Sprite{
         {
             JSONObject players = new JSONObject(jsonToBeLoaded);
 
-            for(int id = 0; id < amountOfCardsInDatabase; id++)
-            {
+            for (int id = 0; id < amountOfCardsInDatabase; id++) {
                 if(id == players.getInt("id"))
                 {
                     overallValue = players.getInt("overall");
                     league = players.getString("league");
-                    club = players.getString("club");
+                    club = players.getString("team");
                     firstName = players.getString("fname");
                     surname = players.getString("sname");
-                    cardPortraitFilepath = players.getString("portrait");
-                    card = new Cards(x, y, gameScreen, overallValue, league, club, firstName, surname, cardPortraitFilepath);
-                    cardBank.add(card);
+                    //cardPortrait =
+                    ////cardsInStore[id] = {x, y, DEFAULT_CARD_WIDTH, DEFAULT_CARD_HEIGHT, null, gameScreen, overallValue, league, club, firstName, surname, cardPortrait};
                 }
+
             }
-
-
         }
-        catch(JSONException jEx)
+        catch(Exception ex)
         {
-            System.out.println(jEx.getMessage());
+            System.out.println(ex.getMessage());
         }
+
+        //calculating the total score and who wins the round
+        totalScore += overallValue;
+        //if (players score > AI score)
+        // { player wins }
+        //else
+        // { AI wins }
+
+
+
     }
 
 

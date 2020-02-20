@@ -1,0 +1,44 @@
+﻿[
+        {
+            "firstName": "Antonio",
+            "surname": "Conte",
+            "type": "TRUE",
+            "value": "20"
+        },
+        {
+            "firstName": "Jurgen",
+            "surname": "Klopp",
+            "type": "FALSE",
+            "value": "1.5"
+        },
+        {
+            "firstName": "Jose",
+            "surname": "Mourinho",
+            "type": "FALSE",
+            "value": "1.5"
+        },
+        {
+            "firstName": "Pep",
+            "surname": "Guardiola",
+            "type": "FALSE",
+            "value": "1.5"
+        },
+        {
+            "firstName": "Maurizio",
+            "surname": "Sarri",
+            "type": "TRUE",
+            "value": "25"
+        },
+        {
+            "firstName": "Diego",
+            "surname": "Simeone",
+            "type": "TRUE",
+            "value": "15"
+        },
+        {
+            "firstName": "Zinedine",
+            "surname": "Zidane",
+            "type": "TRUE",
+            "value": "30"
+        }
+    ]

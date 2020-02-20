@@ -130,12 +130,11 @@ public class MatchGameScreen extends GameScreen {
 
     private void loadAssets(){
         loadMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
-        loadMusic("CoconutMall", "sound/CoconutMall.mp3");
         loadMusic("FluorescentAdolescent", "sound/FluorescentAdolescent.mp3");
-        loadMusic("InPursuitOfSilence", "sound/InPursuitOfSilence.mp3");
         loadMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");
         loadMusic("WavinFlag", "sound/WavinFlag.mp3");
         loadMusic("WhatYouKnow", "sound/WhatYouKnow.mp3");
+        loadMusic("GuitarMusic", "sound/GuitarMusic.mp3");
     }
 
     private void loadMusic(String assetName, String fileName){

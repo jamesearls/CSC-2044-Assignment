@@ -15,6 +15,7 @@ import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.util.ViewportHelper;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
+import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipSelectScreen;
 
 /**
  * An exceedingly basic menu screen with a couple of touch buttons
@@ -37,11 +38,6 @@ public class MainMenu extends GameScreen {
     private PushButton mSettingsButton;
     private PushButton mCardsButton;
 
-
-    // Variables to hold height and width of screen
-    int screenHeight = mGame.getScreenHeight();
-    int screenWidth = mGame.getScreenWidth();
-
     // /////////////////////////////////////////////////////////////////////////
     // Constructors
     // /////////////////////////////////////////////////////////////////////////
@@ -56,17 +52,18 @@ public class MainMenu extends GameScreen {
 
         // Load in the bitmaps used on the main menu screen
         AssetManager assetManager = mGame.getAssetManager();
-        //assetManager.loadAssets("txt/assets/MatchAttaxAssets.JSON");
 
         assetManager.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
 
-       assetManager.loadAndAddBitmap("playButton", "img/buttons/playButton.png");
-       //assetManager.loadAndAddBitmap("playButtonPressed", "img/buttons/playButtonPressed.png");
+        assetManager.loadAndAddBitmap("playButton", "img/buttons/playButton.png");
+        assetManager.loadAndAddBitmap("playButtonPressed", "img/buttons/playButtonPressed.png");
 
+        assetManager.loadAndAddBitmap("cardsButton", "img/buttons/cardsButton.png");
+        assetManager.loadAndAddBitmap("cardsButtonPressed", "img/buttons/cardsButtonPressed.png");
 
+        assetManager.loadAndAddBitmap("settingsButton", "img/buttons/settingsButton.png");
+        assetManager.loadAndAddBitmap("settingsButtonPressed", "img/buttons/settingsButtonPressed.png");
 
-        // assetManager.loadAndAddBitmap("CardsButton", "img/buttons/CardsButton.bmp");
-       // assetManager.loadAndAddBitmap("SettingsButton", "img/buttons/SettingsButton.bmp");
 
 
         // Define the spacing that will be used to position the buttons
@@ -74,14 +71,24 @@ public class MainMenu extends GameScreen {
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
 
         //Create background
-       // mBackground = new GameObject(screenWidth / 2, screenHeight / 2, screenWidth,
-        //        screenHeight, getGame().getAssetManager().getBitmap("menuBackground"), this);
+        mBackground = new GameObject(game.getScreenWidth()/2, game.getScreenHeight()/2, game.getScreenWidth(),
+                game.getScreenHeight(), getGame().getAssetManager().getBitmap("menuBackground"), this);
 
         // Create the trigger buttons
-       // mPlayButton = new PushButton(
-         //       spacingX * 2f, spacingY * 1.4f, spacingX, spacingY,
-           //     "PlayButton", "PlayButtonPressed",this);
-        //mPlayButton.setPlaySounds(true, true);
+        mPlayButton = new PushButton(
+                spacingX * 2.5f, spacingY * 1.8f, spacingX*1.5f, spacingY*1.5f,
+                "playButton", "playButtonPressed",this);
+        mPlayButton.setPlaySounds(true, true);
+
+        mCardsButton = new PushButton(
+                spacingX * 1.1f, spacingY * 1.2f, spacingX, spacingY,
+                "cardsButton", "cardsButtonPressed",this);
+        mCardsButton.setPlaySounds(true, true);
+
+        mSettingsButton = new PushButton(
+                spacingX * 3.9f, spacingY * 1.2f, spacingX, spacingY,
+                "settingsButton", "settingsButtonPressed",this);
+        mSettingsButton.setPlaySounds(true, true);
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -103,13 +110,13 @@ public class MainMenu extends GameScreen {
         if (touchEvents.size() > 0) {
 
             // Update each button and transition if needed
-         //  mPlayButton.update(elapsedTime);
+           mPlayButton.update(elapsedTime);
 
 
-//            if (playButton.isPushTriggered())
-//               mGame.getScreenManager().addScreen(new SpaceshipSelectScreen(mGame));
-//            else if (mPlatformDemoButton.isPushTriggered())
-//                mGame.getScreenManager().addScreen(new PlatformDemoScreen(mGame));
+           if (mPlayButton.isPushTriggered())
+               mGame.getScreenManager().addScreen(new SpaceshipSelectScreen(mGame));
+            //else if (mPlatformDemoButton.isPushTriggered())
+                //mGame.getScreenManager().addScreen(new PlatformDemoScreen(mGame));
         }
     }
 
@@ -130,10 +137,12 @@ public class MainMenu extends GameScreen {
 
         // Clear the screen and draw background and the buttons
         graphics2D.clear(Color.WHITE);
-       //mBackground.draw(elapsedTime, graphics2D);
+       mBackground.draw(elapsedTime, graphics2D);
 
 
-       // mPlayButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        mPlayButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        mCardsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        mSettingsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
 
         // Determine font properties - created so a total of twenty
@@ -150,9 +159,9 @@ public class MainMenu extends GameScreen {
 
         // Draw text displaying the name of this screen and some instructions
 
-        graphics2D.drawText("MATCH ATTAX",
-                mDefaultScreenViewport.centerX(),
-                mDefaultScreenViewport.top + 2.5f * textSize, textPaint);
+        //graphics2D.drawText("MATCH ATTAX",
+                //mDefaultScreenViewport.centerX(),
+                //mDefaultScreenViewport.top + 2.5f * textSize, textPaint);
 
     }
 }

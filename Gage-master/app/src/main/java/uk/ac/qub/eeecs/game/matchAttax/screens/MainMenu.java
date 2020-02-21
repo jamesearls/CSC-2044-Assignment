@@ -58,7 +58,7 @@ public class MainMenu extends GameScreen {
         AssetManager assetManager = mGame.getAssetManager();
         //assetManager.loadAssets("txt/assets/MatchAttaxAssets.JSON");
 
-        //assetManager.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
+        assetManager.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
 
        assetManager.loadAndAddBitmap("playButton", "img/buttons/playButton.png");
        //assetManager.loadAndAddBitmap("playButtonPressed", "img/buttons/playButtonPressed.png");

@@ -15,10 +15,9 @@ import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.util.ViewportHelper;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
-import uk.ac.qub.eeecs.game.spaceDemo.SpaceshipSelectScreen;
 
 /**
- * An exceedingly basic menu screen with a couple of touch buttons
+ * The Main Menu Screen to Navigate the game from it's launch
  *
  * @version 1.0
  */
@@ -28,12 +27,15 @@ public class MainMenu extends GameScreen {
     // Properties
     // /////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Define the background
+     */
+    private GameObject mBackground;
+
 
     /**
      * Define the buttons for playing the 'games'
      */
-    private GameObject mBackground;
-
     private PushButton mPlayButton;
     private PushButton mSettingsButton;
     private PushButton mCardsButton;
@@ -43,14 +45,14 @@ public class MainMenu extends GameScreen {
     // /////////////////////////////////////////////////////////////////////////
 
     /**
-     * Create a simple menu screen
+     * Constructor for the menu screen
      *
      * @param game Game to which this screen belongs
      */
     public MainMenu(Game game) {
         super("MainMenu", game);
 
-        // Load in the bitmaps used on the main menu screen
+        // Load in the assets used on the main menu screen
         AssetManager assetManager = mGame.getAssetManager();
 
         assetManager.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
@@ -109,22 +111,23 @@ public class MainMenu extends GameScreen {
         List<TouchEvent> touchEvents = input.getTouchEvents();
         if (touchEvents.size() > 0) {
 
-            // Update each button and transition if needed
-           mPlayButton.update(elapsedTime);
+            // Update each button
+            mPlayButton.update(elapsedTime);
+            mCardsButton.update(elapsedTime);
+            mSettingsButton.update(elapsedTime);
 
-
-           if (mPlayButton.isPushTriggered())
-               mGame.getScreenManager().addScreen(new SpaceshipSelectScreen(mGame));
-            //else if (mPlatformDemoButton.isPushTriggered())
-                //mGame.getScreenManager().addScreen(new PlatformDemoScreen(mGame));
+            // Events that take place once button is activated
+            if (mPlayButton.isPushTriggered()) {
+                mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
+            }
+//            else if (mSettingsButton.isPushTriggered()){
+//                mGame.getScreenManager().addScreen(new SettingsScreen(mGame));
+//            }
+//            else if (mCardsButton.isPushTriggered()){
+//                mGame.getScreenManager().addScreen(new CardsScreen(mGame));
+//            }
         }
     }
-
-    /**
-     * Define a internal paint instance - declared externally to avoid object
-     * creation costs.
-     */
-    private Paint textPaint = new Paint();
 
     /**
      * Draw the menu screen
@@ -137,31 +140,12 @@ public class MainMenu extends GameScreen {
 
         // Clear the screen and draw background and the buttons
         graphics2D.clear(Color.WHITE);
-       mBackground.draw(elapsedTime, graphics2D);
 
+        mBackground.draw(elapsedTime, graphics2D);
 
         mPlayButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         mCardsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         mSettingsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-
-
-        // Determine font properties - created so a total of twenty
-        // lines of text (0.05) could fit into the screen, aligned
-        // along the x axis and drawn in black.
-
-        float textSize =
-                ViewportHelper.convertXDistanceFromLayerToScreen(
-                        mDefaultLayerViewport.getHeight() * 0.05f,
-                        mDefaultLayerViewport, mDefaultScreenViewport);
-        textPaint.setTextSize(textSize);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setColor(Color.BLACK);
-
-        // Draw text displaying the name of this screen and some instructions
-
-        //graphics2D.drawText("MATCH ATTAX",
-                //mDefaultScreenViewport.centerX(),
-                //mDefaultScreenViewport.top + 2.5f * textSize, textPaint);
 
     }
 }

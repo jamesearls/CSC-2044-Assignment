@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -88,7 +89,7 @@ public class MatchGameScreen extends GameScreen {
         humanPlayer.setEndTurn(false);
 
     }
-
+    //Pauric Donnelly
     public void addCards(String jsonFilePath)
     {
         FileIO mFileIO = mGame.getFileIO();
@@ -105,14 +106,14 @@ public class MatchGameScreen extends GameScreen {
         try
         {
             JSONObject cards = new JSONObject(loadedJSON);
-            assetManager.addPlayerCards(cards, this);
+            addPlayerCards(cards, this);
         }
         catch(JSONException jEx)
         {
             System.out.println(jEx.getMessage());
         }
     }
-
+    //Pauric Donnelly
     public void addPlayerCards(JSONObject cards, GameScreen gameScreen)
     {
         try {
@@ -134,6 +135,11 @@ public class MatchGameScreen extends GameScreen {
         {
             System.out.println(jEx.getMessage());
         }
+    }
+
+    public List<PlayerCard> getPlayerCardList()
+    {
+        return mPlayerCards;
     }
 
 

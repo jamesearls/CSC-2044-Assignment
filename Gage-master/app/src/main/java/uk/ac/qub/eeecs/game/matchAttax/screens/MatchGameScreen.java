@@ -63,13 +63,15 @@ public class MatchGameScreen extends GameScreen {
     public MatchGameScreen(Game game){
         super("MatchGameScreen", game);
 
+        loadAssets();
+
         mScreenViewport = new ScreenViewport( 0,0, game.getScreenWidth(), game.getScreenHeight());
         mLayerViewport = new LayerViewport(mScreenViewport.centerX(),
                 mScreenViewport.centerY(),
                 mScreenViewport.width / 2,
                 mScreenViewport.height / 2);
 
-        gameBackground = "";
+        gameBackground = "menuBackground";
         background = new GameObject(game.getScreenWidth() / 2.0f,
                 game.getScreenHeight() / 2.0f,
                 game.getScreenWidth(),
@@ -169,6 +171,8 @@ public class MatchGameScreen extends GameScreen {
 
     //by Bronach
     private void loadAssets(){
+        loadBitmaps("menuBackground", "img/menuBackground.png");
+
         loadMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
         loadMusic("FluorescentAdolescent", "sound/FluorescentAdolescent.mp3");
         loadMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");

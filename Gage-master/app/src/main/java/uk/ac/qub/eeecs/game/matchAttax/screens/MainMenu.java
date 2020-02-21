@@ -13,6 +13,7 @@ import uk.ac.qub.eeecs.gage.engine.input.Input;
 import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.util.ViewportHelper;
+import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
 /**
@@ -26,13 +27,20 @@ public class MainMenu extends GameScreen {
     // Properties
     // /////////////////////////////////////////////////////////////////////////
 
+
     /**
      * Define the buttons for playing the 'games'
      */
-    private PushButton playButton;
-    private PushButton settingsButton;
-    private PushButton viewCardsButton;
+    private GameObject mBackground;
 
+    private PushButton mPlayButton;
+    private PushButton mSettingsButton;
+    private PushButton mCardsButton;
+
+
+    // Variables to hold height and width of screen
+    int screenHeight = mGame.getScreenHeight();
+    int screenWidth = mGame.getScreenWidth();
 
     // /////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -48,19 +56,32 @@ public class MainMenu extends GameScreen {
 
         // Load in the bitmaps used on the main menu screen
         AssetManager assetManager = mGame.getAssetManager();
-//        assetManager.loadAndAddBitmap("SpaceDemoIcon", "img/SpaceDemoIcon.png");
-//        assetManager.loadAndAddBitmap("SpaceDemoIconSelected", "img/SpaceDemoIconSelected.png");
+        //assetManager.loadAssets("txt/assets/MatchAttaxAssets.JSON");
+
+        //assetManager.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
+
+       assetManager.loadAndAddBitmap("playButton", "img/buttons/playButton.png");
+       //assetManager.loadAndAddBitmap("playButtonPressed", "img/buttons/playButtonPressed.png");
+
+
+
+        // assetManager.loadAndAddBitmap("CardsButton", "img/buttons/CardsButton.bmp");
+       // assetManager.loadAndAddBitmap("SettingsButton", "img/buttons/SettingsButton.bmp");
 
 
         // Define the spacing that will be used to position the buttons
         int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
 
+        //Create background
+       // mBackground = new GameObject(screenWidth / 2, screenHeight / 2, screenWidth,
+        //        screenHeight, getGame().getAssetManager().getBitmap("menuBackground"), this);
+
         // Create the trigger buttons
-//        playButton = new PushButton(
-//                spacingX * 0.50f, spacingY * 1.5f, spacingX, spacingY,
-//                "PlayButtonIcon", "PlayButtonSelectedIcon",this);
-//        mSpaceshipDemoButton.setPlaySounds(true, true);
+       // mPlayButton = new PushButton(
+         //       spacingX * 2f, spacingY * 1.4f, spacingX, spacingY,
+           //     "PlayButton", "PlayButtonPressed",this);
+        //mPlayButton.setPlaySounds(true, true);
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -82,11 +103,11 @@ public class MainMenu extends GameScreen {
         if (touchEvents.size() > 0) {
 
             // Update each button and transition if needed
-//            mSpaceshipDemoButton.update(elapsedTime);
+         //  mPlayButton.update(elapsedTime);
 
 
-//            if (mSpaceshipDemoButton.isPushTriggered())
-//                mGame.getScreenManager().addScreen(new SpaceshipSelectScreen(mGame));
+//            if (playButton.isPushTriggered())
+//               mGame.getScreenManager().addScreen(new SpaceshipSelectScreen(mGame));
 //            else if (mPlatformDemoButton.isPushTriggered())
 //                mGame.getScreenManager().addScreen(new PlatformDemoScreen(mGame));
         }
@@ -107,8 +128,13 @@ public class MainMenu extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D) {
 
-        // Clear the screen and draw the buttons
-        graphics2D.clear(Color.GREEN);
+        // Clear the screen and draw background and the buttons
+        graphics2D.clear(Color.WHITE);
+       //mBackground.draw(elapsedTime, graphics2D);
+
+
+       // mPlayButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+
 
         // Determine font properties - created so a total of twenty
         // lines of text (0.05) could fit into the screen, aligned
@@ -120,7 +146,7 @@ public class MainMenu extends GameScreen {
                         mDefaultLayerViewport, mDefaultScreenViewport);
         textPaint.setTextSize(textSize);
         textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setColor(Color.WHITE);
+        textPaint.setColor(Color.BLACK);
 
         // Draw text displaying the name of this screen and some instructions
 
@@ -128,7 +154,6 @@ public class MainMenu extends GameScreen {
                 mDefaultScreenViewport.centerX(),
                 mDefaultScreenViewport.top + 2.5f * textSize, textPaint);
 
-//        mSpaceshipDemoButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
     }
 }
 

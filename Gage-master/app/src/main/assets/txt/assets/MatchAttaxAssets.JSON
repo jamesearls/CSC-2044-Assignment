@@ -1,19 +1,39 @@
 {
   "assets": [
     {
-      "type": "Bitmap",
-      "name": "PlayButton",
-      "file": "img/buttons/PlayButton.png"
+    "type": "Bitmap",
+    "name": "menuBackground",
+    "file": "img/menuBackground.png"
     },
     {
       "type": "Bitmap",
-      "name": "CardsButton",
-      "file": "img/buttons/CardsButton.png"
+      "name": "playButton",
+      "file": "img/buttons/playButton.png"
     },
     {
       "type": "Bitmap",
-      "name": "SettingsButton",
-      "file": "img/buttons/SettingsButton.png"
+      "name": "playButtonPressed",
+      "file": "img/buttons/playButtonPressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "cardsButton",
+      "file": "img/buttons/cardsButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "cardsButtonPressed",
+      "file": "img/buttons/cardsButtonPressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "settingsButton",
+      "file": "img/buttons/settingsButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "settingsButtonPressed",
+      "file": "img/buttons/settingsButtonPressed.png"
     },
     {
       "type": "Bitmap",

@@ -5,20 +5,24 @@ import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 //By Adam Kennedy
 public class Player {
 
+    private String name;
     private Deck deck;
     private int score;
     private boolean endTurn;
 
-    public Player(Deck deck){
+    public Player(String name, Deck deck){
+        this.name = name;
         this.deck = deck;
         score = 0;
         endTurn = true;
     }
 
+    public String getName() {return name;}
     public Deck getDeck() {return deck;}
     public int getScore() {return score;}
     public boolean getEndTurn(){return endTurn;}
 
+    public void setName(String newName) {name = newName;}
     public void setDeck(Deck newDeck){deck = newDeck;}
     public void setScore(int newScore){score = newScore;}
     public void setEndTurn(boolean val){endTurn = val;}

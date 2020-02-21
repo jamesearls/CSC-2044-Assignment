@@ -37,6 +37,9 @@ public class MatchGameScreen extends GameScreen {
     private ScreenViewport mScreenViewport;
     private LayerViewport mLayerViewport;
 
+    private String playerName;
+    private String aiName;
+
     private Player humanPlayer;
     private PlayerAI aiPlayer;
 
@@ -76,11 +79,14 @@ public class MatchGameScreen extends GameScreen {
 
         addCards("txt/assets/Players.json");
 
+        playerName = "Player1";
+        aiName = "Player2";
+
         playerDeck = new Deck(this);
         aiDeck = new Deck(this);
 
-        humanPlayer = new Player(playerDeck);
-        aiPlayer = new PlayerAI(aiDeck, this);
+        humanPlayer = new Player(playerName, playerDeck);
+        aiPlayer = new PlayerAI(aiName, aiDeck, this);
 
         playerScore = 0;
         aiScore = 0;

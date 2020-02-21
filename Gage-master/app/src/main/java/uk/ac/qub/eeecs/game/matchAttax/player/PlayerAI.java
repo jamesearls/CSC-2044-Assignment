@@ -13,8 +13,8 @@ public class PlayerAI extends Player {
 
     private MatchGameScreen gameScreen;
 
-    public PlayerAI(Deck deck, MatchGameScreen gameScreen){
-        super(deck);
+    public PlayerAI(String name, Deck deck, MatchGameScreen gameScreen){
+        super(name, deck);
 
         this.gameScreen = gameScreen;
     }

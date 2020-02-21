@@ -15,6 +15,7 @@ import uk.ac.qub.eeecs.gage.Game;
 import uk.ac.qub.eeecs.gage.engine.animation.AnimationSettings;
 import uk.ac.qub.eeecs.gage.engine.audio.Music;
 import uk.ac.qub.eeecs.gage.engine.audio.Sound;
+import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.cards.Cards;
@@ -73,7 +74,6 @@ public class AssetManager {
      */
     private Game mGame;
 
-    private ArrayList<PlayerCard> cardsArrayList;
 
     // /////////////////////////////////////////////////////////////////////////
     // Constructors
@@ -95,9 +95,6 @@ public class AssetManager {
         mSounds = new HashMap<>();
         mFonts = new HashMap<>();
         mAnimations = new HashMap<>();
-
-        cardsArrayList = new ArrayList<PlayerCard>();
-        addCards("txt/assets/Players.json");
     }
 
     // /////////////////////////////////////////////////////////////////////////
@@ -105,29 +102,7 @@ public class AssetManager {
     // /////////////////////////////////////////////////////////////////////////
 
 
-    //I will be using the asset manager to automatically load in the
-    public void addCards(String jsonFilePath)
-    {
-        String loadedJSON = "";
-        try
-        {
-            loadedJSON = mFileIO.loadJSON(jsonFilePath);
-        }
-        catch(IOException ioEx)
-        {
-            System.out.println(ioEx.getMessage());
-        }
 
-        try
-        {
-            JSONObject cards = new JSONObject(loadedJSON);
-            addPlayerCards(cards);
-        }
-        catch(JSONException jEx)
-        {
-            System.out.println(jEx.getMessage());
-        }
-    }
 
     /**
      * Add the specified bitmap asset to the manager
@@ -380,34 +355,9 @@ public class AssetManager {
         }
     }
 
-    //Loads the players in from a JSON array into an array list
-    public void addPlayerCards(JSONObject cards, GameScreen gameScreen)
-    {
-        try {
-            JSONArray players = cards.getJSONArray("players");
-            for (int i = 0; i < players.length(); i++) {
-                JSONObject player = players.getJSONObject(i);
-                PlayerCard playerCard = new PlayerCard(
-                        gameScreen,
-                        player.getInt("overall"),
-                        player.getString("league"),
-                        player.getString("team"),
-                        player.getString("fname"),
-                        player.getString("sname"),
-                        player.getString("cardPortrait"));
-                cardsArrayList.add(playerCard);
-            }
-        }
-        catch (JSONException jEx)
-        {
-            System.out.println(jEx.getMessage());
-        }
-    }
 
-    public ArrayList<PlayerCard> getPlayerCards()
-    {
-        return cardsArrayList;
-    }
+
+    
 
     /**
      * Retrieve the specified bitmap asset from the manager

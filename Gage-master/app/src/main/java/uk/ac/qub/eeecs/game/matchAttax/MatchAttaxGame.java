@@ -42,4 +42,21 @@ public class MatchAttaxGame extends Game {
 
         return view;
     }
+
+    @Override
+    public boolean onBackPressed(){
+        //Exit game if on Menu
+        if (mScreenManager.getCurrentScreen().getName().equals("MainMenu")){
+            return false;
+        }
+        //Return to Menu if in Game Screen
+        if (mScreenManager.getCurrentScreen().getName().equals("MatchGameScreen"))
+        {
+
+            mScreenManager.removeScreen("MatchGameScreen");
+            mScreenManager.addScreen(new MainMenu(this));
+            return true;
+        }
+        return true;
+    }
 }

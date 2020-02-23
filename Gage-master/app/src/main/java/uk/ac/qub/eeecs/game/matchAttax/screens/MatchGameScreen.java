@@ -1,14 +1,17 @@
 package uk.ac.qub.eeecs.game.matchAttax.screens;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
@@ -22,7 +25,6 @@ import uk.ac.qub.eeecs.gage.Game;
 import uk.ac.qub.eeecs.gage.world.LayerViewport;
 import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
-import uk.ac.qub.eeecs.game.matchAttax.cards.Cards;
 import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
@@ -32,7 +34,7 @@ import uk.ac.qub.eeecs.game.matchAttax.player.PlayerAI;
 public class MatchGameScreen extends GameScreen {
 
     private String gameBackground;
-    private GameObject background;
+    private GameObject mBackground;
 
     private ScreenViewport mScreenViewport;
     private LayerViewport mLayerViewport;
@@ -50,8 +52,8 @@ public class MatchGameScreen extends GameScreen {
     private int aiScore;
     private int roundNum;
 
-    private List<PlayerCard> mPlayerCards;
-    private List<ManagerCard> mManagerCards;
+    private ArrayList<PlayerCard> mPlayerCards;
+    private ArrayList<ManagerCard> mManagerCards;
     private AssetManager assetManager;
 
     public static final int AMOUNT_OF_PLAYER_CARDS = 40;
@@ -72,13 +74,15 @@ public class MatchGameScreen extends GameScreen {
                 mScreenViewport.height / 2);
 
         gameBackground = "menuBackground";
-        background = new GameObject(game.getScreenWidth() / 2.0f,
+        mBackground = new GameObject(game.getScreenWidth() / 2.0f,
                 game.getScreenHeight() / 2.0f,
                 game.getScreenWidth(),
                 game.getScreenHeight(),
                 getGame().getAssetManager().getBitmap(gameBackground),
                 this);
 
+        mPlayerCards = new ArrayList<PlayerCard>();
+        mManagerCards = new ArrayList<ManagerCard>();
         addCards("txt/assets/Players.json");
 
         playerName = "Player1";
@@ -113,7 +117,7 @@ public class MatchGameScreen extends GameScreen {
 
         try
         {
-            JSONObject cards = new JSONObject(loadedJSON);
+            JSONArray cards = new JSONArray(loadedJSON);
             addPlayerCards(cards, this);
         }
         catch(JSONException jEx)
@@ -122,10 +126,10 @@ public class MatchGameScreen extends GameScreen {
         }
     }
     //Pauric Donnelly
-    public void addPlayerCards(JSONObject cards, GameScreen gameScreen)
+    public void addPlayerCards(JSONArray players, GameScreen gameScreen)
     {
         try {
-            JSONArray players = cards.getJSONArray("players");
+            //JSONArray players = cards.getJSONArray("players");
             for (int i = 0; i < players.length(); i++) {
                 JSONObject player = players.getJSONObject(i);
                 PlayerCard playerCard = new PlayerCard(
@@ -135,9 +139,10 @@ public class MatchGameScreen extends GameScreen {
                         player.getString("team"),
                         player.getString("fname"),
                         player.getString("sname"),
-                        player.getString("cardPortrait"));
+                        player.getString("portrait"));
                 mPlayerCards.add(playerCard);
             }
+            int f=0;
         }
         catch (JSONException jEx)
         {
@@ -145,7 +150,7 @@ public class MatchGameScreen extends GameScreen {
         }
     }
 
-    public List<PlayerCard> getPlayerCardList()
+    public ArrayList<PlayerCard> getPlayerCardList()
     {
         return mPlayerCards;
     }
@@ -157,7 +162,8 @@ public class MatchGameScreen extends GameScreen {
 
     public PlayerCard getRandomPlayerCard(){
         Random random = new Random();
-        PlayerCard card = mPlayerCards.get(random.nextInt(AMOUNT_OF_PLAYER_CARDS));
+        int num = random.nextInt(AMOUNT_OF_PLAYER_CARDS);
+        PlayerCard card = mPlayerCards.get(num);
 
         return card;
     }
@@ -219,7 +225,10 @@ public class MatchGameScreen extends GameScreen {
     }
 
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
-        background.draw(elapsedTime, graphics2D);
+
+        graphics2D.clear(Color.WHITE);
+
+        mBackground.draw(elapsedTime, graphics2D);
 
         Input input = this.getGame().getInput();
         int n = -1;
@@ -228,8 +237,7 @@ public class MatchGameScreen extends GameScreen {
             if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getPlaced()) {
                 if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getBeingDragged()) {
                     getHumanPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
-                } else {
-
+                    int f=0;
                 }
             }
         }

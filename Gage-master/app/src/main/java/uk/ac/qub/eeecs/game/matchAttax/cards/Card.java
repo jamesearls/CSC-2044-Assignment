@@ -1,12 +1,13 @@
 package uk.ac.qub.eeecs.game.matchAttax.cards;
 
 import android.graphics.Bitmap;
-
-import org.json.JSONObject;
+import android.util.Log;
 
 import java.io.IOException;
 
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
+import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
+import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
@@ -21,18 +22,35 @@ public abstract class Card extends GameObject {
     private String firstName;
     private String surname;
     private int overallValue;
+
     private String cardPortraitPath;
     private boolean isBeingDragged;
     private boolean isPlaced;
+    private Bitmap bitmap;
+    private GameObject artwork;
 
     public Card(GameScreen gameScreen, int overallValue, String firstName, String surname, String cardPortraitPath){
         super(gameScreen);
 
         this.overallValue = overallValue;
         this.firstName = firstName;
-        this.firstName = surname;
+        this.surname = surname;
         this.cardPortraitPath = cardPortraitPath;
         this.isBeingDragged = false;
+
+        bitmap = getBitmap(this.cardPortraitPath);
+
+        this.artwork = new GameObject(DEFAULT_CARD_X, DEFAULT_CARD_Y, bitmap, getGameScreen());
+    }
+
+    public Bitmap getBitmap(String filePath){
+        try{
+            return getGameScreen().getGame().getFileIO().loadBitmap(filePath, null);
+        }
+        catch(IOException ex){
+            Log.e("CardStore", this.cardPortraitPath + " failed to load.");
+        }
+        return null;
     }
 
     public String getFirstName() {
@@ -63,13 +81,25 @@ public abstract class Card extends GameObject {
         return cardPortraitPath;
     }
 
-    public void setCardPortraitPath(String cardPortraitPath) {
-        this.cardPortraitPath = cardPortraitPath;
-    }
+    public void setCardPortraitPath(String cardPortraitPath) { this.cardPortraitPath = cardPortraitPath; }
 
     public boolean getBeingDragged() {return  isBeingDragged;}
+
     public void setBeingDragged(boolean dragged){ this.isBeingDragged = dragged;}
 
     public boolean getPlaced() {return  isPlaced;}
+
     public void setPlaced(boolean placed){ this.isPlaced = placed;}
+
+    @Override
+    public void update(ElapsedTime elapsedTime){
+        super.update(elapsedTime);
+    }
+
+    @Override
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
+        super.draw(elapsedTime, graphics2D);
+
+        this.artwork.draw(elapsedTime, graphics2D);
+    }
 }

@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
+import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
+import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
 public class ManagerCard extends Card {
@@ -22,6 +24,17 @@ public class ManagerCard extends Card {
         super(gameScreen, overallValue, firstName, surname, cardPortraitPath);
 
 
+
+    }
+
+    @Override
+    public void update(ElapsedTime elapsedTime){
+        super.update(elapsedTime);
+    }
+
+    @Override
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
+        super.draw(elapsedTime, graphics2D);
 
     }
 }

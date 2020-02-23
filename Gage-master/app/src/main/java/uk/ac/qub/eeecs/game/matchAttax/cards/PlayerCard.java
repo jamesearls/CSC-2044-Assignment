@@ -2,6 +2,8 @@ package uk.ac.qub.eeecs.game.matchAttax.cards;
 
 import android.graphics.Bitmap;
 
+import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
+import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
 public class PlayerCard extends Card{
@@ -29,6 +31,17 @@ public class PlayerCard extends Card{
 
     public void setClub(String club) {
         this.club = club;
+    }
+
+    @Override
+    public void update(ElapsedTime elapsedTime){
+        super.update(elapsedTime);
+    }
+
+    @Override
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
+        super.draw(elapsedTime, graphics2D);
+
     }
 
 }

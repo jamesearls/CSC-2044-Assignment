@@ -58,12 +58,81 @@ public class CardTest{
         game.getScreenManager().addScreen(matchScreen);
     }
 
-
+    //1
     @Test
     public void listIsntEmpty() throws Exception
     {
         matchScreen.addCards("txt/assets/Players.json");
         assertTrue(matchScreen.getPlayerCardList() != null && matchScreen.getPlayerCardList().size() > 0);
+    }
+
+    //2
+    @Test
+    public void checkFNameIsPopulated() throws Exception{
+        matchScreen.addCards("txt/assets/Players.json");
+        List<PlayerCard> testList = matchScreen.getPlayerCardList();
+        for(int i = 0; i < testList.size(); i++)
+        {
+            PlayerCard testCard = testList.get(i);
+            assertTrue(testCard.getFirstName() != "");
+            assertNotNull(testCard.getFirstName());
+        }
+    }
+
+    //3
+    @Test
+    public void checkSurnameIsPopulated() throws Exception
+    {
+        matchScreen.addCards("txt/assets/Players.json");
+        List<PlayerCard> testList = matchScreen.getPlayerCardList();
+        for(int i = 0; i < testList.size(); i++)
+        {
+            PlayerCard testCard = testList.get(i);
+            assertTrue(testCard.getSurname() != "");
+            assertNotNull(testCard.getSurname());
+        }
+    }
+
+    //4
+    @Test
+    public void checkLeagueIsPopulated() throws Exception
+    {
+        matchScreen.addCards("txt/assets/Players.json");
+        List<PlayerCard> testList = matchScreen.getPlayerCardList();
+        for(int i = 0; i < testList.size(); i++)
+        {
+            PlayerCard testCard = testList.get(i);
+            assertTrue(testCard.getLeague() != "");
+            assertNotNull(testCard.getLeague());
+        }
+    }
+
+    //5
+    @Test
+    public void checkTeamIsPopulated() throws Exception
+    {
+        matchScreen.addCards("txt/assets/Players.json");
+        List<PlayerCard> testList = matchScreen.getPlayerCardList();
+        for(int i = 0; i < testList.size(); i++)
+        {
+            PlayerCard testCard = testList.get(i);
+            assertTrue(testCard.getClub() != "");
+            assertNotNull(testCard.getClub());
+        }
+    }
+
+    //6
+    @Test
+    public void checkOverallIsPopulated() throws Exception
+    {
+        matchScreen.addCards("txt/assets/Players.json");
+        List<PlayerCard> testList = matchScreen.getPlayerCardList();
+        for(int i = 0; i < testList.size(); i++)
+        {
+            PlayerCard testCard = testList.get(i);
+            assertTrue(testCard.getOverallValue() > -1);
+            assertNotNull(testCard.getClub());
+        }
     }
 
 }

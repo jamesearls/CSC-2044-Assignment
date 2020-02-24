@@ -101,6 +101,59 @@ public class MatchGameScreen extends GameScreen {
         humanPlayer.setEndTurn(false);
 
     }
+
+
+    public void addCards2(String jsonFilePath)
+    {
+        FileIO mFileIO = mGame.getFileIO();
+        String loadedJSON = "";
+        try
+        {
+            loadedJSON = mFileIO.loadJSON(jsonFilePath);
+        }
+        catch(IOException ioEx)
+        {
+            System.out.println(ioEx.getMessage());
+        }
+
+        try
+        {
+            JSONObject cards = new JSONObject(loadedJSON);
+            addManagerCards(cards, this);
+        }
+        catch(JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+    //David Mackenzie
+    public void addManagerCards(JSONObject cards, GameScreen gameScreen)
+    {
+        try {
+            JSONArray managers = cards.getJSONArray("managers");
+            for (int i = 0; i < managers.length(); i++) {
+                JSONObject manager = managers.getJSONObject(i);
+                ManagerCard managerCard = new ManagerCard(
+                        gameScreen,
+                        manager.getInt("value"),
+                        manager.getString("firstName"),
+                        manager.getString("surname"),
+                        manager.getBoolean("type"),
+                        manager.getString("cardPortrait"));
+                mManagerCards.add(managerCard);
+            }
+        }
+        catch (JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+
+    //David Mackenzie - 40238376
+    //public List<ManagerCard> getManagerCardsList(){
+  //      return mManagerCards;
+  //  }
+
     //Pauric Donnelly
     public void addCards(String jsonFilePath)
     {

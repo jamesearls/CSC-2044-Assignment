@@ -121,9 +121,9 @@ public class MainMenu extends GameScreen {
                 mGame.getScreenManager().removeScreen(this);
                 mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
             }
-//            else if (mSettingsButton.isPushTriggered()){
-//                mGame.getScreenManager().addScreen(new SettingsScreen(mGame));
-//            }
+            else if (mSettingsButton.isPushTriggered()){
+                mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
+            }
 //            else if (mCardsButton.isPushTriggered()){
 //                mGame.getScreenManager().addScreen(new CardsScreen(mGame));
 //            }

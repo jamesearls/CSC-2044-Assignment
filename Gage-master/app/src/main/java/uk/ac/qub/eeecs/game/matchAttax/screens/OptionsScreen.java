@@ -17,7 +17,7 @@ package uk.ac.qub.eeecs.game.matchAttax.screens;
         import uk.ac.qub.eeecs.gage.world.GameObject;
         import uk.ac.qub.eeecs.gage.world.GameScreen;
 
-public abstract class OptionsScreen extends  GameScreen {
+public  class OptionsScreen extends  GameScreen {
     private float screenWidth = getGame().getScreenWidth(),
             screenHeight = getGame().getScreenHeight(),
             symbolXOffset = screenWidth * 0.125f,
@@ -37,11 +37,12 @@ public abstract class OptionsScreen extends  GameScreen {
         super("OptionsScreen", game);
 
         /* Load font */
-        assetStore.loadAndAddTypeface("font", "fonts/Audiowide.ttf");
-        font = assetStore.getTypeface("font");
+//        assetStore.loadAndAddTypeface("font", "fonts/Audiowide.ttf");
+//        font = assetStore.getTypeface("font");
+
         /* Load music */
         assetStore.loadAndAddMusic("ChelseaDagger", "music/ChelseaDagger.mp3");
-        playMusic();
+//        playMusic();
 
         /* Set title text size and font */
         titlePaint = new TextPaint();
@@ -58,11 +59,11 @@ public abstract class OptionsScreen extends  GameScreen {
     }
 
     /* Play music */
-    public void playMusic() {
-        if (mGame.getMusicActive().equals(true)) {
-            assetStore.getMusic("ChelseaDagger").play();
-        }
-    }
+//    public void playMusic() {
+//        if (mGame.getMusicActive().equals(true)) {
+//            assetStore.getMusic("ChelseaDagger").play();
+//        }
+//    }
 
 
     /* Button for raising music */
@@ -104,19 +105,19 @@ public abstract class OptionsScreen extends  GameScreen {
     public void onButtonPressed() {
 
         if(highButton.isPushTriggered()) {
-            mGame.setMusicActive(true);
-            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
-            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+//            mGame.setMusicActive(true);
+//            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
+//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(normalButton.isPushTriggered()) {
-            mGame.setMusicActive(true);
-            mGame.setMusicVolume(0.5f);
-            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+//            mGame.setMusicActive(true);
+//            mGame.setMusicVolume(0.5f);
+//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(lowButton.isPushTriggered()) {
-            mGame.setMusicActive(true);
-            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
-            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+//            mGame.setMusicActive(true);
+//            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
+//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
     }
 

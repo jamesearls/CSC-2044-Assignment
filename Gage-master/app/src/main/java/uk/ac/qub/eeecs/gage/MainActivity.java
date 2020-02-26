@@ -1,12 +1,12 @@
 package uk.ac.qub.eeecs.gage;
 
-import uk.ac.qub.eeecs.game.DemoGame;
-
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+
+import uk.ac.qub.eeecs.game.matchAttax.MatchAttaxGame;
 
 /**
  * Main game activity
@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
         mGame = (Game) fm.findFragmentById(R.id.activity_fragment_id);
 
         if (mGame == null) {
-            mGame = new DemoGame();
+            mGame = new MatchAttaxGame();
 
             fm.beginTransaction().add(R.id.activity_fragment_id, mGame)
                     .commit();

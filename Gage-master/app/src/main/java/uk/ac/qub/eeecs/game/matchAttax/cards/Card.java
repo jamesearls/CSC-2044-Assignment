@@ -31,6 +31,9 @@ public abstract class Card extends GameObject {
 
     public Card(GameScreen gameScreen, int overallValue, String firstName, String surname, String cardPortraitPath){
         super(gameScreen);
+        super.setPosition(DEFAULT_CARD_X, DEFAULT_CARD_Y);
+        super.getBound().halfHeight = DEFAULT_CARD_HEIGHT * 0.5f;
+        super.getBound().halfWidth = DEFAULT_CARD_WIDTH * 0.5f;
 
         this.overallValue = overallValue;
         this.firstName = firstName;
@@ -40,7 +43,13 @@ public abstract class Card extends GameObject {
 
         bitmap = getBitmap(this.cardPortraitPath);
 
-        this.artwork = new GameObject(DEFAULT_CARD_X, DEFAULT_CARD_Y, bitmap, getGameScreen());
+        this.artwork = new GameObject(
+                this.getBound().getLeft() + this.getBound().getWidth(),
+                this.getBound().getBottom() + this.getBound().getHeight(),
+                this.getBound().getWidth(),
+                this.getBound().getHeight(),
+                bitmap,
+                gameScreen);
     }
 
     public Bitmap getBitmap(String filePath){

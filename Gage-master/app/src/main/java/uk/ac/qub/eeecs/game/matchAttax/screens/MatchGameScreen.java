@@ -95,6 +95,18 @@ public class MatchGameScreen extends GameScreen {
         humanPlayer = new Player(playerName, playerDeck);
         aiPlayer = new PlayerAI(aiName, aiDeck, this);
 
+        int spacing = 100;
+        for (int i=0; i<humanPlayer.getDeck().getCardsInDeck().size(); i++){
+            humanPlayer.getDeck().getCardsInDeck().get(i).setPosition(humanPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,humanPlayer.getDeck().getCardsInDeck().get(i).getBound().y+30);
+            spacing += 100;
+        }
+
+        spacing = 0;
+        for (int i=0; i<aiPlayer.getDeck().getCardsInDeck().size(); i++){
+            aiPlayer.getDeck().getCardsInDeck().get(i).setPosition(aiPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,game.getScreenWidth() - 30);
+            spacing += 100;
+        }
+
         playerScore = 0;
         aiScore = 0;
         roundNum = 1;
@@ -119,7 +131,7 @@ public class MatchGameScreen extends GameScreen {
 
         try
         {
-            JSONArray cards = new JSONArray(loadedJSON);
+            JSONObject cards = new JSONObject(loadedJSON);
             addManagerCards(cards, this);
         }
         catch(JSONException jEx)
@@ -128,10 +140,10 @@ public class MatchGameScreen extends GameScreen {
         }
     }
     //David Mackenzie
-    public void addManagerCards(JSONArray managers, GameScreen gameScreen)
+    public void addManagerCards(JSONObject cards, GameScreen gameScreen)
     {
         try {
-            //JSONArray managers = cards.getJSONArray("managers");
+            JSONArray managers = cards.getJSONArray("managers");
             for (int i = 0; i < managers.length(); i++) {
                 JSONObject manager = managers.getJSONObject(i);
                 ManagerCard managerCard = new ManagerCard(
@@ -295,6 +307,16 @@ public class MatchGameScreen extends GameScreen {
                 }
             }
         }
+
+        for(int i = 0; i< getAiPlayer().getDeck().getCardsInDeck().size(); i++) {
+            if (!getAiPlayer().getDeck().getCardsInDeck().get(i).getPlaced()) {
+                if (!getAiPlayer().getDeck().getCardsInDeck().get(i).getBeingDragged()) {
+                    getAiPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
+                }
+            }
+        }
+
+
     }
 
 }

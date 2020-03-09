@@ -5,13 +5,15 @@ import android.graphics.Bitmap;
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
+import uk.ac.qub.eeecs.gage.world.LayerViewport;
+import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 
 public class PlayerCard extends Card{
 
     private String league;
     private String club;
 
-    public PlayerCard(GameScreen gameScreen, int overallValue, String league, String club, String firstName, String surname, String cardPortraitPath){
+    public PlayerCard(GameScreen gameScreen, double overallValue, String league, String club, String firstName, String surname, String cardPortraitPath){
         super(gameScreen, overallValue, firstName, surname, cardPortraitPath);
         this.league = league;
         this.club = club;
@@ -39,8 +41,8 @@ public class PlayerCard extends Card{
     }
 
     @Override
-    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
-        super.draw(elapsedTime, graphics2D);
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D, LayerViewport mDefaultLayerViewport, ScreenViewport mDefaultScreenViewport){
+        super.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
     }
 

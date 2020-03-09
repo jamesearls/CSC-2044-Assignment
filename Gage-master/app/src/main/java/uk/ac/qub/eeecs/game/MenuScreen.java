@@ -50,6 +50,7 @@ public class MenuScreen extends GameScreen {
 
         // Load in the bitmaps used on the main menu screen
         AssetManager assetManager = mGame.getAssetManager();
+        assetManager.loadAssets("txt/assets/MatchAttaxAssets.JSON");
         assetManager.loadAndAddBitmap("SpaceDemoIcon", "img/SpaceDemoIcon.png");
         assetManager.loadAndAddBitmap("SpaceDemoIconSelected", "img/SpaceDemoIconSelected.png");
         assetManager.loadAndAddBitmap("CardDemoIcon", "img/CardDemoIcon.png");

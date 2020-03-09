@@ -30,6 +30,12 @@ public class Player {
     public void setEndTurn(boolean val){endTurn = val;}
 
     public void playCard(Card card){
+        if (card instanceof ManagerCard){
+            if (((ManagerCard) card).isType()){
+
+            }
+        }
+
         if(deck.getCardsInDeck().contains(card)){
             deck.getCardsInDeck().remove(card);
             score += card.getOverallValue();

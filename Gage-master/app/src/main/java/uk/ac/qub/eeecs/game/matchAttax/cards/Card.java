@@ -10,18 +10,20 @@ import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
+import uk.ac.qub.eeecs.gage.world.LayerViewport;
+import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 
 public abstract class Card extends GameObject {
 
-    public static final int DEFAULT_CARD_HEIGHT = 100;
-    public static final int DEFAULT_CARD_WIDTH = 50;
+    public static final int DEFAULT_CARD_HEIGHT = 90;
+    public static final int DEFAULT_CARD_WIDTH = 60;
 
     public static final float DEFAULT_CARD_X = 0.0f;
     public static final float DEFAULT_CARD_Y = 0.0f;
 
     private String firstName;
     private String surname;
-    private int overallValue;
+    private double overallValue;
 
     private String cardPortraitPath;
     private boolean isBeingDragged;
@@ -29,7 +31,7 @@ public abstract class Card extends GameObject {
     private Bitmap bitmap;
     private GameObject artwork;
 
-    public Card(GameScreen gameScreen, int overallValue, String firstName, String surname, String cardPortraitPath){
+    public Card(GameScreen gameScreen, double overallValue, String firstName, String surname, String cardPortraitPath){
         super(gameScreen);
         super.setPosition(DEFAULT_CARD_X, DEFAULT_CARD_Y);
         super.getBound().halfHeight = DEFAULT_CARD_HEIGHT * 0.5f;
@@ -40,6 +42,10 @@ public abstract class Card extends GameObject {
         this.surname = surname;
         this.cardPortraitPath = cardPortraitPath;
         this.isBeingDragged = false;
+
+        this.setPosition(DEFAULT_CARD_X, DEFAULT_CARD_Y);
+        this.setHeight(DEFAULT_CARD_HEIGHT);
+        this.setWidth(DEFAULT_CARD_WIDTH);
 
         bitmap = getBitmap(this.cardPortraitPath);
 
@@ -78,7 +84,7 @@ public abstract class Card extends GameObject {
         this.surname = surname;
     }
 
-    public int getOverallValue() {
+    public double getOverallValue() {
         return overallValue;
     }
 
@@ -103,12 +109,17 @@ public abstract class Card extends GameObject {
     @Override
     public void update(ElapsedTime elapsedTime){
         super.update(elapsedTime);
+
+        this.artwork.setPosition(
+                this.getBound().getLeft() + this.getBound().getWidth(),
+                this.getBound().getBottom() + this.getBound().getHeight());
+        this.artwork.update(elapsedTime);
     }
 
     @Override
-    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
-        super.draw(elapsedTime, graphics2D);
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D, LayerViewport mDefaultLayerViewport, ScreenViewport mDefaultScreenViewport){
+        //super.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
-        this.artwork.draw(elapsedTime, graphics2D);
+        this.artwork.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
     }
 }

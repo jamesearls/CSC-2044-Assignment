@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
-import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
+import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
+
+
 import uk.ac.qub.eeecs.game.matchAttax.screens.MatchGameScreen;
 
 //By Adam Kennedy
@@ -21,16 +23,26 @@ public class Deck {
         this.gameScreen = gameScreen;
 
         cardsInDeck = new ArrayList<Card>();
+
         PlayerCard newCard;
+        ManagerCard newCardM;
+
         for (int idx=0; idx<MAX_SIZE-1; idx++){
             do {
                 newCard = gameScreen.getRandomPlayerCard();
+
             }
             while (cardAlreadyInDeck(newCard)==true);
             cardsInDeck.add(newCard);
         }
-        //newCard = gameScreen.getRandomManagerCard();
-        //cardsInDeck.add(newCard);
+
+
+
+
+
+
+     //   newCardM = gameScreen.getRandomManagerCard()
+      //  cardsInDeck.add(newCardM);
     }
 
     public List<Card> getCardsInDeck(){ return cardsInDeck; }

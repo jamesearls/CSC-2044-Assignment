@@ -84,6 +84,7 @@ public class MatchGameScreen extends GameScreen {
         mPlayerCards = new ArrayList<PlayerCard>();
         mManagerCards = new ArrayList<ManagerCard>();
         addCards("txt/assets/Players.json");
+        addCards2("txt/assets/Managers.json");
 
         playerName = "Player1";
         aiName = "Player2";
@@ -102,7 +103,7 @@ public class MatchGameScreen extends GameScreen {
 
     }
 
-
+    //David Mackenzie
     public void addCards2(String jsonFilePath)
     {
         FileIO mFileIO = mGame.getFileIO();
@@ -118,7 +119,7 @@ public class MatchGameScreen extends GameScreen {
 
         try
         {
-            JSONObject cards = new JSONObject(loadedJSON);
+            JSONArray cards = new JSONArray(loadedJSON);
             addManagerCards(cards, this);
         }
         catch(JSONException jEx)
@@ -127,10 +128,10 @@ public class MatchGameScreen extends GameScreen {
         }
     }
     //David Mackenzie
-    public void addManagerCards(JSONObject cards, GameScreen gameScreen)
+    public void addManagerCards(JSONArray managers, GameScreen gameScreen)
     {
         try {
-            JSONArray managers = cards.getJSONArray("managers");
+            //JSONArray managers = cards.getJSONArray("managers");
             for (int i = 0; i < managers.length(); i++) {
                 JSONObject manager = managers.getJSONObject(i);
                 ManagerCard managerCard = new ManagerCard(
@@ -139,7 +140,7 @@ public class MatchGameScreen extends GameScreen {
                         manager.getString("firstName"),
                         manager.getString("surname"),
                         manager.getBoolean("type"),
-                        manager.getString("cardPortrait"));
+                        manager.getString("portrait"));
                 mManagerCards.add(managerCard);
             }
         }

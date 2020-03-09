@@ -1,6 +1,7 @@
 package uk.ac.qub.eeecs.game.matchAttax.player;
 
 import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
+import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 
 //By Adam Kennedy
 public class Player {
@@ -9,6 +10,7 @@ public class Player {
     private Deck deck;
     private int score;
     private boolean endTurn;
+    private int managerScore;
 
     public Player(String name, Deck deck){
         this.name = name;
@@ -33,4 +35,6 @@ public class Player {
             score += card.getOverallValue();
         }
     }
+
+
 }

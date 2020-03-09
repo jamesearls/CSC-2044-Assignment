@@ -29,13 +29,16 @@ public class Player {
     public void setScore(int newScore){score = newScore;}
     public void setEndTurn(boolean val){endTurn = val;}
 
+    //David Mackenzie
     public void playCard(Card card){
         if (card instanceof ManagerCard){
-            if (((ManagerCard) card).isType()){
-
+            if (((ManagerCard) card).isType() == true){
+                score += card.getOverallValue();
+            }else if(((ManagerCard) card).isType() == false){
+                score *= card.getOverallValue();
             }
         }
-
+    //Adam Kennedy
         if(deck.getCardsInDeck().contains(card)){
             deck.getCardsInDeck().remove(card);
             score += card.getOverallValue();

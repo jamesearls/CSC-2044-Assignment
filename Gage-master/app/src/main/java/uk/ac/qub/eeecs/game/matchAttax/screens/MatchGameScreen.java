@@ -162,10 +162,14 @@ public class MatchGameScreen extends GameScreen {
         }
     }
 
-    //David Mackenzie - 40238376
-    //public List<ManagerCard> getManagerCardsList(){
-  //      return mManagerCards;
-  //  }
+    public ArrayList<ManagerCard> getManagerCardList()
+    {
+        return mManagerCards;
+    }
+
+
+
+
 
     //Pauric Donnelly
     public void addCards(String jsonFilePath)
@@ -220,6 +224,8 @@ public class MatchGameScreen extends GameScreen {
     {
         return mPlayerCards;
     }
+
+
 
 
     public Player getHumanPlayer(){ return humanPlayer; }

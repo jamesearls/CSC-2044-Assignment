@@ -60,6 +60,35 @@ public class ManagerCardTest
           }
         }
 
+    //3rd Test
+    //Checking the manager forename is present
+    public void CheckManagerForename() throws Exception
+    {
+        matchScreen.addCards("txt/assets/Managers.json");
+        List<ManagerCard> testerList = matchScreen.getManagerCardList();
+        for (int i = 0; i < testerList.size(); i++)
+        {
+            ManagerCard testerCard = testerList.get(i);
+            assertTrue(testerCard.getFirstName() != null);
+            assertNotNull(testerCard.getFirstName());
+        }
+    }
+
+    //4th Test
+    //Checking the value of the manager card is valid
+    public void CheckManagerValueValid() throws Exception
+    {
+        matchScreen.addCards("txt/assets/Managers.json");
+        List<ManagerCard> testerList = matchScreen.getManagerCardList();
+        for(int i = 0; i < testerList.size(); i++)
+        {
+            ManagerCard testerCard = testerList.get(i);
+            assertTrue(testerCard.getOverallValue() > -1 && testerCard.getOverallValue() < 31);
+        }
+    }
+
+    //More tests to be added
+
     }
 
 

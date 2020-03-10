@@ -17,13 +17,14 @@ import uk.ac.qub.eeecs.game.matchAttax.screens.MatchGameScreen;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+//David Mackenzie
+//40238376
 
 @RunWith(AndroidJUnit4.class)
-
 public class ManagerCardTest
-{
+    {
     private Context context;
-    MatchGameScreen matchScreen;
+    public MatchGameScreen matchScreen;
     private DemoGame game;
 
     @Before
@@ -48,6 +49,7 @@ public class ManagerCardTest
 
     //2nd Test
     //Checking the manager surname is present
+    @Test
     public void CheckManagerSurname() throws Exception
     {
         matchScreen.addCards("txt/assets/Managers.json");
@@ -62,6 +64,7 @@ public class ManagerCardTest
 
     //3rd Test
     //Checking the manager forename is present
+    @Test
     public void CheckManagerForename() throws Exception
     {
         matchScreen.addCards("txt/assets/Managers.json");
@@ -76,6 +79,7 @@ public class ManagerCardTest
 
     //4th Test
     //Checking the value of the manager card is valid
+    @Test
     public void CheckManagerValueValid() throws Exception
     {
         matchScreen.addCards("txt/assets/Managers.json");
@@ -86,10 +90,7 @@ public class ManagerCardTest
             assertTrue(testerCard.getOverallValue() > -1 && testerCard.getOverallValue() < 31);
         }
     }
-
-    //More tests to be added
-
-    }
+}
 
 
 

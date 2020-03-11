@@ -13,6 +13,8 @@ import java.util.List;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.game.DemoGame;
 import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
+import uk.ac.qub.eeecs.game.matchAttax.player.Player;
+import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
 import uk.ac.qub.eeecs.game.matchAttax.screens.MatchGameScreen;
 
 import static org.junit.Assert.assertNotNull;
@@ -54,13 +56,12 @@ public class ManagerCardTest
     {
         matchScreen.addCards("txt/assets/Managers.json");
         List<ManagerCard> testerList = matchScreen.getManagerCardList();
-        for (int i = 0; i < testerList.size(); i++)
-        {
-          ManagerCard testerCard = testerList.get(i);
-          assertTrue(testerCard.getSurname() != null);
-          assertNotNull(testerCard.getSurname());
-          }
+        for (int i = 0; i < testerList.size(); i++) {
+            ManagerCard testerCard = testerList.get(i);
+            assertTrue(testerCard.getSurname() != null);
+            assertNotNull(testerCard.getSurname());
         }
+    }
 
     //3rd Test
     //Checking the manager forename is present
@@ -106,4 +107,4 @@ public class ManagerCardTest
             assertNotNull(testerCard.isType());
         }
     }
-}
+    }

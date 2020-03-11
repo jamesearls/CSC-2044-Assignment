@@ -43,8 +43,8 @@ public class ManagerCardTest
     public void CheckManagerCardPresent() throws Exception
     {
         matchScreen.addCards("txt/assets/Managers.json");
-        assertTrue(matchScreen.getManagerCardList().size() > 0 && matchScreen.getManagerCardList() != null);
-
+        assertTrue(matchScreen.getManagerCardList().size() > 0 &&
+                matchScreen.getManagerCardList() != null);
     }
 
     //2nd Test
@@ -88,9 +88,22 @@ public class ManagerCardTest
         {
             ManagerCard testerCard = testerList.get(i);
             assertTrue(testerCard.getOverallValue() > -1 && testerCard.getOverallValue() < 31);
+            assertNotNull(testerCard.getOverallValue());
+        }
+    }
+
+    //5th Test
+    //Checking if the type of the manager card is valid (True or False)
+    @Test
+    public void CheckManagerTypeValid () throws Exception
+    {
+        matchScreen.addCards("txt/assets/Managers.json");
+        List<ManagerCard> testerList = matchScreen.getManagerCardList();
+        for (int i = 0; i < testerList.size(); i++)
+        {
+            ManagerCard testerCard = testerList.get(i);
+            assertTrue(testerCard.isType() == true || testerCard.isType() == false);
+            assertNotNull(testerCard.isType());
         }
     }
 }
-
-
-

@@ -158,26 +158,6 @@ public abstract class Game extends Fragment {
      */
     protected IRenderSurface mRenderSurface;
 
-    public boolean getMusicActive() {
-        return musicActive;
-    }
-
-    public boolean setMusicActive(boolean value) {
-        this.musicActive = value;
-        return musicActive;
-    }
-    public float getMusicVolume() {
-        return musicvolume;
-    }
-
-    public float setMusicVolume(float value) {
-        this.musicvolume = value;
-        return musicvolume;
-    }
-    protected boolean musicActive = true;
-
-    protected float musicvolume = 0.5f;
-
 
     // /////////////////////////////////////////////////////////////////////////
     // Properties: Game Loop

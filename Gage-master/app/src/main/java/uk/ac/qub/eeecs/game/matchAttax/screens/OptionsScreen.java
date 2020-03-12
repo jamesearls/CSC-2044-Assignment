@@ -1,23 +1,24 @@
+
 package uk.ac.qub.eeecs.game.matchAttax.screens;
 
-        import android.graphics.Bitmap;
-        import android.graphics.Canvas;
-        import android.graphics.Matrix;
-        import android.graphics.Paint;
-        import android.graphics.Rect;
-        import android.graphics.Typeface;
-        import android.text.TextPaint;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.text.TextPaint;
 
-        import uk.ac.qub.eeecs.gage.Game;
-        import uk.ac.qub.eeecs.gage.engine.AssetManager;
-        import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
-        import uk.ac.qub.eeecs.gage.engine.ScreenManager;
-        import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
-        import uk.ac.qub.eeecs.gage.ui.PushButton;
-        import uk.ac.qub.eeecs.gage.world.GameObject;
-        import uk.ac.qub.eeecs.gage.world.GameScreen;
+import uk.ac.qub.eeecs.gage.Game;
+import uk.ac.qub.eeecs.gage.engine.AssetManager;
+import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
+import uk.ac.qub.eeecs.gage.engine.ScreenManager;
+import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
+import uk.ac.qub.eeecs.gage.ui.PushButton;
+import uk.ac.qub.eeecs.gage.world.GameObject;
+import uk.ac.qub.eeecs.gage.world.GameScreen;
 
-public  class OptionsScreen extends  GameScreen {
+public class OptionsScreen extends  GameScreen {
     private float screenWidth = getGame().getScreenWidth(),
             screenHeight = getGame().getScreenHeight(),
             symbolXOffset = screenWidth * 0.125f,
@@ -28,6 +29,7 @@ public  class OptionsScreen extends  GameScreen {
     private Bitmap background, symbol, muteBitmap, unmuteBitmap, highBitmap, normalBitmap, lowBitmap, returnBitmap;
     private Typeface font;
     private GameObject backgroundObject;
+
     private TextPaint titlePaint, buttonPaint;
     private Rect muteRect, unmuteRect, highRect, normalRect, lowRect, returnRect;
     private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton;
@@ -37,12 +39,11 @@ public  class OptionsScreen extends  GameScreen {
         super("OptionsScreen", game);
 
         /* Load font */
-//        assetStore.loadAndAddTypeface("font", "fonts/Audiowide.ttf");
-//        font = assetStore.getTypeface("font");
-
+        assetStore.loadAndAddTypeface("font", "fonts/audiowide.ttf");
+        font = assetStore.getTypeface("font");
         /* Load music */
         assetStore.loadAndAddMusic("ChelseaDagger", "music/ChelseaDagger.mp3");
-//        playMusic();
+        playMusic();
 
         /* Set title text size and font */
         titlePaint = new TextPaint();
@@ -59,11 +60,11 @@ public  class OptionsScreen extends  GameScreen {
     }
 
     /* Play music */
-//    public void playMusic() {
-//        if (mGame.getMusicActive().equals(true)) {
-//            assetStore.getMusic("ChelseaDagger").play();
-//        }
-//    }
+    public void playMusic() {
+        if (mGame.getMusicActive() == true) {
+            assetStore.getMusic("ChelseaDagger").play();
+        }
+    }
 
 
     /* Button for raising music */
@@ -105,21 +106,23 @@ public  class OptionsScreen extends  GameScreen {
     public void onButtonPressed() {
 
         if(highButton.isPushTriggered()) {
-//            mGame.setMusicActive(true);
-//            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
-//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+            mGame.setMusicActive(true);
+            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
+            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(normalButton.isPushTriggered()) {
-//            mGame.setMusicActive(true);
-//            mGame.setMusicVolume(0.5f);
-//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+            mGame.setMusicActive(true);
+            mGame.setMusicVolume(0.5f);
+            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(lowButton.isPushTriggered()) {
-//            mGame.setMusicActive(true);
-//            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
-//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+            mGame.setMusicActive(true);
+            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
+            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
     }
+
+
 
 
 
@@ -178,5 +181,3 @@ public  class OptionsScreen extends  GameScreen {
     }
 
 }
-
-

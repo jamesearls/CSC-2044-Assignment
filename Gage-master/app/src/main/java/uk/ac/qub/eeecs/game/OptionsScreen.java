@@ -5,7 +5,8 @@ import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.gage.*;
 
-public class OptionsScreen extends GameScreen {
+public class
+OptionsScreen extends GameScreen {
 
     public OptionsScreen(Game game)
     {

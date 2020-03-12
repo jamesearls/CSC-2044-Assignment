@@ -20,7 +20,7 @@ public class MatchAttaxGame extends Game {
     public float getMusicVolume(){return musicVolume;}
     public boolean getSfxOn(){return isSfxOn;}
 
-    public void setMusicVolume(float volume){musicVolume = volume;}
+    //public void setMusicVolume(float volume){musicVolume = volume;}
     public void setSfxOn(boolean val) {isSfxOn = val;}
 
     @Override

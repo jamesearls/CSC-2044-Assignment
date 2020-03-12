@@ -44,6 +44,8 @@ public class FileIO {
      */
     private AssetManager mAndroidIO;
 
+    private AssetManager mAssetManager;
+
     /**
      * Location of the external storage
      */
@@ -64,7 +66,6 @@ public class FileIO {
         mExternalStoragePath = Environment.getExternalStorageDirectory()
                 .getAbsolutePath() + File.separator;
     }
-
     // /////////////////////////////////////////////////////////////////////////
     // Asset IO //
     // /////////////////////////////////////////////////////////////////////////
@@ -250,4 +251,9 @@ public class FileIO {
     public SharedPreferences getPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(mContext);
     }
+//Load Font for options
+    public Typeface loadTypeface(String filename) {
+        return Typeface.createFromAsset(mAssetManager, filename);
+    }
+
 }

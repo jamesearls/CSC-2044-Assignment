@@ -61,6 +61,11 @@
       "file": "img/songs/song5.png"
     },
     {
+      "type": "Bitmap",
+      "name": "cardBack",
+      "file": "img/songs/cardBack.png"
+    },
+    {
       "type": "Music",
       "name": "ChelseaDagger",
       "file": "ChelseaDagger.mp3"

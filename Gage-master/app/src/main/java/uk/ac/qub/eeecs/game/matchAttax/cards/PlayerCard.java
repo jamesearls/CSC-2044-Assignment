@@ -41,8 +41,8 @@ public class PlayerCard extends Card{
     }
 
     @Override
-    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D, LayerViewport mDefaultLayerViewport, ScreenViewport mDefaultScreenViewport){
-        super.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
+        super.draw(elapsedTime, graphics2D);
 
     }
 

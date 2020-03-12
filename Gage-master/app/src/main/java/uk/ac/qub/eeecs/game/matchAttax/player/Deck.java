@@ -27,7 +27,7 @@ public class Deck {
         PlayerCard newCard;
         ManagerCard newCardM;
 
-        for (int idx=0; idx<MAX_SIZE-1; idx++){
+        for (int idx=0; idx<MAX_SIZE; idx++){
             do {
                 newCard = gameScreen.getRandomPlayerCard();
 
@@ -35,14 +35,7 @@ public class Deck {
             while (cardAlreadyInDeck(newCard)==true);
             cardsInDeck.add(newCard);
         }
-
-
-
-
-
-
-     //   newCardM = gameScreen.getRandomManagerCard()
-      //  cardsInDeck.add(newCardM);
+        cardsInDeck.add(gameScreen.getRandomManagerCard());
     }
 
     public List<Card> getCardsInDeck(){ return cardsInDeck; }

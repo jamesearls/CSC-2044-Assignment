@@ -3,6 +3,7 @@ package uk.ac.qub.eeecs.game.matchAttax.screens;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+
 import java.util.List;
 
 import uk.ac.qub.eeecs.gage.Game;
@@ -14,6 +15,7 @@ import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
+
 
 /**
  * The Main Menu Screen to Navigate the game from it's launch
@@ -65,6 +67,8 @@ public class MainMenu extends GameScreen {
         assetManager.loadAndAddBitmap("settingsButton", "img/buttons/settingsButton.png");
         assetManager.loadAndAddBitmap("settingsButtonPressed", "img/buttons/settingsButtonPressed.png");
 
+        //loading in background music
+        assetManager.loadAndAddMusic("GuitarMusic", "sound/gage/GuitarMusic.mp3");
 
 
         // Define the spacing that will be used to position the buttons
@@ -104,6 +108,8 @@ public class MainMenu extends GameScreen {
     @Override
     public void update(ElapsedTime elapsedTime) {
 
+        //playing background music
+        this.getGame().getAssetManager().getMusic("GuitarMusic").play();
         // Process any touch events occurring since the update
         Input input = mGame.getInput();
 
@@ -127,6 +133,9 @@ public class MainMenu extends GameScreen {
 //                mGame.getScreenManager().addScreen(new CardsScreen(mGame));
 //            }
         }
+
+
+
     }
 
     /**

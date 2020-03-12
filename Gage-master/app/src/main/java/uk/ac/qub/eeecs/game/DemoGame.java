@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import uk.ac.qub.eeecs.gage.Game;
-import uk.ac.qub.eeecs.game.matchAttax.screens.MainMenu;
 
 /**
  * Sample demo game that is create within the MainActivity class
@@ -45,7 +44,7 @@ public class DemoGame extends Game {
         // Create and add a stub game screen to the screen manager. We don't
         // want to do this within the onCreate method as the menu screen
         // will layout the buttons based on the size of the view.
-        MainMenu stubMenuScreen = new MainMenu(this);
+        MenuScreen stubMenuScreen = new MenuScreen(this);
         mScreenManager.addScreen(stubMenuScreen);
 
         return view;
@@ -54,7 +53,7 @@ public class DemoGame extends Game {
     @Override
     public boolean onBackPressed() {
         // If we are already at the menu screen then exit
-        if (mScreenManager.getCurrentScreen().getName().equals("MainMenu"))
+        if (mScreenManager.getCurrentScreen().getName().equals("MenuScreen"))
             return false;
 
         // Stop any playing music
@@ -63,9 +62,8 @@ public class DemoGame extends Game {
 
         // Go back to the menu screen
         getScreenManager().removeAllScreens();
-        MainMenu menuScreen = new MainMenu(this);
+        MenuScreen menuScreen = new MenuScreen(this);
         getScreenManager().addScreen(menuScreen);
         return true;
     }
-
 }

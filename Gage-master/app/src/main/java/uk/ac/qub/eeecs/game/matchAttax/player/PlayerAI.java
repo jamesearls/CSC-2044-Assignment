@@ -32,7 +32,7 @@ public class PlayerAI extends Player {
                 }
                 else{
                     if (abs(scoreDiff - card.getOverallValue()) < closestToDiff || closestToDiff == -1){
-                        closestToDiff = abs(scoreDiff - card.getOverallValue());
+                        closestToDiff = abs(scoreDiff - (int)card.getOverallValue());
                         cardToPlay = card;
                     }
                 }

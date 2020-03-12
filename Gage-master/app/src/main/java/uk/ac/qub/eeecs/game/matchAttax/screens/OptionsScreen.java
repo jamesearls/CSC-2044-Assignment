@@ -1,24 +1,28 @@
-
 package uk.ac.qub.eeecs.game.matchAttax.screens;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.text.TextPaint;
+        import android.graphics.Bitmap;
+        import android.graphics.Canvas;
+        import android.graphics.Paint;
+        import android.graphics.Rect;
+        import android.graphics.Typeface;
+        import android.text.TextPaint;
 
-import uk.ac.qub.eeecs.gage.Game;
-import uk.ac.qub.eeecs.gage.engine.AssetManager;
-import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
-import uk.ac.qub.eeecs.gage.engine.ScreenManager;
-import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
-import uk.ac.qub.eeecs.gage.ui.PushButton;
-import uk.ac.qub.eeecs.gage.world.GameObject;
-import uk.ac.qub.eeecs.gage.world.GameScreen;
+        import uk.ac.qub.eeecs.gage.Game;
+        import uk.ac.qub.eeecs.gage.engine.AssetManager;
+        import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
+        import uk.ac.qub.eeecs.gage.engine.ScreenManager;
+        import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
+        import uk.ac.qub.eeecs.gage.ui.Button;
+        import uk.ac.qub.eeecs.gage.ui.PushButton;
+        import uk.ac.qub.eeecs.gage.engine.input.Input;
+        import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
+        import java.util.List;
+        import uk.ac.qub.eeecs.gage.ui.ToggleButton;
+        import uk.ac.qub.eeecs.gage.world.GameObject;
+        import uk.ac.qub.eeecs.gage.world.GameScreen;
+        import uk.ac.qub.eeecs.gage.world.Sprite;
 
-public class OptionsScreen extends  GameScreen {
+public  class OptionsScreen extends  GameScreen {
     private float screenWidth = getGame().getScreenWidth(),
             screenHeight = getGame().getScreenHeight(),
             symbolXOffset = screenWidth * 0.125f,
@@ -29,21 +33,50 @@ public class OptionsScreen extends  GameScreen {
     private Bitmap background, symbol, muteBitmap, unmuteBitmap, highBitmap, normalBitmap, lowBitmap, returnBitmap;
     private Typeface font;
     private GameObject backgroundObject;
-
     private TextPaint titlePaint, buttonPaint;
     private Rect muteRect, unmuteRect, highRect, normalRect, lowRect, returnRect;
-    private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton;
+    private Sprite currentMusicImage;
+    private Bitmap songImage1, songImage2, songImage3, songImage4, songImage5;
+    private int currentSongNumber = 2;
+    private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton, rightArrow, leftArrow;
     private Canvas buttonCanvas;
 
     public OptionsScreen(Game game) {
         super("OptionsScreen", game);
 
         /* Load font */
-        assetStore.loadAndAddTypeface("font", "fonts/audiowide.ttf");
-        font = assetStore.getTypeface("font");
-        /* Load music */
-        assetStore.loadAndAddMusic("ChelseaDagger", "music/ChelseaDagger.mp3");
-        playMusic();
+//        assetStore.loadAndAddTypeface("font", "fonts/Audiowide.ttf");
+//        font = assetStore.getTypeface("font");
+
+        assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
+        background = assetStore.getBitmap("menuBackground");
+
+        //creating buttons to change music
+        assetStore.loadAndAddBitmap("rightArrow", "img/buttons/rightArrow.png");
+        assetStore.loadAndAddBitmap("rightArrowPressed", "img/buttons/rightArrowPressed.png");
+        assetStore.loadAndAddBitmap("leftArrow", "img/buttons/leftArrow.png");
+        assetStore.loadAndAddBitmap("leftArrowPressed", "img/buttons/leftArrowPressed.png");
+
+        int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
+        int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
+
+        rightArrow = new PushButton(
+                spacingX * 1.5f, spacingY * 0.8f, spacingX*0.5f, spacingY*0.5f,
+                "rightArrow", "rightArrowPressed",this);
+        rightArrow.setPlaySounds(false, false);
+
+        leftArrow = new PushButton(
+                spacingX * 1.5f, spacingY * 0.8f, spacingX*0.5f, spacingY*0.5f,
+                "leftArrow", "leftArrowPressed",this);
+        leftArrow.setPlaySounds(false, false);
+
+
+        // Load music
+        assetStore.loadAndAddMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
+        assetStore.loadAndAddMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");
+        assetStore.loadAndAddMusic("WavinFlag", "sound/WavinFlag.mp3");
+        assetStore.loadAndAddMusic("WhatYouKnow", "sound/WhatYouKnow.mp3");
+        assetStore.loadAndAddMusic("FluorescentAdolescent", "sound/FluorescentAdolescent.mp3");
 
         /* Set title text size and font */
         titlePaint = new TextPaint();
@@ -54,6 +87,13 @@ public class OptionsScreen extends  GameScreen {
         buttonPaint.setTextSize(screenWidth * 0.04f);
         buttonPaint.setTypeface(font);
 
+        assetStore.loadAndAddBitmap("ChelseaDagger", "img/songs/song1.png");
+        assetStore.loadAndAddBitmap("SevenNationArmy", "img/songs/song2.png");
+        assetStore.loadAndAddBitmap("WavinFlag", "img/songs/song3.png");
+        assetStore.loadAndAddBitmap("WhatYouKnow", "img/songs/song4.png");
+        assetStore.loadAndAddBitmap("FluorescentAdolescent", "img/songs/song5.png");
+        currentMusicImage = new Sprite(screenWidth /2, screenHeight / 2, 400, 400, null, this);
+
         makeHighButton();
         makeNormalButton();
         makeLowButton();
@@ -61,8 +101,9 @@ public class OptionsScreen extends  GameScreen {
 
     /* Play music */
     public void playMusic() {
-        if (mGame.getMusicActive() == true) {
+        if (!mGame.getAudioManager().isMusicPlaying()) {
             assetStore.getMusic("ChelseaDagger").play();
+            currentSongNumber = 1;
         }
     }
 
@@ -106,23 +147,21 @@ public class OptionsScreen extends  GameScreen {
     public void onButtonPressed() {
 
         if(highButton.isPushTriggered()) {
-            mGame.setMusicActive(true);
-            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
-            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+//            mGame.setMusicActive(true);
+//            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
+//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(normalButton.isPushTriggered()) {
-            mGame.setMusicActive(true);
-            mGame.setMusicVolume(0.5f);
-            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+//            mGame.setMusicActive(true);
+//            mGame.setMusicVolume(0.5f);
+//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(lowButton.isPushTriggered()) {
-            mGame.setMusicActive(true);
-            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
-            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+//            mGame.setMusicActive(true);
+//            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
+//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
     }
-
-
 
 
 
@@ -148,36 +187,75 @@ public class OptionsScreen extends  GameScreen {
 
     @Override
     public void update(ElapsedTime elapsedTime) {
-        timeAccumulator += elapsedTime.stepTime;
-        while(timeAccumulator > 0.1) {
-            timeAccumulator -= 0.1;
+
+        Input input = mGame.getInput();
+
+        List<TouchEvent> touchEvents = input.getTouchEvents();
+        if (touchEvents.size() > 0) {
+
+
+            timeAccumulator += elapsedTime.stepTime;
+            while (timeAccumulator > 0.1) {
+                timeAccumulator -= 0.1;
+            }
+
+
+            highButton.update(elapsedTime);
+            normalButton.update(elapsedTime);
+            lowButton.update(elapsedTime);
+            rightArrow.update(elapsedTime);
+            leftArrow.update(elapsedTime);
+            onButtonPressed();
+
+            playMusic();
+
+            currentMusicImage.update(elapsedTime);
         }
 
-
-        highButton.update(elapsedTime);
-        normalButton.update(elapsedTime);
-        lowButton.update(elapsedTime);
-        onButtonPressed();
     }
 
-
-
     @Override
-    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D) {
-        graphics2D.drawBitmap(
-                background,
-                null,
-                new Rect(0, 0, (int) screenWidth, (int) screenHeight),
-                null
-        );
+        public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D) {
+            graphics2D.drawBitmap(
+                    background,
+                    null,
+                    new Rect(0, 0, (int) screenWidth, (int) screenHeight),
+                    new Paint()
+            );
 
+            highButton.draw(elapsedTime, graphics2D);
+            normalButton.draw(elapsedTime, graphics2D);
+            lowButton.draw(elapsedTime, graphics2D);
+           rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+            leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+            updateMusicImage();
+            currentMusicImage.draw(elapsedTime, graphics2D);
 
-        highButton.draw(elapsedTime, graphics2D);
-        normalButton.draw(elapsedTime, graphics2D);
-        lowButton.draw(elapsedTime, graphics2D);
+        }
 
+    private void updateMusicImage()
+    {
+        switch(currentSongNumber) {
+            case 1:
+                currentMusicImage.setBitmap(assetStore.getBitmap("ChelseaDagger"));
+                break;
+            case 2:
+                currentMusicImage.setBitmap(assetStore.getBitmap("SevenNationArmy"));
+                break;
+            case 3:
+                currentMusicImage.setBitmap(assetStore.getBitmap("WavinFlag"));
+                break;
+            case 4:
+                currentMusicImage.setBitmap(assetStore.getBitmap("WhatYouKnow"));
+                break;
+            case 5:
+                currentMusicImage.setBitmap(assetStore.getBitmap("FluorescentAdolescent"));
+                break;
 
+        }
 
     }
 
 }
+
+

@@ -58,7 +58,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void example_gameObjectCreation() throws Exception {
         // Create the spaceship steering demo
-        SpaceshipDemoScreen steeringDemoGameScreen = new SpaceshipDemoScreen(game);
+        SpaceshipDemoScreen steeringDemoGameScreen = new SpaceshipDemoScreen(game, "Spaceship2", "Turret1");
 
         // Test that we can extract the player spaceship from the demo
         PlayerSpaceship playerSpaceship = steeringDemoGameScreen.getPlayerSpaceship();

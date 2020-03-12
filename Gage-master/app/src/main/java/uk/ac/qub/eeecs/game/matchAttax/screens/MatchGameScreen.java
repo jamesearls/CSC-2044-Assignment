@@ -84,6 +84,7 @@ public class MatchGameScreen extends GameScreen {
         mPlayerCards = new ArrayList<PlayerCard>();
         mManagerCards = new ArrayList<ManagerCard>();
         addCards("txt/assets/Players.json");
+        addCards2("txt/assets/Managers.json");
 
         playerName = "Player1";
         aiName = "Player2";
@@ -94,6 +95,18 @@ public class MatchGameScreen extends GameScreen {
         humanPlayer = new Player(playerName, playerDeck);
         aiPlayer = new PlayerAI(aiName, aiDeck, this);
 
+        int spacing = 100;
+        for (int i=0; i<humanPlayer.getDeck().getCardsInDeck().size(); i++){
+            humanPlayer.getDeck().getCardsInDeck().get(i).setPosition(humanPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,humanPlayer.getDeck().getCardsInDeck().get(i).getBound().y+30);
+            spacing += 100;
+        }
+
+        spacing = 0;
+        for (int i=0; i<aiPlayer.getDeck().getCardsInDeck().size(); i++){
+            aiPlayer.getDeck().getCardsInDeck().get(i).setPosition(aiPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,game.getScreenWidth() - 30);
+            spacing += 100;
+        }
+
         playerScore = 0;
         aiScore = 0;
         roundNum = 1;
@@ -102,7 +115,7 @@ public class MatchGameScreen extends GameScreen {
 
     }
 
-
+    //David Mackenzie
     public void addCards2(String jsonFilePath)
     {
         FileIO mFileIO = mGame.getFileIO();
@@ -139,7 +152,7 @@ public class MatchGameScreen extends GameScreen {
                         manager.getString("firstName"),
                         manager.getString("surname"),
                         manager.getBoolean("type"),
-                        manager.getString("cardPortrait"));
+                        manager.getString("portrait"));
                 mManagerCards.add(managerCard);
             }
         }
@@ -149,10 +162,14 @@ public class MatchGameScreen extends GameScreen {
         }
     }
 
-    //David Mackenzie - 40238376
-    //public List<ManagerCard> getManagerCardsList(){
-  //      return mManagerCards;
-  //  }
+    public ArrayList<ManagerCard> getManagerCardList()
+    {
+        return mManagerCards;
+    }
+
+
+
+
 
     //Pauric Donnelly
     public void addCards(String jsonFilePath)
@@ -207,6 +224,8 @@ public class MatchGameScreen extends GameScreen {
     {
         return mPlayerCards;
     }
+
+
 
 
     public Player getHumanPlayer(){ return humanPlayer; }
@@ -294,6 +313,18 @@ public class MatchGameScreen extends GameScreen {
                 }
             }
         }
+
+        for(int i = 0; i< getAiPlayer().getDeck().getCardsInDeck().size(); i++) {
+            if (!getAiPlayer().getDeck().getCardsInDeck().get(i).getPlaced()) {
+                if (!getAiPlayer().getDeck().getCardsInDeck().get(i).getBeingDragged()) {
+                    getAiPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
+                }
+            }
+        }
+
+
     }
+
+
 
 }

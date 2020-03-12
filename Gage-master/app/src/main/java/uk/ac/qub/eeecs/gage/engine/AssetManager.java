@@ -8,18 +8,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import uk.ac.qub.eeecs.gage.Game;
 import uk.ac.qub.eeecs.gage.engine.animation.AnimationSettings;
 import uk.ac.qub.eeecs.gage.engine.audio.Music;
 import uk.ac.qub.eeecs.gage.engine.audio.Sound;
-import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
-import uk.ac.qub.eeecs.gage.world.GameScreen;
-import uk.ac.qub.eeecs.game.matchAttax.cards.Cards;
-import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 
 /**
  * Asset manager for holding loaded assets.

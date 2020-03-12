@@ -29,7 +29,7 @@ public class Player {
     public void setScore(int newScore){score = newScore;}
     public void setEndTurn(boolean val){endTurn = val;}
 
-    //David Mackenzie
+    //David Mackenzie - um excuse me? sincerely, Adam.
     public void playCard(Card card){
         if (card instanceof ManagerCard){
             if (((ManagerCard) card).isType() == true){

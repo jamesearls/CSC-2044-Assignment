@@ -236,7 +236,7 @@
   },
   {
     "id": 26,
-    "league": "Premier League",
+    "league": "Bundesliga",
     "team": "Bayern Munich",
     "fname": "Serge",
     "sname": "Gnabry",
@@ -327,7 +327,7 @@
   {
     "id": 36,
     "league": "La Liga",
-    "team": "Inter Milan",
+    "team": "Atletico Madrid",
     "fname": "Jan",
     "sname": "Oblak",
     "overall": 9,

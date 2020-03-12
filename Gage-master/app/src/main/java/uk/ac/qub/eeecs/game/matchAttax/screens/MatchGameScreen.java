@@ -12,12 +12,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.engine.input.Input;
+import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
@@ -35,6 +37,8 @@ public class MatchGameScreen extends GameScreen {
 
     private String gameBackground;
     private GameObject mBackground;
+
+    private GameObject cardBack;
 
     private ScreenViewport mScreenViewport;
     private LayerViewport mLayerViewport;
@@ -95,17 +99,23 @@ public class MatchGameScreen extends GameScreen {
         humanPlayer = new Player(playerName, playerDeck);
         aiPlayer = new PlayerAI(aiName, aiDeck, this);
 
-        int spacing = 100;
+        int spacing = 385;
         for (int i=0; i<humanPlayer.getDeck().getCardsInDeck().size(); i++){
-            humanPlayer.getDeck().getCardsInDeck().get(i).setPosition(humanPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,humanPlayer.getDeck().getCardsInDeck().get(i).getBound().y+30);
-            spacing += 100;
+            humanPlayer.getDeck().getCardsInDeck().get(i).setPosition(humanPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,game.getScreenHeight()-255);
+            spacing += 200;
         }
 
-        spacing = 0;
         for (int i=0; i<aiPlayer.getDeck().getCardsInDeck().size(); i++){
-            aiPlayer.getDeck().getCardsInDeck().get(i).setPosition(aiPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,game.getScreenWidth() - 30);
-            spacing += 100;
+            aiPlayer.getDeck().getCardsInDeck().get(i).setPosition(game.getScreenWidth()-100,155);
         }
+        cardBack = new GameObject(
+                game.getScreenWidth()-100,
+                155,
+                Card.DEFAULT_CARD_WIDTH,
+                Card.DEFAULT_CARD_HEIGHT,
+                getGame().getAssetManager().getBitmap("cardBack"),
+                this
+                );
 
         playerScore = 0;
         aiScore = 0;
@@ -131,7 +141,7 @@ public class MatchGameScreen extends GameScreen {
 
         try
         {
-            JSONObject cards = new JSONObject(loadedJSON);
+            JSONArray cards = new JSONArray(loadedJSON);
             addManagerCards(cards, this);
         }
         catch(JSONException jEx)
@@ -140,10 +150,9 @@ public class MatchGameScreen extends GameScreen {
         }
     }
     //David Mackenzie
-    public void addManagerCards(JSONObject cards, GameScreen gameScreen)
+    public void addManagerCards(JSONArray managers, GameScreen gameScreen)
     {
         try {
-            JSONArray managers = cards.getJSONArray("managers");
             for (int i = 0; i < managers.length(); i++) {
                 JSONObject manager = managers.getJSONObject(i);
                 ManagerCard managerCard = new ManagerCard(
@@ -242,7 +251,8 @@ public class MatchGameScreen extends GameScreen {
 
     public Card getRandomManagerCard(){
         Random random = new Random();
-        Card card = mManagerCards.get(random.nextInt(AMOUNT_OF_MANAGER_CARDS));
+        int num = random.nextInt(AMOUNT_OF_MANAGER_CARDS);
+        ManagerCard card = mManagerCards.get(num);
 
         return card;
     }
@@ -250,6 +260,7 @@ public class MatchGameScreen extends GameScreen {
     //by Bronach
     private void loadAssets(){
         loadBitmaps("menuBackground", "img/menuBackground.png");
+        loadBitmaps("cardBack", "img/cardBack.png");
 
         loadMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
         loadMusic("FluorescentAdolescent", "sound/FluorescentAdolescent.mp3");
@@ -294,6 +305,9 @@ public class MatchGameScreen extends GameScreen {
                 card.setBeingDragged(false);
             }
         }
+
+        // Get touch events
+        List<TouchEvent> touchEvents = input.getTouchEvents();
     }
 
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
@@ -309,19 +323,11 @@ public class MatchGameScreen extends GameScreen {
             if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getPlaced()) {
                 if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getBeingDragged()) {
                     getHumanPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
-                    int f=0;
                 }
             }
         }
 
-        for(int i = 0; i< getAiPlayer().getDeck().getCardsInDeck().size(); i++) {
-            if (!getAiPlayer().getDeck().getCardsInDeck().get(i).getPlaced()) {
-                if (!getAiPlayer().getDeck().getCardsInDeck().get(i).getBeingDragged()) {
-                    getAiPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
-                }
-            }
-        }
-
+        cardBack.draw(elapsedTime, graphics2D);
 
     }
 

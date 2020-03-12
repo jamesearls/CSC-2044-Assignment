@@ -8,6 +8,9 @@ import java.io.IOException;
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
+import uk.ac.qub.eeecs.gage.engine.input.Input;
+import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
+import uk.ac.qub.eeecs.gage.util.BoundingBox;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.gage.world.LayerViewport;
@@ -15,8 +18,8 @@ import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 
 public abstract class Card extends GameObject {
 
-    public static final int DEFAULT_CARD_HEIGHT = 90;
-    public static final int DEFAULT_CARD_WIDTH = 60;
+    public static final int DEFAULT_CARD_HEIGHT = 210;
+    public static final int DEFAULT_CARD_WIDTH = 140;
 
     public static final float DEFAULT_CARD_X = 0.0f;
     public static final float DEFAULT_CARD_Y = 0.0f;
@@ -106,20 +109,48 @@ public abstract class Card extends GameObject {
 
     public void setPlaced(boolean placed){ this.isPlaced = placed;}
 
+    private void dragCard()
+    {
+        Input input = mGameScreen.getGame().getInput();
+
+        if (input.getTouchEvents().size() > 0)
+        {
+            TouchEvent touchEvent = input.getTouchEvents().get(0);
+            float xCardLastTouch = position.x;
+            float yCardLastTouch = position.y;
+
+            if (getBound().contains(touchEvent.x, touchEvent.y))
+            {
+                Log.d("Touch: ", Integer.toString(touchEvent.type));
+                if (touchEvent.type == 6)
+                {
+                    isBeingDragged = true;
+                    touchEvent.dx = touchEvent.x - xCardLastTouch;
+                    touchEvent.dy = touchEvent.y - yCardLastTouch;
+
+                    position.x += touchEvent.dx;
+                    position.y += touchEvent.dy;
+                }
+            }
+        }
+    }
+
     @Override
     public void update(ElapsedTime elapsedTime){
         super.update(elapsedTime);
+        dragCard();
 
         this.artwork.setPosition(
                 this.getBound().getLeft() + this.getBound().getWidth(),
-                this.getBound().getBottom() + this.getBound().getHeight());
+                this.getBound().getBottom() + this.getBound().getHeight()
+                );
         this.artwork.update(elapsedTime);
     }
 
     @Override
-    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D, LayerViewport mDefaultLayerViewport, ScreenViewport mDefaultScreenViewport){
-        //super.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
+        //super.draw(elapsedTime, graphics2D);
 
-        this.artwork.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        this.artwork.draw(elapsedTime, graphics2D);
     }
 }

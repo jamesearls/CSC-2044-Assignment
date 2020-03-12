@@ -27,6 +27,17 @@ import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
  * @version 1.0
  */
 public class AssetManager {
+    public boolean loadAndAddTypeface(String assetName, String typefaceFile) {
+        Typeface typeface = mFileIO.loadTypeface(typefaceFile);
+        return add(assetName, typeface);
+    }
+
+    public Typeface getTypeface(String assetName) {
+        return mTypefaces.get(assetName);
+    }
+
+
+
 
     // /////////////////////////////////////////////////////////////////////////
     // Properties
@@ -53,6 +64,9 @@ public class AssetManager {
      * Sound asset store
      */
     private HashMap<String, Sound> mSounds;
+//not sure what this is for
+
+    private HashMap<String, Typeface> mTypefaces;
 
     /**
      * Font asset store

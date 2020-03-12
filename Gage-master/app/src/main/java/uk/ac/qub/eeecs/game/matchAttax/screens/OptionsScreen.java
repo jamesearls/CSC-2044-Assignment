@@ -62,12 +62,14 @@ public  class OptionsScreen extends  GameScreen {
 
         rightArrow = new PushButton(
                 spacingX * 1.5f, spacingY * 0.8f, spacingX*0.5f, spacingY*0.5f,
-                "rightArrow", "rightArrowPressed",this);
+                "leftArrow", "leftArrowPressed",this);
         rightArrow.setPlaySounds(false, false);
 
+
+
         leftArrow = new PushButton(
-                spacingX * 1.5f, spacingY * 0.8f, spacingX*0.5f, spacingY*0.5f,
-                "leftArrow", "leftArrowPressed",this);
+                spacingX * 4.0f, spacingY * 1.0f, spacingX*0.5f, spacingY*0.5f,
+                "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
 
 
@@ -147,19 +149,19 @@ public  class OptionsScreen extends  GameScreen {
     public void onButtonPressed() {
 
         if(highButton.isPushTriggered()) {
-//            mGame.setMusicActive(true);
-//            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
-//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
-        }
-        if(normalButton.isPushTriggered()) {
-//            mGame.setMusicActive(true);
-//            mGame.setMusicVolume(0.5f);
-//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+            mGame.setMusicActive(true);
+            mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
+           assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+       }
+       if(normalButton.isPushTriggered()) {
+            mGame.setMusicActive(true);
+           mGame.setMusicVolume(0.5f);
+           assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(lowButton.isPushTriggered()) {
-//            mGame.setMusicActive(true);
-//            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
-//            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+            mGame.setMusicActive(true);
+            mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
+            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
     }
 
@@ -226,7 +228,7 @@ public  class OptionsScreen extends  GameScreen {
             highButton.draw(elapsedTime, graphics2D);
             normalButton.draw(elapsedTime, graphics2D);
             lowButton.draw(elapsedTime, graphics2D);
-           rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+            rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             updateMusicImage();
             currentMusicImage.draw(elapsedTime, graphics2D);

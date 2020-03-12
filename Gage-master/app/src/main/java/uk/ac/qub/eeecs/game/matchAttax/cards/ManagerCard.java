@@ -31,6 +31,26 @@ public class ManagerCard extends Card {
         this.type = type;
     }
 
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Override
+    public String getSurname() {
+        return surname;
+    }
+
+    @Override
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public boolean isType() {
         return type;
     }

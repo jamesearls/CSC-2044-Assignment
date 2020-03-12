@@ -123,9 +123,10 @@ public class MainMenu extends GameScreen {
             else if (mSettingsButton.isPushTriggered()){
                 mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
             }
-//            else if (mCardsButton.isPushTriggered()){
-//                mGame.getScreenManager().addScreen(new CardsScreen(mGame));
-//            }
+            //David Mackenzie
+            else if (mCardsButton.isPushTriggered()){
+                mGame.getScreenManager().addScreen(new CardsScreen(mGame));
+            }
         }
     }
 

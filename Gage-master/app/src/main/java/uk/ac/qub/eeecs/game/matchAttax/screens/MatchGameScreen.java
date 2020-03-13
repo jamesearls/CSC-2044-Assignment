@@ -36,7 +36,7 @@ import uk.ac.qub.eeecs.game.matchAttax.player.PlayerAI;
 public class MatchGameScreen extends GameScreen {
 
     private String gameBackground;
-    private GameObject mBackground;
+    private GameObject mGameBoard;
 
     private GameObject cardBack;
 
@@ -77,12 +77,11 @@ public class MatchGameScreen extends GameScreen {
                 mScreenViewport.width / 2,
                 mScreenViewport.height / 2);
 
-        gameBackground = "menuBackground";
-        mBackground = new GameObject(game.getScreenWidth() / 2.0f,
+        mGameBoard = new GameObject(game.getScreenWidth() / 2.0f,
                 game.getScreenHeight() / 2.0f,
                 game.getScreenWidth(),
                 game.getScreenHeight(),
-                getGame().getAssetManager().getBitmap(gameBackground),
+                getGame().getAssetManager().getBitmap("gameBoard"),
                 this);
 
         mPlayerCards = new ArrayList<PlayerCard>();
@@ -259,7 +258,7 @@ public class MatchGameScreen extends GameScreen {
 
     //by Bronach
     private void loadAssets(){
-        loadBitmaps("menuBackground", "img/menuBackground.png");
+        loadBitmaps("gameBoard", "img/gameBoard.png");
         loadBitmaps("cardBack", "img/cardBack.png");
 
         loadMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
@@ -314,7 +313,7 @@ public class MatchGameScreen extends GameScreen {
 
         graphics2D.clear(Color.WHITE);
 
-        mBackground.draw(elapsedTime, graphics2D);
+        mGameBoard.draw(elapsedTime, graphics2D);
 
         Input input = this.getGame().getInput();
         int n = -1;

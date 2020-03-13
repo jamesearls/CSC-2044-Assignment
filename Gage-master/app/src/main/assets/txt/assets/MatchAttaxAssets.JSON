@@ -57,6 +57,11 @@
     },
     {
       "type": "Bitmap",
+      "name": "gameBoard",
+      "file": "img/gameBoard.png"
+    },
+    {
+      "type": "Bitmap",
       "name": "song1",
       "file": "img/songs/song1.png"
     },

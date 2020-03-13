@@ -1,7 +1,6 @@
 package uk.ac.qub.eeecs.game.matchAttax.screens;
 
 import android.graphics.Color;
-import android.graphics.Paint;
 
 
 import java.util.List;

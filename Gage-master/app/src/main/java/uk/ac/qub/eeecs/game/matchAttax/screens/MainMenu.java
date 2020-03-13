@@ -68,7 +68,7 @@ public class MainMenu extends GameScreen {
         assetManager.loadAndAddBitmap("settingsButtonPressed", "img/buttons/settingsButtonPressed.png");
 
         //loading in background music
-        assetManager.loadAndAddMusic("GuitarMusic", "sound/gage/GuitarMusic.mp3");
+        //assetManager.loadAndAddMusic("GuitarMusic", "sound/gage/GuitarMusic.mp3");
 
 
         // Define the spacing that will be used to position the buttons
@@ -109,8 +109,8 @@ public class MainMenu extends GameScreen {
     public void update(ElapsedTime elapsedTime) {
 
         //playing background music
-        this.getGame().getAssetManager().getMusic("GuitarMusic").play();
-        // Process any touch events occurring since the update
+       /* this.getGame().getAssetManager().getMusic("GuitarMusic").play();*/
+               // Process any touch events occurring since the update
         Input input = mGame.getInput();
 
         List<TouchEvent> touchEvents = input.getTouchEvents();
@@ -134,9 +134,6 @@ public class MainMenu extends GameScreen {
                 mGame.getScreenManager().addScreen(new CardsScreen(mGame));
             }
         }
-
-
-
     }
 
     /**

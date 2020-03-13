@@ -12,12 +12,11 @@ package uk.ac.qub.eeecs.game.matchAttax.screens;
         import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
         import uk.ac.qub.eeecs.gage.engine.ScreenManager;
         import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
-        import uk.ac.qub.eeecs.gage.ui.Button;
         import uk.ac.qub.eeecs.gage.ui.PushButton;
         import uk.ac.qub.eeecs.gage.engine.input.Input;
         import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
         import java.util.List;
-        import uk.ac.qub.eeecs.gage.ui.ToggleButton;
+
         import uk.ac.qub.eeecs.gage.world.GameObject;
         import uk.ac.qub.eeecs.gage.world.GameScreen;
         import uk.ac.qub.eeecs.gage.world.Sprite;
@@ -37,7 +36,7 @@ public  class OptionsScreen extends  GameScreen {
     private Rect muteRect, unmuteRect, highRect, normalRect, lowRect, returnRect;
     private Sprite currentMusicImage;
     private Bitmap songImage1, songImage2, songImage3, songImage4, songImage5;
-    private int currentSongNumber = 2;
+    private int currentSongNumber = 1;
     private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton, rightArrow, leftArrow;
     private Canvas buttonCanvas;
 
@@ -65,21 +64,17 @@ public  class OptionsScreen extends  GameScreen {
                 "leftArrow", "leftArrowPressed",this);
         rightArrow.setPlaySounds(false, false);
 
-
-
         leftArrow = new PushButton(
                 spacingX * 4.0f, spacingY * 1.0f, spacingX*0.5f, spacingY*0.5f,
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
-
 
         // Load music
         assetStore.loadAndAddMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
         assetStore.loadAndAddMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");
         assetStore.loadAndAddMusic("WavinFlag", "sound/WavinFlag.mp3");
         assetStore.loadAndAddMusic("WhatYouKnow", "sound/WhatYouKnow.mp3");
-        assetStore.loadAndAddMusic("FluorescentAdolescent", "sound/FluorescentAdolescent.mp3");
-
+        assetStore.loadAndAddMusic("FA", "sound/FluorescentAdolescent.mp3");
         /* Set title text size and font */
         titlePaint = new TextPaint();
         titlePaint.setTextSize(screenWidth * 0.08f);
@@ -93,22 +88,13 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("SevenNationArmy", "img/songs/song2.png");
         assetStore.loadAndAddBitmap("WavinFlag", "img/songs/song3.png");
         assetStore.loadAndAddBitmap("WhatYouKnow", "img/songs/song4.png");
-        assetStore.loadAndAddBitmap("FluorescentAdolescent", "img/songs/song5.png");
+        assetStore.loadAndAddBitmap("FA", "img/songs/song5.png");
         currentMusicImage = new Sprite(screenWidth /2, screenHeight / 2, 400, 400, null, this);
 
         makeHighButton();
         makeNormalButton();
         makeLowButton();
     }
-
-    /* Play music */
-    public void playMusic() {
-        if (!mGame.getAudioManager().isMusicPlaying()) {
-            assetStore.getMusic("ChelseaDagger").play();
-            currentSongNumber = 1;
-        }
-    }
-
 
     /* Button for raising music */
     public void makeHighButton() {
@@ -151,21 +137,19 @@ public  class OptionsScreen extends  GameScreen {
         if(highButton.isPushTriggered()) {
             mGame.setMusicActive(true);
             mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
-           assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
        }
        if(normalButton.isPushTriggered()) {
             mGame.setMusicActive(true);
            mGame.setMusicVolume(0.5f);
-           assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
         }
         if(lowButton.isPushTriggered()) {
             mGame.setMusicActive(true);
             mGame.setMusicVolume(mGame.getMusicVolume() - 0.1f);
-            assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+
         }
+        assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+
     }
-
-
 
     public Paint getTitlePaint() {
         return titlePaint;
@@ -201,7 +185,6 @@ public  class OptionsScreen extends  GameScreen {
                 timeAccumulator -= 0.1;
             }
 
-
             highButton.update(elapsedTime);
             normalButton.update(elapsedTime);
             lowButton.update(elapsedTime);
@@ -209,10 +192,24 @@ public  class OptionsScreen extends  GameScreen {
             leftArrow.update(elapsedTime);
             onButtonPressed();
 
-            playMusic();
-
             currentMusicImage.update(elapsedTime);
+                if (rightArrow.isPushed()) {
+                    currentSongNumber++;
+                    if (currentSongNumber > 5) {
+                        currentSongNumber = 1;
+                    }
+                }
+
+
+                if (leftArrow.isPushed()) {
+                    currentSongNumber--;
+                    if (currentSongNumber < 1) {
+                        currentSongNumber = 5;
+                    }
+                }
+
         }
+        changeOrPlayMusic(leftArrow.isPushed(), rightArrow.isPushed());
 
     }
 
@@ -230,34 +227,50 @@ public  class OptionsScreen extends  GameScreen {
             lowButton.draw(elapsedTime, graphics2D);
             rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-            updateMusicImage();
-            currentMusicImage.draw(elapsedTime, graphics2D);
+            if(currentMusicImage.getBitmap() != null)currentMusicImage.draw(elapsedTime, graphics2D);
 
         }
 
-    private void updateMusicImage()
+    private void changeOrPlayMusic(boolean leftArrowPressed, boolean rightArrowPressed)
     {
+        if((leftArrowPressed || rightArrowPressed) || !mGame.getAudioManager().isMusicPlaying()){
+        mGame.getAudioManager().stopMusic();
         switch(currentSongNumber) {
             case 1:
                 currentMusicImage.setBitmap(assetStore.getBitmap("ChelseaDagger"));
+                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("ChelseaDagger"));
                 break;
             case 2:
                 currentMusicImage.setBitmap(assetStore.getBitmap("SevenNationArmy"));
+                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("SevenNationArmy"));
                 break;
             case 3:
                 currentMusicImage.setBitmap(assetStore.getBitmap("WavinFlag"));
+                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("WavinFlag"));
                 break;
             case 4:
                 currentMusicImage.setBitmap(assetStore.getBitmap("WhatYouKnow"));
+                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("WhatYouKnow"));
                 break;
             case 5:
-                currentMusicImage.setBitmap(assetStore.getBitmap("FluorescentAdolescent"));
+                currentMusicImage.setBitmap(assetStore.getBitmap("FA"));
+                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("FA"));
                 break;
+        }
 
         }
 
     }
 
+    public int getCurrentSong(){return currentSongNumber;};
+    public boolean setCurrentSong(int songNumber){
+        if(songNumber > 5 || songNumber < 1){
+            return false;
+        } else {
+            currentSongNumber = songNumber;
+            return true;
+        }
+    }
+
+
 }
-
-

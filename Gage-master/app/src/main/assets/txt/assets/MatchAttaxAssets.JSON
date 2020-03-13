@@ -37,6 +37,26 @@
     },
     {
       "type": "Bitmap",
+      "name": "leftArrow",
+      "file": "img/buttons/leftArrow.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "leftArrowPressed",
+      "file": "img/buttons/leftArrowPressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "rightArrow",
+      "file": "img/buttons/rightArrow.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "rightArrowPressed",
+      "file": "img/buttons/rightArrowPressed.png"
+    },
+    {
+      "type": "Bitmap",
       "name": "song1",
       "file": "img/songs/song1.png"
     },

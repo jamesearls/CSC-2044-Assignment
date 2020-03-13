@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
-public class hand extends GameObject {
+public class Hand extends GameObject {
 
     // Defines the types of hand's that will be required
 
@@ -13,7 +13,7 @@ public class hand extends GameObject {
         PLAYER,CPU
     }
 
-    public hand(float x, float y, float width, float height, Bitmap bitmap, GameScreen gameScreen, HandType handType) {
+    public Hand(float x, float y, float width, float height, Bitmap bitmap, GameScreen gameScreen, HandType handType) {
         super(x, y, bitmap, gameScreen);
     }
 

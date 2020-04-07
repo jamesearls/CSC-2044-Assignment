@@ -43,11 +43,11 @@ public class OptionsScreenTest {
         assertEquals(optionsScreen.setCurrentSong(3), true);
         assertEquals(optionsScreen.getCurrentSong(), 3);
     }
-
     @Test
     public void setMusicTestInvalid(){
         optionsScreen = new OptionsScreen(game);
         assertEquals(optionsScreen.setCurrentSong(10), false);
         assertEquals(optionsScreen.getCurrentSong(), 1);
     }
+
 }

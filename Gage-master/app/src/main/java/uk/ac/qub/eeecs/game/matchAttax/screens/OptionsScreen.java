@@ -257,7 +257,6 @@ public  class OptionsScreen extends  GameScreen {
                 mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("FA"));
                 break;
         }
-
         }
 
     }

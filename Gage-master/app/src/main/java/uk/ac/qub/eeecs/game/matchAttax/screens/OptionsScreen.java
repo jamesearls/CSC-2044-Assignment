@@ -37,7 +37,7 @@ public  class OptionsScreen extends  GameScreen {
     private Sprite currentMusicImage;
     private Bitmap songImage1, songImage2, songImage3, songImage4, songImage5;
     private int currentSongNumber = 1;
-    private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton, rightArrow, leftArrow;
+    private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton, rightArrow, leftArrow, homeButton, homeButtonPressed;
     private Canvas buttonCanvas;
 
     public OptionsScreen(Game game) {
@@ -55,6 +55,8 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("rightArrowPressed", "img/buttons/rightArrowPressed.png");
         assetStore.loadAndAddBitmap("leftArrow", "img/buttons/leftArrow.png");
         assetStore.loadAndAddBitmap("leftArrowPressed", "img/buttons/leftArrowPressed.png");
+        assetStore.loadAndAddBitmap("homeButton", "img/buttons/homeButton.png");
+        assetStore.loadAndAddBitmap("homeButtonPressed", "img/buttons/homeButtonPressed.png");
 
         int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
@@ -68,6 +70,11 @@ public  class OptionsScreen extends  GameScreen {
                 spacingX * 4.0f, spacingY * 1.0f, spacingX*0.5f, spacingY*0.5f,
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
+
+        homeButton = new PushButton(
+                spacingX * 0.23f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
+                "homeButton", "homeButtonPressed",this);
+        homeButton.setPlaySounds(false, false);
 
         // Load music
         assetStore.loadAndAddMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
@@ -190,6 +197,7 @@ public  class OptionsScreen extends  GameScreen {
             lowButton.update(elapsedTime);
             rightArrow.update(elapsedTime);
             leftArrow.update(elapsedTime);
+            homeButton.update(elapsedTime);
             onButtonPressed();
 
             currentMusicImage.update(elapsedTime);
@@ -199,15 +207,15 @@ public  class OptionsScreen extends  GameScreen {
                         currentSongNumber = 1;
                     }
                 }
-
-
                 if (leftArrow.isPushed()) {
                     currentSongNumber--;
                     if (currentSongNumber < 1) {
                         currentSongNumber = 5;
                     }
                 }
-
+                 if (homeButton.isPushTriggered()){
+                    mGame.getScreenManager().addScreen(new MainMenu(mGame));
+                }
         }
         changeOrPlayMusic(leftArrow.isPushed(), rightArrow.isPushed());
 
@@ -227,6 +235,7 @@ public  class OptionsScreen extends  GameScreen {
             lowButton.draw(elapsedTime, graphics2D);
             rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+            homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             if(currentMusicImage.getBitmap() != null)currentMusicImage.draw(elapsedTime, graphics2D);
 
         }

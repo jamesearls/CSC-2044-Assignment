@@ -122,8 +122,8 @@ public class MainMenu extends GameScreen {
 
             // Events that take place once button is activated
             if (mPlayButton.isPushTriggered()) {
-                mGame.getScreenManager().removeScreen(this);
-                mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
+               mGame.getScreenManager().removeScreen(this);
+               mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
             }
             else if (mSettingsButton.isPushTriggered()){
                 mGame.getScreenManager().addScreen(new OptionsScreen(mGame));

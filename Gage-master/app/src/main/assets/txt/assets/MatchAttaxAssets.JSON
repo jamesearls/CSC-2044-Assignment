@@ -119,6 +119,26 @@
       "type": "Music",
       "name": "GuitarMusic",
       "file": "GuitarMusic.mp3"
+    },
+    {
+      "type": "Bitmap",
+      "name": "homeButton",
+      "file": "img/buttons/homeButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "homeButtonPressed",
+      "file": "img/buttons/homeButtonPressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "settingsMenuButton",
+      "file": "img/buttons/settingsMenuButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "settingsMenuButtonPressed",
+      "file": "img/buttons/settingsMenuButtonPressed.png"
     }
   ]
 }

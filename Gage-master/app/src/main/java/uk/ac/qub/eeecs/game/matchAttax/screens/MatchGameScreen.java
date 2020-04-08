@@ -21,6 +21,7 @@ import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.engine.input.Input;
 import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
+import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.gage.Game;
@@ -60,6 +61,8 @@ public class MatchGameScreen extends GameScreen {
     private ArrayList<ManagerCard> mManagerCards;
     private AssetManager assetManager;
 
+    //private PushButton homeButton, homeButtonPressed;
+
     public static final int AMOUNT_OF_PLAYER_CARDS = 40;
     public static final int AMOUNT_OF_MANAGER_CARDS = 7;
 
@@ -70,6 +73,9 @@ public class MatchGameScreen extends GameScreen {
         super("MatchGameScreen", game);
 
         loadAssets();
+
+        int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
+        int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
 
         mScreenViewport = new ScreenViewport( 0,0, game.getScreenWidth(), game.getScreenHeight());
         mLayerViewport = new LayerViewport(mScreenViewport.centerX(),
@@ -119,6 +125,11 @@ public class MatchGameScreen extends GameScreen {
         playerScore = 0;
         aiScore = 0;
         roundNum = 1;
+
+       /* homeButton = new PushButton(
+                spacingX * 5.0f, spacingY * 0.8f, spacingX*0.5f, spacingY*0.5f,
+                "homeButton", "homeButtonPressed",this);
+        homeButton.setPlaySounds(false, false); */
 
         humanPlayer.setEndTurn(false);
 
@@ -174,9 +185,6 @@ public class MatchGameScreen extends GameScreen {
     {
         return mManagerCards;
     }
-
-
-
 
 
     //Pauric Donnelly
@@ -256,7 +264,7 @@ public class MatchGameScreen extends GameScreen {
         return card;
     }
 
-    //by Bronach
+    //Bronach Falls
     private void loadAssets(){
         loadBitmaps("gameBoard", "img/gameBoard.png");
         loadBitmaps("cardBack", "img/cardBack.png");
@@ -277,6 +285,9 @@ public class MatchGameScreen extends GameScreen {
         getGame().getAssetManager().loadAndAddBitmap(assetName, fileName);
     }
 
+   //public void onButtonPressed() {
+
+   // }
     public void update(ElapsedTime elapsedTime){
 
         Input input = mGame.getInput();
@@ -303,10 +314,16 @@ public class MatchGameScreen extends GameScreen {
             else{
                 card.setBeingDragged(false);
             }
+           // if (homeButton.isPushTriggered()){
+            //    mGame.getScreenManager().addScreen(new MainMenu(mGame));
+            //}
+
         }
 
         // Get touch events
         List<TouchEvent> touchEvents = input.getTouchEvents();
+       // homeButton.update(elapsedTime);
+        //onButtonPressed();
     }
 
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
@@ -325,7 +342,7 @@ public class MatchGameScreen extends GameScreen {
                 }
             }
         }
-
+       // homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         cardBack.draw(elapsedTime, graphics2D);
 
     }

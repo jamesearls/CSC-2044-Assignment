@@ -12,7 +12,8 @@ import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.ScreenManager;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.engine.input.Input;
-import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
+//import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
+//import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
@@ -26,6 +27,7 @@ public class CardsScreen extends GameScreen
     private Bitmap background;
     private GameObject mBackground;
     private ScreenManager screenManager = getGame().getScreenManager();
+    //private PushButton homeButton, homeButtonPressed;
 
     int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
     int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
@@ -41,17 +43,13 @@ public class CardsScreen extends GameScreen
         //Test card
         assetStore.loadAndAddBitmap("rightArrow", "img/Cards/Aguero.png");
 
-
         mBackground = new GameObject(game.getScreenWidth()/2, game.getScreenHeight()/2, game.getScreenWidth(),
                 game.getScreenHeight(), getGame().getAssetManager().getBitmap("menuBackground"), this);
 
     }
 
     @Override
-    public void update(ElapsedTime elapsedTime)
-    {
-        Input input = mGame.getInput();
-    }
+    public void update(ElapsedTime elapsedTime) { Input input = mGame.getInput(); }
 
     @Override
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D)
@@ -61,5 +59,6 @@ public class CardsScreen extends GameScreen
                 null,
                 new Rect(0, 0, (int) screenWidth, (int) screenHeight),
                 new Paint());
+
     }
 }

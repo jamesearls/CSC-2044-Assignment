@@ -44,6 +44,8 @@ public class MatchGameScreen extends GameScreen {
     private ScreenViewport mScreenViewport;
     private LayerViewport mLayerViewport;
 
+    private AssetManager assetStore = getGame().getAssetManager();
+
     private String playerName;
     private String aiName;
 
@@ -61,7 +63,7 @@ public class MatchGameScreen extends GameScreen {
     private ArrayList<ManagerCard> mManagerCards;
     private AssetManager assetManager;
 
-    //private PushButton homeButton, homeButtonPressed;
+    private PushButton homeButton, homeButtonPressed, settingsMenuButton, settingsMenuButtonPressed;
 
     public static final int AMOUNT_OF_PLAYER_CARDS = 40;
     public static final int AMOUNT_OF_MANAGER_CARDS = 7;
@@ -95,6 +97,22 @@ public class MatchGameScreen extends GameScreen {
         addCards("txt/assets/Players.json");
         addCards2("txt/assets/Managers.json");
 
+        assetStore.loadAndAddBitmap("homeButton", "img/buttons/homeButton.png");
+        assetStore.loadAndAddBitmap("homeButtonPressed", "img/buttons/homeButtonPressed.png");
+        assetStore.loadAndAddBitmap("settingsMenuButton", "img/buttons/settingsMenuButton.png");
+        assetStore.loadAndAddBitmap("settingsMenuButtonPressed", "img/buttons/settingsMenuButtonPressed.png");
+
+        homeButton = new PushButton(
+                spacingX * 0.23f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
+                "homeButton", "homeButtonPressed",this);
+        homeButton.setPlaySounds(false, false);
+
+       settingsMenuButton = new PushButton(
+                spacingX * 0.75f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
+                "settingsMenuButton", "settingsMenuButtonPressed",this);
+        settingsMenuButton.setPlaySounds(false, false);
+
+
         playerName = "Player1";
         aiName = "Player2";
 
@@ -126,15 +144,13 @@ public class MatchGameScreen extends GameScreen {
         aiScore = 0;
         roundNum = 1;
 
-       /* homeButton = new PushButton(
-                spacingX * 5.0f, spacingY * 0.8f, spacingX*0.5f, spacingY*0.5f,
-                "homeButton", "homeButtonPressed",this);
-        homeButton.setPlaySounds(false, false); */
-
         humanPlayer.setEndTurn(false);
 
     }
 
+    public void onButtonPressed(){
+
+    }
     //David Mackenzie
     public void addCards2(String jsonFilePath)
     {
@@ -274,7 +290,7 @@ public class MatchGameScreen extends GameScreen {
         loadMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");
         loadMusic("WavinFlag", "sound/WavinFlag.mp3");
         loadMusic("WhatYouKnow", "sound/WhatYouKnow.mp3");
-        loadMusic("GuitarMusic", "sound/GuitarMusic.mp3");
+        //loadMusic("GuitarMusic", "sound/GuitarMusic.mp3");
     }
 
     private void loadMusic(String assetName, String fileName){
@@ -285,9 +301,6 @@ public class MatchGameScreen extends GameScreen {
         getGame().getAssetManager().loadAndAddBitmap(assetName, fileName);
     }
 
-   //public void onButtonPressed() {
-
-   // }
     public void update(ElapsedTime elapsedTime){
 
         Input input = mGame.getInput();
@@ -314,16 +327,20 @@ public class MatchGameScreen extends GameScreen {
             else{
                 card.setBeingDragged(false);
             }
-           // if (homeButton.isPushTriggered()){
-            //    mGame.getScreenManager().addScreen(new MainMenu(mGame));
-            //}
+        }
+        if (homeButton.isPushTriggered()){
+            mGame.getScreenManager().addScreen(new MainMenu(mGame));
+        }
 
+       if(settingsMenuButton.isPushTriggered()) {
+            mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
         }
 
         // Get touch events
         List<TouchEvent> touchEvents = input.getTouchEvents();
-       // homeButton.update(elapsedTime);
-        //onButtonPressed();
+        homeButton.update(elapsedTime);
+        settingsMenuButton.update(elapsedTime);
+        onButtonPressed();
     }
 
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
@@ -342,7 +359,8 @@ public class MatchGameScreen extends GameScreen {
                 }
             }
         }
-       // homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         cardBack.draw(elapsedTime, graphics2D);
 
     }

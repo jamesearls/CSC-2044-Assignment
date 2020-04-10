@@ -55,6 +55,7 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("rightArrowPressed", "img/buttons/rightArrowPressed.png");
         assetStore.loadAndAddBitmap("leftArrow", "img/buttons/leftArrow.png");
         assetStore.loadAndAddBitmap("leftArrowPressed", "img/buttons/leftArrowPressed.png");
+
         assetStore.loadAndAddBitmap("homeButton", "img/buttons/homeButton.png");
         assetStore.loadAndAddBitmap("homeButtonPressed", "img/buttons/homeButtonPressed.png");
 

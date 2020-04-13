@@ -257,9 +257,6 @@ public class MatchGameScreen extends GameScreen {
         return mPlayerCards;
     }
 
-
-
-
     public Player getHumanPlayer(){ return humanPlayer; }
     public Player getAiPlayer(){ return aiPlayer; }
 

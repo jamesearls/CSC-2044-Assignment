@@ -12,8 +12,8 @@ import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.ScreenManager;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.engine.input.Input;
-//import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
-//import uk.ac.qub.eeecs.gage.ui.PushButton;
+import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
+import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
@@ -27,7 +27,7 @@ public class CardsScreen extends GameScreen
     private Bitmap background;
     private GameObject mBackground;
     private ScreenManager screenManager = getGame().getScreenManager();
-    //private PushButton homeButton, homeButtonPressed;
+    private PushButton homeButton, homeButtonPressed, settingsMenuButton, settingsMenuButtonPressed;
 
     int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
     int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
@@ -36,9 +36,10 @@ public class CardsScreen extends GameScreen
     {
         super("CardsScreen", game);
 
-
+        loadAssets();
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
         background = assetStore.getBitmap("CardsScreenBackground");
+
 
         //Test card
         assetStore.loadAndAddBitmap("rightArrow", "img/Cards/Aguero.png");
@@ -46,10 +47,45 @@ public class CardsScreen extends GameScreen
         mBackground = new GameObject(game.getScreenWidth()/2, game.getScreenHeight()/2, game.getScreenWidth(),
                 game.getScreenHeight(), getGame().getAssetManager().getBitmap("menuBackground"), this);
 
+        homeButton = new PushButton(
+                spacingX * 0.23f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
+                "homeButton", "homeButtonPressed",this);
+        homeButton.setPlaySounds(false, false);
+
+        settingsMenuButton = new PushButton(
+                spacingX * 0.75f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
+                "settingsMenuButton", "settingsMenuButtonPressed",this);
+        settingsMenuButton.setPlaySounds(false, false);
     }
 
+    private void loadAssets(){
+        assetStore.loadAndAddBitmap("homeButton", "img/buttons/homeButton.png");
+        assetStore.loadAndAddBitmap("homeButtonPressed", "img/buttons/homeButtonPressed.png");
+        assetStore.loadAndAddBitmap("settingsMenuButton", "img/buttons/settingsMenuButton.png");
+        assetStore.loadAndAddBitmap("settingsMenuButtonPressed", "img/buttons/settingsMenuButtonPressed.png");
+    }
+
+    public void onButtonPressed(){
+
+    }
     @Override
-    public void update(ElapsedTime elapsedTime) { Input input = mGame.getInput(); }
+    public void update(ElapsedTime elapsedTime) {
+        Input input = mGame.getInput();
+
+        if (homeButton.isPushTriggered()){
+            mGame.getScreenManager().addScreen(new MainMenu(mGame));
+        }
+
+        if(settingsMenuButton.isPushTriggered()) {
+            mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
+        }
+
+        // Get touch events
+        List<TouchEvent> touchEvents = input.getTouchEvents();
+        homeButton.update(elapsedTime);
+        settingsMenuButton.update(elapsedTime);
+        onButtonPressed();
+    }
 
     @Override
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D)
@@ -60,5 +96,7 @@ public class CardsScreen extends GameScreen
                 new Rect(0, 0, (int) screenWidth, (int) screenHeight),
                 new Paint());
 
+        homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
     }
 }

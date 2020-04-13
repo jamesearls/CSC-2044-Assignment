@@ -63,12 +63,12 @@ public  class OptionsScreen extends  GameScreen {
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
 
         rightArrow = new PushButton(
-                spacingX * 1.5f, spacingY * 0.8f, spacingX*0.5f, spacingY*0.5f,
+                spacingX * 1.5f, spacingY * 1.6f, spacingX*0.5f, spacingY*0.5f,
                 "leftArrow", "leftArrowPressed",this);
         rightArrow.setPlaySounds(false, false);
 
         leftArrow = new PushButton(
-                spacingX * 4.0f, spacingY * 1.0f, spacingX*0.5f, spacingY*0.5f,
+                spacingX * 3.5f, spacingY * 1.6f, spacingX*0.5f, spacingY*0.5f,
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
 

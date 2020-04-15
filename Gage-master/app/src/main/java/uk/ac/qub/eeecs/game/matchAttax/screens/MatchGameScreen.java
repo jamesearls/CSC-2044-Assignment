@@ -59,8 +59,8 @@ public class MatchGameScreen extends GameScreen {
     private int aiScore;
     private int roundNum;
 
-    private ArrayList<PlayerCard> mPlayerCards;
-    private ArrayList<ManagerCard> mManagerCards;
+    public ArrayList<PlayerCard> mPlayerCards;
+    public ArrayList<ManagerCard> mManagerCards;
     private AssetManager assetManager;
 
     private PushButton homeButton, homeButtonPressed, settingsMenuButton, settingsMenuButtonPressed;
@@ -244,7 +244,7 @@ public class MatchGameScreen extends GameScreen {
                         player.getString("portrait"));
                 mPlayerCards.add(playerCard);
             }
-            int f=0;
+
         }
         catch (JSONException jEx)
         {

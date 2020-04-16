@@ -6,7 +6,12 @@ import android.graphics.Rect;
 import uk.ac.qub.eeecs.gage.Game;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.ac.qub.eeecs.gage.Game;
@@ -16,13 +21,17 @@ import uk.ac.qub.eeecs.gage.engine.ScreenManager;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.engine.input.Input;
 import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
+import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
-import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
-import uk.ac.qub.eeecs.game.matchAttax.player.Player;
+import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
+import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 
 public class CardsScreen extends GameScreen  {
+
+    public ArrayList<PlayerCard> mPlayerCards;
+    public ArrayList<ManagerCard> mManagerCards;
 
     private float screenWidth = getGame().getScreenWidth(),
             screenHeight = getGame().getScreenHeight(),
@@ -41,6 +50,8 @@ public class CardsScreen extends GameScreen  {
     public CardsScreen(Game game)
     {
         super("CardsScreen", game);
+
+
 
         loadAssets();
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
@@ -68,23 +79,7 @@ public class CardsScreen extends GameScreen  {
                 spacingX * 4.7f, spacingY * 1.6f, spacingX*0.5f, spacingY*0.5f,
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
-/*
-        ----Not working :(
 
-
-        String deckOnScreen = "current_user";
-        Deck currentDeck = new Deck();
-        Player occurrence = new Player(deckOnScreen, currentDeck);
-
-        int cardSpacing = 400;
-
-        for(int i=0; i<occurrence.getDeck().getCardsInDeck().size(); i++) {
-            occurrence.getDeck().getCardsInDeck().get(i).setPosition(occurrence.getDeck().getCardsInDeck().get(i).getBound().x+=cardSpacing,game.getScreenHeight()-255);
-            cardSpacing+=200;
-        }
-
-        occurrence.setEndTurn(false);
-*/
     }
 
     private void loadAssets(){
@@ -97,8 +92,10 @@ public class CardsScreen extends GameScreen  {
         assetStore.loadAndAddBitmap("rightArrow", "img/buttons/rightArrow.png");
         assetStore.loadAndAddBitmap("leftArrowPressed", "img/buttons/leftArrowPressed.png");
         assetStore.loadAndAddBitmap("rightArrowPressed", "img/buttons/rightArrowPressed.png");
-
     }
+
+
+
 
     public void onButtonPressed(){ }
     @Override
@@ -142,10 +139,111 @@ public class CardsScreen extends GameScreen  {
                 new Rect(0, 0, (int) screenWidth, (int) screenHeight),
                 new Paint());
 
+       for (int i=0; i < mPlayerCards.size(); i++){
+           mPlayerCards.get(i).draw(elapsedTime, graphics2D);
+       }
+
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+       // mPlayerCards.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+    }
+
+    //David Mackenzie - read in manager details
+    public void addCards2(String jsonFilePath)
+    {
+        FileIO mFileIO = mGame.getFileIO();
+        String loadedJSON = "";
+        try
+        {
+            loadedJSON = mFileIO.loadJSON(jsonFilePath);
+        }
+        catch(IOException ioEx)
+        {
+            System.out.println(ioEx.getMessage());
+        }
+
+        try
+        {
+            JSONArray cards = new JSONArray(loadedJSON);
+            addManagerCards(cards, this);
+        }
+        catch(JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+
+    //David Mackenzie - parser for manager
+    public void addManagerCards(JSONArray managers, GameScreen gameScreen)
+    {
+        try {
+            for (int i = 0; i < managers.length(); i++) {
+                JSONObject manager = managers.getJSONObject(i);
+                ManagerCard managerCard = new ManagerCard(
+                        gameScreen,
+                        manager.getInt("value"),
+                        manager.getString("firstName"),
+                        manager.getString("surname"),
+                        manager.getBoolean("type"),
+                        manager.getString("portrait"));
+                mManagerCards.add(managerCard);
+            }
+        }
+        catch (JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+
+    //Pauric Donnelly
+    public void addCards(String jsonFilePath)
+    {
+        FileIO mFileIO = mGame.getFileIO();
+        String loadedJSON = "";
+        try
+        {
+            loadedJSON = mFileIO.loadJSON(jsonFilePath);
+        }
+        catch(IOException ioEx)
+        {
+            System.out.println(ioEx.getMessage());
+        }
+
+        try
+        {
+            JSONArray cards = new JSONArray(loadedJSON);
+            addPlayerCards(cards, this);
+        }
+        catch(JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+    //Pauric Donnelly
+    public void addPlayerCards(JSONArray players, GameScreen gameScreen)
+    {
+        try {
+            //JSONArray players = cards.getJSONArray("players");
+            for (int i = 0; i < players.length(); i++) {
+                JSONObject player = players.getJSONObject(i);
+                PlayerCard playerCard = new PlayerCard(
+                        gameScreen,
+                        player.getInt("overall"),
+                        player.getString("league"),
+                        player.getString("team"),
+                        player.getString("fname"),
+                        player.getString("sname"),
+                        player.getString("portrait"));
+                mPlayerCards.add(playerCard);
+            }
+
+        }
+        catch (JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
     }
 
 }

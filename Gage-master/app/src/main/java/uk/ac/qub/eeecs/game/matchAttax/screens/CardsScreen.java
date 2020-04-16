@@ -19,9 +19,11 @@ import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
+import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
+import uk.ac.qub.eeecs.game.matchAttax.player.Player;
 
-public class CardsScreen extends GameScreen
-{
+public class CardsScreen extends GameScreen  {
+
     private float screenWidth = getGame().getScreenWidth(),
             screenHeight = getGame().getScreenHeight(),
             symbolXOffset = screenWidth * 0.125f,
@@ -66,7 +68,23 @@ public class CardsScreen extends GameScreen
                 spacingX * 4.7f, spacingY * 1.6f, spacingX*0.5f, spacingY*0.5f,
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
+/*
+        ----Not working :(
 
+
+        String deckOnScreen = "current_user";
+        Deck currentDeck = new Deck();
+        Player occurrence = new Player(deckOnScreen, currentDeck);
+
+        int cardSpacing = 400;
+
+        for(int i=0; i<occurrence.getDeck().getCardsInDeck().size(); i++) {
+            occurrence.getDeck().getCardsInDeck().get(i).setPosition(occurrence.getDeck().getCardsInDeck().get(i).getBound().x+=cardSpacing,game.getScreenHeight()-255);
+            cardSpacing+=200;
+        }
+
+        occurrence.setEndTurn(false);
+*/
     }
 
     private void loadAssets(){

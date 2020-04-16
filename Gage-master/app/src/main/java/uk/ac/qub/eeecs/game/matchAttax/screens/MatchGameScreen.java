@@ -329,8 +329,10 @@ public class MatchGameScreen extends GameScreen {
             mGame.getScreenManager().addScreen(new MainMenu(mGame));
         }
 
+        //settings menu button wil act as a pause button
        if(settingsMenuButton.isPushTriggered()) {
             mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
+            mGame.onPause();
         }
 
         // Get touch events

@@ -139,6 +139,16 @@
       "type": "Bitmap",
       "name": "settingsMenuButtonPressed",
       "file": "img/buttons/settingsMenuButtonPressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "resumeButton",
+      "file": "img/buttons/resumeButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "resumeButtonPressed",
+      "file": "img/buttons/resumeButtonPressed.png"
     }
   ]
 }

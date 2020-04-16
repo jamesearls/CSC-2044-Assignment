@@ -30,6 +30,21 @@ public class OptionsScreenTest {
     @Mock
     private OptionsScreen optionsScreen;
 
+    //Andrew Bingham Test
+    @Test
+    public void testOptionsScreenConstructor() {
+        optionsScreen = new OptionsScreen(game);
+       // Assert.assertEquals(optionsScreen.getName(), "OptionsScreen");
+    }
+
+    @Test
+    public void testOptionsScreenBackground() {
+        optionsScreen = new OptionsScreen(game);
+      //  assertNotNull(assetManager.getBitmap("img/menuBackground.png"));
+
+    }
+
+    //Bronach Falls
     @Before
     public void setUp(){
         when(game.getAudioManager()).thenReturn(audioManager);

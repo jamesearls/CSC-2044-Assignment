@@ -3,6 +3,7 @@ package uk.ac.qub.eeecs.gage;
 import android.graphics.Paint;
 import android.text.TextPaint;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,7 @@ import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.screens.OptionsScreen;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,13 +36,13 @@ public class OptionsScreenTest {
     @Test
     public void testOptionsScreenConstructor() {
         optionsScreen = new OptionsScreen(game);
-       // Assert.assertEquals(optionsScreen.getName(), "OptionsScreen");
+       Assert.assertEquals(optionsScreen.getName(), "OptionsScreen");
     }
 
     @Test
     public void testOptionsScreenBackground() {
         optionsScreen = new OptionsScreen(game);
-      //  assertNotNull(assetManager.getBitmap("img/menuBackground.png"));
+      assertNotNull(assetManager.getBitmap("img/menuBackground.png"));
 
     }
 

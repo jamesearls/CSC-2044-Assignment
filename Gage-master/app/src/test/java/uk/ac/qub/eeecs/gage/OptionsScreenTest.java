@@ -2,6 +2,7 @@ package uk.ac.qub.eeecs.gage;
 
 import android.graphics.Paint;
 import android.text.TextPaint;
+import android.context.Context;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,6 +13,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
 import uk.ac.qub.eeecs.gage.engine.audio.AudioManager;
+import uk.ac.qub.eeecs.gage.engine.AssetStore;
+import android.graphics.Bitmap;
+//import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.screens.OptionsScreen;
 
@@ -47,6 +51,7 @@ public class OptionsScreenTest {
     }
 
     //Bronach Falls
+
     @Before
     public void setUp(){
         when(game.getAudioManager()).thenReturn(audioManager);
@@ -65,6 +70,41 @@ public class OptionsScreenTest {
         optionsScreen = new OptionsScreen(game);
         assertEquals(optionsScreen.setCurrentSong(10), false);
         assertEquals(optionsScreen.getCurrentSong(), 1);
+    }
+
+
+    /*@Test
+    public void loadAndAddBitmap_ValidData_TestIsSuccessful(){
+        AssetStore assetStore = new assetStore(new FileIO(context));
+        boolean success =
+                assetStore.loadAndAddBitmap("song1", "img/songs/song1.png");
+
+        assertTrue(success);
+        }*/
+
+
+    @Test
+    public void testHomeButtonValid() {
+       //////// boolean success = true;
+        optionsScreen = new OptionsScreen(game);
+        assertEquals(optionsScreen.get("homeButton",true);
+        assertNotNull(assetManager.getBitmap("img/buttons/homeButton.png"));
+      ////////  return success;
+    }
+
+    /*@Test
+    public void gethomeButtonValid(){
+        optionsScreen = new OptionsScreen(game);
+        assertEquals(optionsScreen.loadAndAddBitmap("homeButton"), true);
+        //assertEquals(optionsScreen.getCurrentSong(), 3);
+    }*/
+
+
+    @Test
+    public void testHomeButtonInvalid() {
+        optionsScreen = new OptionsScreen(game);
+        assertNotNull(assetManager.getBitmap("img/buttons/Homebutton.png"));
+
     }
 
 }

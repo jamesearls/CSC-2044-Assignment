@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.qub.eeecs.gage.Game;
+
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.ScreenManager;
@@ -27,6 +27,9 @@ import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
+import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
+import uk.ac.qub.eeecs.game.matchAttax.player.Player;
+import uk.ac.qub.eeecs.gage.Game;
 
 public class CardsScreen extends GameScreen  {
 
@@ -38,8 +41,10 @@ public class CardsScreen extends GameScreen  {
             symbolXOffset = screenWidth * 0.125f,
             symbolYOffset = screenHeight * 0.125f;
     private AssetManager assetStore = getGame().getAssetManager();
-    private MatchGameScreen gameObj;
+    private Game gameObj1;
     private Bitmap background;
+    private Deck playerDeck;
+    private Player humanPlayer;
     private GameObject mBackground;
     private ScreenManager screenManager = getGame().getScreenManager();
     private PushButton homeButton, homeButtonPressed, settingsMenuButton, settingsMenuButtonPressed, leftArrow, rightArrow;
@@ -51,9 +56,8 @@ public class CardsScreen extends GameScreen  {
     {
         super("CardsScreen", game);
 
-
-
         loadAssets();
+
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
         background = assetStore.getBitmap("menuBackground");
 
@@ -79,7 +83,7 @@ public class CardsScreen extends GameScreen  {
                 spacingX * 4.7f, spacingY * 1.6f, spacingX*0.5f, spacingY*0.5f,
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
-
+        
     }
 
     private void loadAssets(){
@@ -139,15 +143,10 @@ public class CardsScreen extends GameScreen  {
                 new Rect(0, 0, (int) screenWidth, (int) screenHeight),
                 new Paint());
 
-       for (int i=0; i < mPlayerCards.size(); i++){
-           mPlayerCards.get(i).draw(elapsedTime, graphics2D);
-       }
-
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-       // mPlayerCards.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
     }
 
     //David Mackenzie - read in manager details

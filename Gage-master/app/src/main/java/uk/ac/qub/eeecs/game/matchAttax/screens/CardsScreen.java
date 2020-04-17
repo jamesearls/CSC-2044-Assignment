@@ -83,7 +83,7 @@ public class CardsScreen extends GameScreen  {
                 spacingX * 4.7f, spacingY * 1.6f, spacingX*0.5f, spacingY*0.5f,
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
-        
+
     }
 
     private void loadAssets(){

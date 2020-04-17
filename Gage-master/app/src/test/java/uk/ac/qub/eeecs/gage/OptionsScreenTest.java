@@ -2,7 +2,6 @@ package uk.ac.qub.eeecs.gage;
 
 import android.graphics.Paint;
 import android.text.TextPaint;
-import android.context.Context;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,14 +12,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
 import uk.ac.qub.eeecs.gage.engine.audio.AudioManager;
-import uk.ac.qub.eeecs.gage.engine.AssetStore;
-import android.graphics.Bitmap;
-//import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.screens.OptionsScreen;
+import static junit.framework.Assert.assertNotNull;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+//import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -72,39 +69,25 @@ public class OptionsScreenTest {
         assertEquals(optionsScreen.getCurrentSong(), 1);
     }
 
-
-    /*@Test
-    public void loadAndAddBitmap_ValidData_TestIsSuccessful(){
-        AssetStore assetStore = new assetStore(new FileIO(context));
-        boolean success =
-                assetStore.loadAndAddBitmap("song1", "img/songs/song1.png");
-
-        assertTrue(success);
-        }*/
-
-
     @Test
-    public void testHomeButtonValid() {
-       //////// boolean success = true;
+    public void testBitmapLoaded() {
         optionsScreen = new OptionsScreen(game);
-        assertEquals(optionsScreen.get("homeButton",true);
-        assertNotNull(assetManager.getBitmap("img/buttons/homeButton.png"));
-      ////////  return success;
+        assetManager.loadAndAddBitmap("homeButton", "img/homeButton.png");
+        Assert.assertNotNull("homeButton", "img/buttons/homeButton");
     }
 
-    /*@Test
-    public void gethomeButtonValid(){
+    @Test
+    public void testSongLoaded() {
         optionsScreen = new OptionsScreen(game);
-        assertEquals(optionsScreen.loadAndAddBitmap("homeButton"), true);
-        //assertEquals(optionsScreen.getCurrentSong(), 3);
-    }*/
-
+        assetManager.loadAndAddMusic("WavinFlag", "sound/WavinFlag.png");
+        Assert.assertNotNull("WavinFlag", "sounds/WavinFlag.mp3");
+    }
 
     @Test
     public void testHomeButtonInvalid() {
         optionsScreen = new OptionsScreen(game);
-        assertNotNull(assetManager.getBitmap("img/buttons/Homebutton.png"));
-
+        assetManager.loadAndAddBitmap("homeButton", "img/homeButton.png");
+        Assert.assertNotNull("Homebutton", "img/buttons/Homebutton");
     }
 
 }

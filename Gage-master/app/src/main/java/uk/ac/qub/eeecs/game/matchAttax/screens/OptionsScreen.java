@@ -82,7 +82,7 @@ public  class OptionsScreen extends  GameScreen {
         homeButton.setPlaySounds(false, false);
 
         resumeButton = new PushButton(
-                spacingX * 3.0f, spacingY * 1.7f, spacingX*0.5f, spacingY*0.5f,
+                spacingX * 0.23f, spacingY * 0.5f, spacingX*0.5f, spacingY*0.5f,
                 "resumeButton", "resumeButtonPressed",this);
         resumeButton.setPlaySounds(false, false);
 

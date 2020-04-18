@@ -143,11 +143,11 @@ public class CardsScreen extends GameScreen  {
                 new Rect(0, 0, (int) screenWidth, (int) screenHeight),
                 new Paint());
 
-        for (int i=0; i < mPlayerCards.size(); i++){
+    //    for (int i=0; i < mPlayerCards.size(); i++){
             //iterate through cards
            // mPlayerCards.get(i).draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             //Unable to position cards on the screen, hence why the game will crash if line (148) runs
-        }
+      //  }
 
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);

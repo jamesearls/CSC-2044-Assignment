@@ -99,8 +99,6 @@ public class CardsScreen extends GameScreen  {
     }
 
 
-
-
     public void onButtonPressed(){ }
     @Override
     public void update(ElapsedTime elapsedTime) {
@@ -143,10 +141,10 @@ public class CardsScreen extends GameScreen  {
                 new Rect(0, 0, (int) screenWidth, (int) screenHeight),
                 new Paint());
 
-    //    for (int i=0; i < mPlayerCards.size(); i++){
+    //    for (int i=0; i < mPlayerCards.size(); i++){\
             //iterate through cards
            // mPlayerCards.get(i).draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-            //Unable to position cards on the screen, hence why the game will crash if line (148) runs
+            //Unable to position cards on the screen, hence why the game will crash if line (144) runs
       //  }
 
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
@@ -201,54 +199,4 @@ public class CardsScreen extends GameScreen  {
             System.out.println(jEx.getMessage());
         }
     }
-
-    //Pauric Donnelly
-    public void addCards(String jsonFilePath)
-    {
-        FileIO mFileIO = mGame.getFileIO();
-        String loadedJSON = "";
-        try
-        {
-            loadedJSON = mFileIO.loadJSON(jsonFilePath);
-        }
-        catch(IOException ioEx)
-        {
-            System.out.println(ioEx.getMessage());
-        }
-
-        try
-        {
-            JSONArray cards = new JSONArray(loadedJSON);
-            addPlayerCards(cards, this);
-        }
-        catch(JSONException jEx)
-        {
-            System.out.println(jEx.getMessage());
-        }
-    }
-    //Pauric Donnelly
-    public void addPlayerCards(JSONArray players, GameScreen gameScreen)
-    {
-        try {
-            //JSONArray players = cards.getJSONArray("players");
-            for (int i = 0; i < players.length(); i++) {
-                JSONObject player = players.getJSONObject(i);
-                PlayerCard playerCard = new PlayerCard(
-                        gameScreen,
-                        player.getInt("overall"),
-                        player.getString("league"),
-                        player.getString("team"),
-                        player.getString("fname"),
-                        player.getString("sname"),
-                        player.getString("portrait"));
-                mPlayerCards.add(playerCard);
-            }
-
-        }
-        catch (JSONException jEx)
-        {
-            System.out.println(jEx.getMessage());
-        }
-    }
-
 }

@@ -239,7 +239,7 @@ public  class OptionsScreen extends  GameScreen {
                 mGame.getScreenManager().addScreen(new MainMenu(mGame));
             }
             if (resumeButton.isPushTriggered()) {
-                mGame.onResume();
+                //mGame.onResume();
                 mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
             }
 

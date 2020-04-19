@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f03e5fa2-e124-4a73-8a26-9c37ed3f92ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/screens/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/screens/MainMenu.java" afterDir="false" />
-    </list>
+    <list default="true" id="f03e5fa2-e124-4a73-8a26-9c37ed3f92ad" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +17,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/assets/txt/assets/MatchAttaxAssets.JSON">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
+            <state relative-caret-position="1530">
               <caret line="90" column="26" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="26" />
             </state>
           </provider>
@@ -30,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/screens/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="351">
-              <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
+              <caret line="135" column="5" lean-forward="true" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -40,9 +37,7 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/gage/engine/audio/AudioManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-850" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -74,7 +69,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="width" value="975" />
-    <option name="height" value="1049" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -82,19 +77,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="csc2044-45-1920-g49" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Git refresh" type="e9137016:NonAndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -338,7 +323,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="C:/Apps/Android/SDK" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Gage-master/app/src/main/assets/sound" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
@@ -476,25 +461,13 @@
     <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/assets/sound/GuitarMusic.mp3">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/CardReader.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/RunGame.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/CardReader.java" />
+    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/RunGame.java" />
     <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/cards/Card.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/cards/Cards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/cards/CardStore.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/cards/Cards.java" />
+    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/cards/CardStore.java" />
     <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/cards/ManagerCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-244" />
@@ -514,25 +487,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/MatchAttaxGame.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/assets/txt/assets/MatchAttaxAssets.JSON">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
+        <state relative-caret-position="1530">
           <caret line="90" column="26" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/gage/engine/audio/AudioManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850" />
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/MatchAttaxGame.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Gage-master/app/src/main/java/uk/ac/qub/eeecs/game/matchAttax/screens/MainMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
-          <caret line="135" column="46" lean-forward="true" selection-start-line="135" selection-start-column="46" selection-end-line="135" selection-end-column="46" />
+          <caret line="135" column="5" lean-forward="true" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

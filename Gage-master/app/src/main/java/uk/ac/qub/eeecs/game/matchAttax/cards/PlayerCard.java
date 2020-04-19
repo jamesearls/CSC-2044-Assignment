@@ -1,12 +1,8 @@
 package uk.ac.qub.eeecs.game.matchAttax.cards;
 
-import android.graphics.Bitmap;
-
 import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
-import uk.ac.qub.eeecs.gage.world.LayerViewport;
-import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 
 public class PlayerCard extends Card{
 
@@ -45,5 +41,4 @@ public class PlayerCard extends Card{
         super.draw(elapsedTime, graphics2D);
 
     }
-
 }

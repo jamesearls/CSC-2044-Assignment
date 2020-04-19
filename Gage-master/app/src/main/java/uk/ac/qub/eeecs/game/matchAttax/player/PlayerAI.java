@@ -8,15 +8,18 @@ import uk.ac.qub.eeecs.game.matchAttax.screens.MatchGameScreen;
 
 import static java.lang.StrictMath.abs;
 
-//By Adam Kennedy
+//Adam Kennedy
 public class PlayerAI extends Player {
-
-    private MatchGameScreen gameScreen;
 
     public PlayerAI(String name, Deck deck, MatchGameScreen gameScreen){
         super(name, deck);
+    }
 
-        this.gameScreen = gameScreen;
+    public PlayerAI(PlayerAI ai){
+        super(ai.getName(), ai.getDeck());
+
+        this.setScore(ai.getScore());
+        this.setEndTurn(ai.getEndTurn());
     }
 
     public Card selectCardToPlay(int playerScore, int aiScore, int roundNum){

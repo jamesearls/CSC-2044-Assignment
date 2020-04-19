@@ -42,6 +42,7 @@ public abstract class Card extends Sprite {
     private Vector2 mTargetLocation = new Vector2();
     private Vector2 centre = new Vector2();
 
+    //Adam Kennedy
     public Card(GameScreen gameScreen, double overallValue, String firstName, String surname, String cardPortraitPath){
         super(gameScreen);
         super.setPosition(DEFAULT_CARD_X, DEFAULT_CARD_Y);
@@ -59,7 +60,6 @@ public abstract class Card extends Sprite {
         this.setWidth(DEFAULT_CARD_WIDTH);
 
         setTargetLocation(position.x, position.y);
-        centre.set(gameScreen.getGame().getScreenWidth()/2, (gameScreen.getGame().getScreenHeight()/2));
 
         bitmap = getBitmap(this.cardPortraitPath);
         super.setBitmap(bitmap);
@@ -71,6 +71,37 @@ public abstract class Card extends Sprite {
                 this.getBound().getHeight(),
                 bitmap,
                 gameScreen);
+    }
+
+    //copy constructor
+    public Card(Card card){
+        super(card.getGameScreen());
+        super.setPosition(card.position.x, card.position.y);
+        super.getBound().halfHeight = card.getBound().halfHeight;
+        super.getBound().halfWidth = card.getBound().halfWidth;
+
+        this.setPosition(card.position.x, card.position.y);
+        this.setHeight(card.getHeight());
+        this.setWidth(card.getWidth());
+
+        this.overallValue = card.getOverallValue();
+        this.firstName = card.getFirstName();
+        this.surname = card.getSurname();
+        this.cardPortraitPath = card.getCardPortraitPath();
+        this.isBeingDragged = card.getBeingDragged();
+
+        setTargetLocation(position.x, position.y);
+
+        bitmap = getBitmap(this.cardPortraitPath);
+        super.setBitmap(bitmap);
+
+        this.artwork = new GameObject(
+                this.getBound().getLeft() + this.getBound().getWidth(),
+                this.getBound().getBottom() + this.getBound().getHeight(),
+                this.getBound().getWidth(),
+                this.getBound().getHeight(),
+                bitmap,
+                card.getGameScreen());
     }
 
     public Bitmap getBitmap(String filePath){
@@ -145,7 +176,7 @@ public abstract class Card extends Sprite {
                 setBeingDragged(false);
             }
 
-            preventFromLeavingScreen();
+            keepInBounds();
         }
     }
 
@@ -158,27 +189,25 @@ public abstract class Card extends Sprite {
             setBeingDragged(false);
         }
 
-        preventFromLeavingScreen();
+        keepInBounds();
     }
 
-    private void preventFromLeavingScreen()
+    private void keepInBounds()
     {
-        BoundingBox cardBound = getBound();
-        if (cardBound.getLeft() < 0)
+        if (getBound().getBottom() < 0)
         {
-            position.x -= cardBound.getLeft();
+            position.y = position.y - getBound().getBottom();
         }
-        else if (cardBound.getRight() > mGameScreen.getGame().getScreenWidth())
+        else if (getBound().getTop() > mGameScreen.getGame().getScreenHeight())
         {
-            position.x -= (cardBound.getRight() - mGameScreen.getGame().getScreenWidth());
+            position.y = position.y - (getBound().getTop() - mGameScreen.getGame().getScreenHeight());
         }
-        if (cardBound.getBottom() < 0)
+        if (getBound().getLeft() < 0)
         {
-            position.y -= cardBound.getBottom();
+            position.x = position.x - getBound().getLeft();
         }
-        else if (cardBound.getTop() > mGameScreen.getGame().getScreenHeight())
-        {
-            position.y -= (cardBound.getTop() - mGameScreen.getGame().getScreenHeight());
+        else if (getBound().getRight() > mGameScreen.getGame().getScreenWidth()) {
+            position.x = position.x - (getBound().getRight() - mGameScreen.getGame().getScreenWidth());
         }
     }
 

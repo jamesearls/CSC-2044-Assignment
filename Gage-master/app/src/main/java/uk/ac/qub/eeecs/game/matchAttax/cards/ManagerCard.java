@@ -22,9 +22,9 @@ public class ManagerCard extends Card {
     private String firstName;
     private String surname;
     private boolean type; //Addition card or a multiplier (true = add // false = multiply)
-//    private Cards[] cardsInStore = new Cards[amountOfCardsInDatabase];
+    private Card[] cardsInStore = new Card[amountOfCardsInDatabase];
     private GameObject artwork;
-  //  private int managerScore;
+    private int managerScore;
 
     public ManagerCard(GameScreen gameScreen, int overallValue, String firstName, String surname, boolean type, String cardPortraitPath) {
         super(gameScreen, overallValue, firstName, surname, cardPortraitPath);

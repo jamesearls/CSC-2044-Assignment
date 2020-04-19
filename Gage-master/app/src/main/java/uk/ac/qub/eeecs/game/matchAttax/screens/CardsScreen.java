@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
+import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
@@ -45,6 +47,7 @@ public class CardsScreen extends GameScreen  {
     private Bitmap background;
     private Deck playerDeck;
     private Player humanPlayer;
+    private Card card;
     private GameObject mBackground;
     private ScreenManager screenManager = getGame().getScreenManager();
     private PushButton homeButton, homeButtonPressed, settingsMenuButton, settingsMenuButtonPressed, leftArrow, rightArrow;
@@ -55,7 +58,6 @@ public class CardsScreen extends GameScreen  {
     public CardsScreen(Game game)
     {
         super("CardsScreen", game);
-
         loadAssets();
 
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
@@ -84,6 +86,17 @@ public class CardsScreen extends GameScreen  {
                 "rightArrow", "rightArrowPressed",this);
         leftArrow.setPlaySounds(false, false);
 
+        //Causing crashes
+        addCards("txt/Players.json");
+
+        float  y_pos = 1.0f;
+        float  x_pos = 1.0f;
+
+        for (int i=0; i < mPlayerCards.size()-45; i++){
+            mPlayerCards.get(i).setPosition(x_pos, y_pos);
+            y_pos+= 0.5f;
+        }
+        /////////////////////////////////
     }
 
     private void loadAssets(){
@@ -116,11 +129,11 @@ public class CardsScreen extends GameScreen  {
         }
 
         if(leftArrow.isPushTriggered()){
-
+            //Moves list left 5
         }
 
         if(rightArrow.isPushTriggered()){
-
+            //Moves list right 5
         }
 
         // Get touch events
@@ -135,17 +148,10 @@ public class CardsScreen extends GameScreen  {
     @Override
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D)
     {
-        graphics2D.drawBitmap(
-                background,
-                null,
-                new Rect(0, 0, (int) screenWidth, (int) screenHeight),
-                new Paint());
 
-    //    for (int i=0; i < mPlayerCards.size(); i++){\
-            //iterate through cards
-           // mPlayerCards.get(i).draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-            //Unable to position cards on the screen, hence why the game will crash if line (144) runs
-      //  }
+        for (int i = 0; i < mPlayerCards.size(); i++) {
+            mPlayerCards.get(i).draw(elapsedTime, graphics2D);
+        }
 
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
@@ -193,6 +199,55 @@ public class CardsScreen extends GameScreen  {
                         manager.getString("portrait"));
                 mManagerCards.add(managerCard);
             }
+        }
+        catch (JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+
+
+    //Pauric Donnelly
+    public void addCards(String jsonFilePath)
+    {
+        FileIO mFileIO = mGame.getFileIO();
+        String loadedJSON = "";
+        try
+        {
+            loadedJSON = mFileIO.loadJSON(jsonFilePath);
+        }
+        catch(IOException ioEx)
+        {
+            System.out.println(ioEx.getMessage());
+        }
+
+        try
+        {
+            JSONArray cards = new JSONArray(loadedJSON);
+            addPlayerCards(cards, this);
+        }
+        catch(JSONException jEx)
+        {
+            System.out.println(jEx.getMessage());
+        }
+    }
+    //Pauric Donnelly
+    public void addPlayerCards(JSONArray players, GameScreen gameScreen)
+    {
+        try {
+            for (int i = 0; i < players.length(); i++) {
+                JSONObject player = players.getJSONObject(i);
+                PlayerCard playerCard = new PlayerCard(
+                        gameScreen,
+                        player.getInt("overall"),
+                        player.getString("league"),
+                        player.getString("team"),
+                        player.getString("fname"),
+                        player.getString("sname"),
+                        player.getString("portrait"));
+                mPlayerCards.add(playerCard);
+            }
+
         }
         catch (JSONException jEx)
         {

@@ -47,6 +47,20 @@ public class OptionsScreenTest {
 
     }
 
+    @Test
+    public void testFAQBitmaploaded() {
+        optionsScreen = new OptionsScreen(game);
+        assetManager.loadAndAddBitmap("FAQButton", "img/FAQButton.png");
+        Assert.assertNotNull("FAQButton", "img/buttons/FAQButton");
+    }
+
+    @Test
+    public void testFAQButtonInvalid() {
+        optionsScreen = new OptionsScreen(game);
+        assetManager.loadAndAddBitmap("FAQButton", "img/FAQButton.png");
+        Assert.assertNotNull("faqbutton", "img/buttons/faqbutton");
+    }
+
     //Bronach Falls
 
     @Before

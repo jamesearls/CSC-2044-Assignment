@@ -159,6 +159,26 @@
       "type": "Bitmap",
       "name": "faqButtonPressed",
       "file": "img/buttons/faqButtonPressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "homeButton2",
+      "file": "img/buttons/homeButton2.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "homeButton2Pressed",
+      "file": "img/buttons/homeButton2Pressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "optionsButton",
+      "file": "img/buttons/optionsButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "optionsButtonPressed",
+      "file": "img/buttons/optionsButtonPressed.png"
     }
   ]
 }

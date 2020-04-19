@@ -65,6 +65,7 @@ public class MatchAttaxGame extends Game {
             mScreenManager.addScreen(new MainMenu(this));
             return true;
         }
+
         return true;
     }
 }

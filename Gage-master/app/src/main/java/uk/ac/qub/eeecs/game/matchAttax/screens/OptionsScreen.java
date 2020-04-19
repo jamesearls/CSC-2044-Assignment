@@ -52,6 +52,7 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
         background = assetStore.getBitmap("menuBackground");
 
+
         //creating buttons to change music
         assetStore.loadAndAddBitmap("rightArrow", "img/buttons/rightArrow.png");
         assetStore.loadAndAddBitmap("rightArrowPressed", "img/buttons/rightArrowPressed.png");
@@ -131,7 +132,7 @@ public  class OptionsScreen extends  GameScreen {
         buttonCanvas.drawText("HIGH", 0, highRect.height(), buttonPaint);
         assetStore.add("high", highBitmap);
         highButton = new PushButton(
-                screenWidth * 0.50f, titlePaint.getTextSize() + buttonPaint.getTextSize() * 3 + screenHeight * 0.34f,
+                screenWidth * 0.49f, titlePaint.getTextSize() + buttonPaint.getTextSize() * 3 + screenHeight * 0.34f,
                 highRect.width(), highRect.height(), "high", this);
     }
 
@@ -175,6 +176,11 @@ public  class OptionsScreen extends  GameScreen {
 
         }
         assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("SevenNationArmy").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("WavinFlag").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("WhatYouKnow").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("FA").setVolume(mGame.getMusicVolume());
+
 
     }
 
@@ -244,7 +250,7 @@ public  class OptionsScreen extends  GameScreen {
             }
 
             if (faqButton.isPushTriggered()) {
-                mGame.getScreenManager().addScreen(new MainMenu(mGame));
+                mGame.getScreenManager().addScreen(new FAQScreen(mGame));
             }
 
         }

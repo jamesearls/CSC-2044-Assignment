@@ -22,6 +22,8 @@ import uk.ac.qub.eeecs.gage.engine.input.Input;
 import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.engine.io.FileIO;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
+import uk.ac.qub.eeecs.gage.util.SteeringBehaviours;
+import uk.ac.qub.eeecs.gage.util.Vector2;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.gage.Game;
@@ -30,6 +32,7 @@ import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
+import uk.ac.qub.eeecs.game.matchAttax.font.Font;
 import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
 import uk.ac.qub.eeecs.game.matchAttax.player.Player;
 import uk.ac.qub.eeecs.game.matchAttax.player.PlayerAI;
@@ -54,6 +57,8 @@ public class MatchGameScreen extends GameScreen {
 
     private Deck playerDeck;
     private Deck aiDeck;
+
+    private Font font;
 
     private int playerScore;
     private int aiScore;
@@ -122,14 +127,18 @@ public class MatchGameScreen extends GameScreen {
         humanPlayer = new Player(playerName, playerDeck);
         aiPlayer = new PlayerAI(aiName, aiDeck, this);
 
-        int spacing = 385;
+        font = new Font(this);
+
+        int spacing = 335;
         for (int i=0; i<humanPlayer.getDeck().getCardsInDeck().size(); i++){
-            humanPlayer.getDeck().getCardsInDeck().get(i).setPosition(humanPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,game.getScreenHeight()-255);
-            spacing += 200;
+            humanPlayer.getDeck().getCardsInDeck().get(i).setPosition(humanPlayer.getDeck().getCardsInDeck().get(i).getBound().x+=spacing,game.getScreenHeight()-155);
+            humanPlayer.getDeck().getCardsInDeck().get(i).setTargetLocation(humanPlayer.getDeck().getCardsInDeck().get(i).getBound().x, humanPlayer.getDeck().getCardsInDeck().get(i).getBound().y);
+            spacing += 250;
         }
 
         for (int i=0; i<aiPlayer.getDeck().getCardsInDeck().size(); i++){
             aiPlayer.getDeck().getCardsInDeck().get(i).setPosition(game.getScreenWidth()-100,155);
+            aiPlayer.getDeck().getCardsInDeck().get(i).setTargetLocation(aiPlayer.getDeck().getCardsInDeck().get(i).getBound().x, aiPlayer.getDeck().getCardsInDeck().get(i).getBound().y);
         }
         cardBack = new GameObject(
                 game.getScreenWidth()-100,
@@ -298,10 +307,24 @@ public class MatchGameScreen extends GameScreen {
         getGame().getAssetManager().loadAndAddBitmap(assetName, fileName);
     }
 
+    private void moveCard(Card card, Vector2 targetLocation, ElapsedTime elapsedTime) {
+        if(Math.abs(card.position.x - targetLocation.x) > 1 ||
+                Math.abs(card.position.y - targetLocation.y) > 1 )
+            SteeringBehaviours.arrive(card, targetLocation, card.acceleration);
+        else
+            card.velocity.set(Vector2.Zero);
+    }
+
+    public void drawScore(){
+
+    }
+
     public void update(ElapsedTime elapsedTime){
 
+        //get any touch events
         Input input = mGame.getInput();
-        //Prevents more than 1 card from being dragged (Reference - CardDefence)
+
+        //Prevents more than 1 card from being dragged
         boolean dragged =false;
         for (Card card: getHumanPlayer().getDeck().getCardsInDeck()) {
             if (card.getBeingDragged()) {
@@ -309,27 +332,47 @@ public class MatchGameScreen extends GameScreen {
             }
         }
 
-        // drag card (Reference - Card Defence)
+        // play player card
         for (int i = 0; i<getHumanPlayer().getDeck().getCardsInDeck().size(); i++ ){
             Card card = getHumanPlayer().getDeck().getCardsInDeck().get(i);
-            if(!card.getPlaced()) {
-                if(!dragged || card.getBeingDragged()) {
-                    card.update(elapsedTime);
-                    if (card.getBeingDragged())
-                    {
-                        dragged = true;
-                    }
-                }
+            if((!card.getPlaced() || card.getBeingDragged()) && !getHumanPlayer().getEndTurn()) {
+                card.update(elapsedTime, false);
+                moveCard(card, card.getTargetLocation(), elapsedTime);
+            }
+            if (card.getPlaced() && !getHumanPlayer().getEndTurn()){
+                playerScore += card.getOverallValue();
+                getHumanPlayer().setEndTurn(true);
+                getAiPlayer().setEndTurn(false);
             }
             else{
                 card.setBeingDragged(false);
             }
         }
+
+        //play ai card
+        if (aiPlayer.getEndTurn() == false){
+            Card card = aiPlayer.selectCardToPlay(playerScore, aiScore, roundNum);
+            card.update(elapsedTime, true);
+            for (int i=0; i<aiPlayer.getDeck().getCardsInDeck().size(); i++) {
+                if (!aiPlayer.getDeck().getCardsInDeck().get(i).equals(card)) {
+                    aiPlayer.getDeck().getCardsInDeck().get(i).update(elapsedTime, false);
+                }
+            }
+
+            card.setTargetLocation(Card.DEFAULT_BOARD_X, Card.DEFAULT_BOARD_Y-350);
+            moveCard(card, card.getTargetLocation(), elapsedTime);
+            if (card.getPlaced() && !aiPlayer.getEndTurn()){
+                aiScore += card.getOverallValue();
+                getHumanPlayer().setEndTurn(false);
+                getAiPlayer().setEndTurn(true);
+            }
+        }
+
         if (homeButton.isPushTriggered()){
             mGame.getScreenManager().addScreen(new MainMenu(mGame));
         }
 
-        //settings menu button wil act as a pause button
+        //settings menu button will act as a pause button
        if(settingsMenuButton.isPushTriggered()) {
            //mGame.onPause();
            mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
@@ -349,22 +392,26 @@ public class MatchGameScreen extends GameScreen {
 
         mGameBoard.draw(elapsedTime, graphics2D);
 
-        Input input = this.getGame().getInput();
-        int n = -1;
-        // draw cards not being dragged first
         for(int i = 0; i< getHumanPlayer().getDeck().getCardsInDeck().size(); i++) {
-            if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getPlaced()) {
-                if (!getHumanPlayer().getDeck().getCardsInDeck().get(i).getBeingDragged()) {
-                    getHumanPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
-                }
-            }
+            getHumanPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
         }
+
+        for(int i = 0; i< aiPlayer.getDeck().getCardsInDeck().size(); i++) {
+            aiPlayer.getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
+        }
+
+        if (!humanPlayer.getEndTurn() && aiPlayer.getEndTurn()) {
+            font.drawText("Your Turn", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() * 0.14f, elapsedTime, graphics2D);
+        }
+        else if (humanPlayer.getEndTurn() && !aiPlayer.getEndTurn()) {
+            font.drawText("Opponent's Turn", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() * 0.14f, elapsedTime, graphics2D);
+        }
+
+
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         cardBack.draw(elapsedTime, graphics2D);
 
     }
-
-
 
 }

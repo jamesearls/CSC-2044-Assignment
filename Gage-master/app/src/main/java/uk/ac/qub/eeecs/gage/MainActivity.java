@@ -2,6 +2,7 @@ package uk.ac.qub.eeecs.gage;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,6 +15,7 @@ import uk.ac.qub.eeecs.game.matchAttax.MatchAttaxGame;
  * @version 1.0
  */
 public class MainActivity extends Activity {
+
 
     /**
      * Game fragment instance
@@ -28,6 +30,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Create custom Font
+
 
         // Setup the window as suitable for a game, namely: full screen
         // with no title and a request to keep the screen on. The changes

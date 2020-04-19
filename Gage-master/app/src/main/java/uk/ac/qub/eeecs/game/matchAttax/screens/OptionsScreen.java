@@ -38,9 +38,10 @@ public  class OptionsScreen extends  GameScreen {
     private Bitmap songImage1, songImage2, songImage3, songImage4, songImage5;
     private int currentSongNumber = 1;
     private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton,
-            rightArrow, leftArrow, homeButton, homeButtonPressed, resumeButton, resumeButtonPressed;
+            rightArrow, leftArrow, homeButton, homeButtonPressed, resumeButton, resumeButtonPressed,
+            faqButton, faqButtonPressed;
     private Canvas buttonCanvas;
-
+//Reference- past project Ragnarok helped me start the Options Screen
     public OptionsScreen(Game game) {
         super("OptionsScreen", game);
 
@@ -62,6 +63,9 @@ public  class OptionsScreen extends  GameScreen {
 
         assetStore.loadAndAddBitmap("resumeButton", "img/buttons/resumeButton.png");
         assetStore.loadAndAddBitmap("resumeButtonPressed", "img/buttons/resumeButtonPressed.png");
+
+        assetStore.loadAndAddBitmap("faqButton", "img/buttons/faqButton.png");
+        assetStore.loadAndAddBitmap("faqButtonPressed", "img/buttons/faqButtonPressed.png");
 
         int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
@@ -85,6 +89,11 @@ public  class OptionsScreen extends  GameScreen {
                 spacingX * 0.23f, spacingY * 0.5f, spacingX*0.5f, spacingY*0.5f,
                 "resumeButton", "resumeButtonPressed",this);
         resumeButton.setPlaySounds(false, false);
+
+        faqButton = new PushButton(
+                spacingX * 0.23f, spacingY * 2.2f, spacingX*0.5f, spacingY*0.5f,
+                "faqButton", "faqButtonPressed",this);
+        faqButton.setPlaySounds(false, false);
 
 
         // Load music
@@ -210,29 +219,36 @@ public  class OptionsScreen extends  GameScreen {
             leftArrow.update(elapsedTime);
             homeButton.update(elapsedTime);
             resumeButton.update(elapsedTime);
+            faqButton.update(elapsedTime);
             onButtonPressed();
 
             currentMusicImage.update(elapsedTime);
-                if (rightArrow.isPushed()) {
-                    currentSongNumber++;
-                    if (currentSongNumber > 5) {
-                        currentSongNumber = 1;
-                    }
+            if (rightArrow.isPushed()) {
+                currentSongNumber++;
+                if (currentSongNumber > 5) {
+                    currentSongNumber = 1;
                 }
-                if (leftArrow.isPushed()) {
-                    currentSongNumber--;
-                    if (currentSongNumber < 1) {
-                        currentSongNumber = 5;
-                    }
+            }
+            if (leftArrow.isPushed()) {
+                currentSongNumber--;
+                if (currentSongNumber < 1) {
+                    currentSongNumber = 5;
                 }
-                if (homeButton.isPushTriggered()){
-                    mGame.getScreenManager().addScreen(new MainMenu(mGame));
-                }
-                if(resumeButton.isPushTriggered()){
-                    mGame.onResume();
-                    mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
-                }
+            }
+            if (homeButton.isPushTriggered()) {
+                mGame.getScreenManager().addScreen(new MainMenu(mGame));
+            }
+            if (resumeButton.isPushTriggered()) {
+                mGame.onResume();
+                mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
+            }
+
+            if (faqButton.isPushTriggered()) {
+                mGame.getScreenManager().addScreen(new MainMenu(mGame));
+            }
+
         }
+
         changeOrPlayMusic(leftArrow.isPushed(), rightArrow.isPushed());
 
     }
@@ -252,7 +268,9 @@ public  class OptionsScreen extends  GameScreen {
             rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+            faqButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             resumeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+
             if(currentMusicImage.getBitmap() != null)currentMusicImage.draw(elapsedTime, graphics2D);
 
         }

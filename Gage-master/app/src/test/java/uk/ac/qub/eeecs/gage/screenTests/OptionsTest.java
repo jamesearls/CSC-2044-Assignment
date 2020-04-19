@@ -5,11 +5,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import uk.ac.qub.eeecs.gage.Game;
 import uk.ac.qub.eeecs.gage.engine.AssetManager;
 import uk.ac.qub.eeecs.game.matchAttax.screens.OptionsScreen;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -29,5 +27,5 @@ public class OptionsTest {
         assertEquals(aGame, optionsScreen.getGame());
     }
 
-    // tests to check if buttons will go to correct screens
+
 }

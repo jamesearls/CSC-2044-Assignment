@@ -149,6 +149,16 @@
       "type": "Bitmap",
       "name": "resumeButtonPressed",
       "file": "img/buttons/resumeButtonPressed.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "faqButton",
+      "file": "img/buttons/faqButton.png"
+    },
+    {
+      "type": "Bitmap",
+      "name": "faqButtonPressed",
+      "file": "img/buttons/faqButtonPressed.png"
     }
   ]
 }

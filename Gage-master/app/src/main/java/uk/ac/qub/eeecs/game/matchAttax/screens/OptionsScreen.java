@@ -181,6 +181,10 @@ public  class OptionsScreen extends  GameScreen {
 
         }
         assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("SevenNationArmy").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("WavinFlag").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("WhatYouKnow").setVolume(mGame.getMusicVolume());
+        assetStore.getMusic("FA").setVolume(mGame.getMusicVolume());
 
     }
     //Andrew Bingham

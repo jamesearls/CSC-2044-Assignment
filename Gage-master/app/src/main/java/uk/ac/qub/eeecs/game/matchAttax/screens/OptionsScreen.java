@@ -29,11 +29,11 @@ public  class OptionsScreen extends  GameScreen {
     private double timeAccumulator = 0;
     private AssetManager assetStore = getGame().getAssetManager();
     private ScreenManager screenManager = getGame().getScreenManager();
-    private Bitmap background, symbol, muteBitmap, unmuteBitmap, highBitmap, normalBitmap, lowBitmap, returnBitmap;
+    private Bitmap background,  highBitmap, normalBitmap, lowBitmap;
     private Typeface font;
     private GameObject backgroundObject;
     private TextPaint titlePaint, buttonPaint;
-    private Rect muteRect, unmuteRect, highRect, normalRect, lowRect, returnRect;
+    private Rect  highRect, normalRect, lowRect;
     private Sprite currentMusicImage;
     private Bitmap songImage1, songImage2, songImage3, songImage4, songImage5;
     private int currentSongNumber = 1;
@@ -48,7 +48,7 @@ public  class OptionsScreen extends  GameScreen {
         /* Load font */
 //        assetStore.loadAndAddTypeface("font", "fonts/Audiowide.ttf");
 //        font = assetStore.getTypeface("font");
-
+        //Andrew Bingham
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
         background = assetStore.getBitmap("menuBackground");
 
@@ -64,7 +64,7 @@ public  class OptionsScreen extends  GameScreen {
 
         assetStore.loadAndAddBitmap("resumeButton", "img/buttons/resumeButton.png");
         assetStore.loadAndAddBitmap("resumeButtonPressed", "img/buttons/resumeButtonPressed.png");
-
+        //Andrew Bingham
         assetStore.loadAndAddBitmap("faqButton", "img/buttons/faqButton.png");
         assetStore.loadAndAddBitmap("faqButtonPressed", "img/buttons/faqButtonPressed.png");
 
@@ -91,7 +91,7 @@ public  class OptionsScreen extends  GameScreen {
                 spacingX * 0.23f, spacingY * 0.5f, spacingX*0.5f, spacingY*0.5f,
                 "resumeButton", "resumeButtonPressed",this);
         resumeButton.setPlaySounds(false, false);
-
+        //Andrew Bingham
         faqButton = new PushButton(
                 spacingX * 0.23f, spacingY * 2.2f, spacingX*0.5f, spacingY*0.5f,
                 "faqButton", "faqButtonPressed",this);
@@ -105,6 +105,7 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddMusic("WavinFlag", "sound/WavinFlag.mp3");
         assetStore.loadAndAddMusic("WhatYouKnow", "sound/WhatYouKnow.mp3");
         assetStore.loadAndAddMusic("FA", "sound/FluorescentAdolescent.mp3");
+        //Andrew Bingham
         /* Set title text size and font */
         titlePaint = new TextPaint();
         titlePaint.setTextSize(screenWidth * 0.08f);
@@ -121,13 +122,13 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("WhatYouKnow", "img/songs/song4.png");
         assetStore.loadAndAddBitmap("FA", "img/songs/song5.png");
         currentMusicImage = new Sprite(screenWidth /2, screenHeight / 2, 400, 400, null, this);
-
+//Andrew Bingham
         makeHighButton();
         makeNormalButton();
         makeLowButton();
     }
 
-    /* Button for raising music */
+    //Andrew Bingham
     public void makeHighButton() {
         buttonPaint.getTextBounds("HIGH", 0, "HIGH".length(), highRect = new Rect());
         highBitmap = Bitmap.createBitmap(highRect.width(), highRect.height(), Bitmap.Config.ARGB_8888);
@@ -139,7 +140,7 @@ public  class OptionsScreen extends  GameScreen {
                 highRect.width(), highRect.height(), "high", this);
     }
 
-    /* Button for resetting music */
+    //Andrew Bingham
     public void makeNormalButton() {
         buttonPaint.getTextBounds("NORMAL", 0, "NORMAL".length(), normalRect = new Rect());
         normalBitmap = Bitmap.createBitmap(normalRect.width(), normalRect.height(), Bitmap.Config.ARGB_8888);
@@ -151,7 +152,7 @@ public  class OptionsScreen extends  GameScreen {
                 normalRect.width(), normalRect.height(), "normal", this);
     }
 
-    /* Button for lowering music */
+    //Andrew Bingham
     public void makeLowButton() {
         buttonPaint.getTextBounds("LOW", 0, "LOW".length(), lowRect = new Rect());
         lowBitmap = Bitmap.createBitmap(lowRect.width(), lowRect.height(), Bitmap.Config.ARGB_8888);
@@ -162,6 +163,7 @@ public  class OptionsScreen extends  GameScreen {
                 screenWidth * 0.50f, titlePaint.getTextSize() + buttonPaint.getTextSize() * 3 + screenHeight * 0.50f,
                 lowRect.width(), lowRect.height(), "low", this);
     }
+    //Andrew Bingham
 
     public void onButtonPressed() {
 
@@ -181,7 +183,7 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.getMusic("ChelseaDagger").setVolume(mGame.getMusicVolume());
 
     }
-
+    //Andrew Bingham
     public Paint getTitlePaint() {
         return titlePaint;
     }
@@ -202,7 +204,7 @@ public  class OptionsScreen extends  GameScreen {
     public PushButton getLowButton() { return lowButton; }
     public void setLowButton(PushButton button) { this.lowButton = button; }
 
-    @Override
+    @Override //Andrew Bingham
     public void update(ElapsedTime elapsedTime) {
 
         Input input = mGame.getInput();
@@ -257,7 +259,7 @@ public  class OptionsScreen extends  GameScreen {
         changeOrPlayMusic(leftArrow.isPushed(), rightArrow.isPushed());
 
     }
-
+    //Andrew Bingham
     @Override
         public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D) {
             graphics2D.drawBitmap(
@@ -274,6 +276,7 @@ public  class OptionsScreen extends  GameScreen {
             rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        //Andrew Bingham
             faqButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             resumeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 

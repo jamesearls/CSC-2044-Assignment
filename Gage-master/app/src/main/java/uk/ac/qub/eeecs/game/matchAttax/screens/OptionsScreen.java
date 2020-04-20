@@ -52,6 +52,7 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
         background = assetStore.getBitmap("menuBackground");
 
+        //Brónach Falls
         //creating buttons to change music
         assetStore.loadAndAddBitmap("rightArrow", "img/buttons/rightArrow.png");
         assetStore.loadAndAddBitmap("rightArrowPressed", "img/buttons/rightArrowPressed.png");
@@ -70,6 +71,7 @@ public  class OptionsScreen extends  GameScreen {
         int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
 
+        //Brónach Falls
         rightArrow = new PushButton(
                 spacingX * 1.5f, spacingY * 1.6f, spacingX*0.5f, spacingY*0.5f,
                 "leftArrow", "leftArrowPressed",this);
@@ -96,6 +98,7 @@ public  class OptionsScreen extends  GameScreen {
         faqButton.setPlaySounds(false, false);
 
 
+        //Brónach Falls
         // Load music
         assetStore.loadAndAddMusic("ChelseaDagger", "sound/ChelseaDagger.mp3");
         assetStore.loadAndAddMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");
@@ -111,6 +114,7 @@ public  class OptionsScreen extends  GameScreen {
         buttonPaint.setTextSize(screenWidth * 0.04f);
         buttonPaint.setTypeface(font);
 
+        //Brónach Falls
         assetStore.loadAndAddBitmap("ChelseaDagger", "img/songs/song1.png");
         assetStore.loadAndAddBitmap("SevenNationArmy", "img/songs/song2.png");
         assetStore.loadAndAddBitmap("WavinFlag", "img/songs/song3.png");
@@ -222,6 +226,7 @@ public  class OptionsScreen extends  GameScreen {
             faqButton.update(elapsedTime);
             onButtonPressed();
 
+            //Brónach Falls
             currentMusicImage.update(elapsedTime);
             if (rightArrow.isPushed()) {
                 currentSongNumber++;
@@ -239,7 +244,7 @@ public  class OptionsScreen extends  GameScreen {
                 mGame.getScreenManager().addScreen(new MainMenu(mGame));
             }
             if (resumeButton.isPushTriggered()) {
-                //mGame.onResume();
+                mGame.onResume();
                 mGame.getScreenManager().addScreen(new MatchGameScreen(mGame));
             }
 
@@ -248,7 +253,7 @@ public  class OptionsScreen extends  GameScreen {
             }
 
         }
-
+        //Brónach Falls
         changeOrPlayMusic(leftArrow.isPushed(), rightArrow.isPushed());
 
     }
@@ -265,6 +270,7 @@ public  class OptionsScreen extends  GameScreen {
             highButton.draw(elapsedTime, graphics2D);
             normalButton.draw(elapsedTime, graphics2D);
             lowButton.draw(elapsedTime, graphics2D);
+            //Brónach Falls
             rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
@@ -275,6 +281,7 @@ public  class OptionsScreen extends  GameScreen {
 
         }
 
+       //Brónach Falls
     private void changeOrPlayMusic(boolean leftArrowPressed, boolean rightArrowPressed)
     {
         if((leftArrowPressed || rightArrowPressed) || !mGame.getAudioManager().isMusicPlaying()){
@@ -305,6 +312,7 @@ public  class OptionsScreen extends  GameScreen {
 
     }
 
+    //Brónach Falls
     public int getCurrentSong(){return currentSongNumber;};
     public boolean setCurrentSong(int songNumber){
         if(songNumber > 5 || songNumber < 1){

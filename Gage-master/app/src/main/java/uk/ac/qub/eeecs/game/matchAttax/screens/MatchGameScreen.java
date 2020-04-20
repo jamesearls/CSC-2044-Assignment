@@ -69,6 +69,7 @@ public class MatchGameScreen extends GameScreen {
     public ArrayList<ManagerCard> mManagerCards;
     private AssetManager assetManager;
 
+    //Brónach Falls
     private PushButton homeButton, homeButtonPressed, settingsMenuButton, settingsMenuButtonPressed;
 
     public static final int AMOUNT_OF_PLAYER_CARDS = 40;
@@ -140,6 +141,7 @@ public class MatchGameScreen extends GameScreen {
 
         humanPlayer.setEndTurn(false);
 
+        //Brónach Falls
         assetStore.loadAndAddBitmap("homeButton", "img/buttons/homeButton.png");
         assetStore.loadAndAddBitmap("homeButtonPressed", "img/buttons/homeButtonPressed.png");
         assetStore.loadAndAddBitmap("settingsMenuButton", "img/buttons/settingsMenuButton.png");
@@ -361,19 +363,21 @@ public class MatchGameScreen extends GameScreen {
             }
         }
 
+        //Brónach Falls
         if (homeButton.isPushTriggered()){
             mGame.getScreenManager().addScreen(new MainMenu(mGame));
         }
 
+        //Brónach Falls
         //settings menu button will act as a pause button
        if(settingsMenuButton.isPushTriggered()) {
-           //mGame.onPause();
+           mGame.onPause();
            mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
-
         }
 
         // Get touch events
         List<TouchEvent> touchEvents = input.getTouchEvents();
+       //Brónach Falls
         homeButton.update(elapsedTime);
         settingsMenuButton.update(elapsedTime);
     }
@@ -399,7 +403,7 @@ public class MatchGameScreen extends GameScreen {
             font.drawText("Opponent's Turn", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() * 0.14f, elapsedTime, graphics2D);
         }
 
-
+        //Brónach Falls
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         cardBack.draw(elapsedTime, graphics2D);

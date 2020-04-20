@@ -18,6 +18,7 @@ import uk.ac.qub.eeecs.gage.world.LayerViewport;
 import uk.ac.qub.eeecs.gage.world.ScreenViewport;
 import uk.ac.qub.eeecs.gage.world.Sprite;
 
+//Adam Kennedy + Pauric Donnelly
 public abstract class Card extends Sprite {
 
     public static final int DEFAULT_CARD_HEIGHT = 180;
@@ -41,8 +42,7 @@ public abstract class Card extends Sprite {
 
     private Vector2 mTargetLocation = new Vector2();
     private Vector2 centre = new Vector2();
-
-    //Adam Kennedy
+    //Pauric Donnelly
     public Card(GameScreen gameScreen, double overallValue, String firstName, String surname, String cardPortraitPath){
         super(gameScreen);
         super.setPosition(DEFAULT_CARD_X, DEFAULT_CARD_Y);
@@ -59,6 +59,7 @@ public abstract class Card extends Sprite {
         this.setHeight(DEFAULT_CARD_HEIGHT);
         this.setWidth(DEFAULT_CARD_WIDTH);
 
+        //Adam Kennedy
         setTargetLocation(position.x, position.y);
 
         bitmap = getBitmap(this.cardPortraitPath);
@@ -73,7 +74,7 @@ public abstract class Card extends Sprite {
                 gameScreen);
     }
 
-    //copy constructor
+    //copy constructor - Adam Kennedy
     public Card(Card card){
         super(card.getGameScreen());
         super.setPosition(card.position.x, card.position.y);
@@ -114,6 +115,7 @@ public abstract class Card extends Sprite {
         return null;
     }
 
+    //Pauric Donnelly
     public String getFirstName() {
         return firstName;
     }
@@ -156,6 +158,7 @@ public abstract class Card extends Sprite {
 
     public void setTargetLocation(float x, float y) { mTargetLocation = new Vector2(x, y);}
 
+    //Adam Kennedy
     private void moveCard()
     {
         Input input = mGameScreen.getGame().getInput();

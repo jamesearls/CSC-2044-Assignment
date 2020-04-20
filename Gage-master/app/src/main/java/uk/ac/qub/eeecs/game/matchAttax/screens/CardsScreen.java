@@ -33,6 +33,7 @@ import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
 import uk.ac.qub.eeecs.game.matchAttax.player.Player;
 import uk.ac.qub.eeecs.gage.Game;
 
+//David Mackenzie
 public class CardsScreen extends GameScreen  {
 
     public ArrayList<PlayerCard> mPlayerCards;
@@ -87,6 +88,7 @@ public class CardsScreen extends GameScreen  {
         leftArrow.setPlaySounds(false, false);
 
         //Causing crashes
+        /*
         addCards("txt/Players.json");
 
         float  y_pos = 1.0f;
@@ -96,7 +98,7 @@ public class CardsScreen extends GameScreen  {
             mPlayerCards.get(i).setPosition(x_pos, y_pos);
             y_pos+= 0.5f;
         }
-        /////////////////////////////////
+         */
     }
 
     private void loadAssets(){

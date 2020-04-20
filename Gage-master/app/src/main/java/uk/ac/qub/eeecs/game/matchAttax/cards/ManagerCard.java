@@ -4,7 +4,7 @@ import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
 import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 
-//David Mackenzie 40238376
+//David Mackenzie
 public class ManagerCard extends Card {
 
     private boolean type; //Addition card or a multiplier (true = add // false = multiply)

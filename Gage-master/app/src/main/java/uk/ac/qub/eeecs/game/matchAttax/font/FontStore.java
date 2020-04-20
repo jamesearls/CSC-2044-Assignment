@@ -1,3 +1,8 @@
+/*
+ *
+ * Code Taken from past project CardDefence
+ *
+ * */
 package uk.ac.qub.eeecs.game.matchAttax.font;
 
 import android.graphics.Bitmap;

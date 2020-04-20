@@ -37,6 +37,7 @@ import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
 import uk.ac.qub.eeecs.game.matchAttax.player.Player;
 import uk.ac.qub.eeecs.game.matchAttax.player.PlayerAI;
 
+//Adam Kennedy
 public class MatchGameScreen extends GameScreen {
 
     private String gameBackground;
@@ -68,13 +69,14 @@ public class MatchGameScreen extends GameScreen {
     public ArrayList<ManagerCard> mManagerCards;
     private AssetManager assetManager;
 
+    //Brónach Falls
     private PushButton homeButton, homeButtonPressed, settingsMenuButton, settingsMenuButtonPressed;
 
     public static final int AMOUNT_OF_PLAYER_CARDS = 40;
     public static final int AMOUNT_OF_MANAGER_CARDS = 7;
 
     public int getPlayerScore(){ return playerScore;}
-    public int AiScore(){return aiScore;}
+    public int getAiScore(){return aiScore;}
 
     public MatchGameScreen(Game game){
         super("MatchGameScreen", game);
@@ -101,22 +103,6 @@ public class MatchGameScreen extends GameScreen {
         mManagerCards = new ArrayList<ManagerCard>();
         addCards("txt/assets/Players.json");
         addCards2("txt/assets/Managers.json");
-
-        assetStore.loadAndAddBitmap("homeButton", "img/buttons/homeButton.png");
-        assetStore.loadAndAddBitmap("homeButtonPressed", "img/buttons/homeButtonPressed.png");
-        assetStore.loadAndAddBitmap("settingsMenuButton", "img/buttons/settingsMenuButton.png");
-        assetStore.loadAndAddBitmap("settingsMenuButtonPressed", "img/buttons/settingsMenuButtonPressed.png");
-
-        homeButton = new PushButton(
-                spacingX * 0.23f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
-                "homeButton", "homeButtonPressed",this);
-        homeButton.setPlaySounds(false, false);
-
-       settingsMenuButton = new PushButton(
-                spacingX * 0.75f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
-                "settingsMenuButton", "settingsMenuButtonPressed",this);
-        settingsMenuButton.setPlaySounds(false, false);
-
 
         playerName = "Player1";
         aiName = "Player2";
@@ -155,11 +141,23 @@ public class MatchGameScreen extends GameScreen {
 
         humanPlayer.setEndTurn(false);
 
+        //Brónach Falls
+        assetStore.loadAndAddBitmap("homeButton", "img/buttons/homeButton.png");
+        assetStore.loadAndAddBitmap("homeButtonPressed", "img/buttons/homeButtonPressed.png");
+        assetStore.loadAndAddBitmap("settingsMenuButton", "img/buttons/settingsMenuButton.png");
+        assetStore.loadAndAddBitmap("settingsMenuButtonPressed", "img/buttons/settingsMenuButtonPressed.png");
+
+        homeButton = new PushButton(
+                spacingX * 0.23f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
+                "homeButton", "homeButtonPressed",this);
+        homeButton.setPlaySounds(false, false);
+
+        settingsMenuButton = new PushButton(
+                spacingX * 0.75f, spacingY * 2.6f, spacingX*0.5f, spacingY*0.5f,
+                "settingsMenuButton", "settingsMenuButtonPressed",this);
+        settingsMenuButton.setPlaySounds(false, false);
     }
 
-    public void onButtonPressed(){
-
-    }
     //David Mackenzie
     public void addCards2(String jsonFilePath)
     {
@@ -296,13 +294,14 @@ public class MatchGameScreen extends GameScreen {
         loadMusic("SevenNationArmy", "sound/SevenNationArmy.mp3");
         loadMusic("WavinFlag", "sound/WavinFlag.mp3");
         loadMusic("WhatYouKnow", "sound/WhatYouKnow.mp3");
-        //loadMusic("GuitarMusic", "sound/GuitarMusic.mp3");
     }
 
+    //Bronach Falls
     private void loadMusic(String assetName, String fileName){
         getGame().getAssetManager().loadAndAddMusic(assetName, fileName);
     }
 
+    //Bronach Falls
     private void loadBitmaps(String assetName, String fileName){
         getGame().getAssetManager().loadAndAddBitmap(assetName, fileName);
     }
@@ -313,10 +312,6 @@ public class MatchGameScreen extends GameScreen {
             SteeringBehaviours.arrive(card, targetLocation, card.acceleration);
         else
             card.velocity.set(Vector2.Zero);
-    }
-
-    public void drawScore(){
-
     }
 
     public void update(ElapsedTime elapsedTime){
@@ -368,22 +363,23 @@ public class MatchGameScreen extends GameScreen {
             }
         }
 
+        //Brónach Falls
         if (homeButton.isPushTriggered()){
             mGame.getScreenManager().addScreen(new MainMenu(mGame));
         }
 
+        //Brónach Falls
         //settings menu button will act as a pause button
        if(settingsMenuButton.isPushTriggered()) {
-           //mGame.onPause();
+           mGame.onPause();
            mGame.getScreenManager().addScreen(new OptionsScreen(mGame));
-
         }
 
         // Get touch events
         List<TouchEvent> touchEvents = input.getTouchEvents();
+       //Brónach Falls
         homeButton.update(elapsedTime);
         settingsMenuButton.update(elapsedTime);
-        onButtonPressed();
     }
 
     public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D){
@@ -407,11 +403,10 @@ public class MatchGameScreen extends GameScreen {
             font.drawText("Opponent's Turn", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() * 0.14f, elapsedTime, graphics2D);
         }
 
-
+        //Brónach Falls
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         cardBack.draw(elapsedTime, graphics2D);
 
     }
-
 }

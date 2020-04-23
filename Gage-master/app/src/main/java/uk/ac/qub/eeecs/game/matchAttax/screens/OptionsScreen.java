@@ -20,6 +20,7 @@ package uk.ac.qub.eeecs.game.matchAttax.screens;
         import uk.ac.qub.eeecs.gage.world.GameObject;
         import uk.ac.qub.eeecs.gage.world.GameScreen;
         import uk.ac.qub.eeecs.gage.world.Sprite;
+        import uk.ac.qub.eeecs.game.matchAttax.util.FpsCounter;
 
 public  class OptionsScreen extends  GameScreen {
     private float screenWidth = getGame().getScreenWidth(),
@@ -39,7 +40,7 @@ public  class OptionsScreen extends  GameScreen {
     private int currentSongNumber = 1;
     private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton,
             rightArrow, leftArrow, homeButton, homeButtonPressed, resumeButton, resumeButtonPressed,
-            faqButton, faqButtonPressed;
+            faqButton, faqButtonPressed, fpsCounterButton;
     private Canvas buttonCanvas;
 //Reference- past project Ragnarok helped me start the Options Screen
     public OptionsScreen(Game game) {
@@ -48,6 +49,7 @@ public  class OptionsScreen extends  GameScreen {
         /* Load font */
 //        assetStore.loadAndAddTypeface("font", "fonts/Audiowide.ttf");
 //        font = assetStore.getTypeface("font");
+
         //Andrew Bingham
         assetStore.loadAndAddBitmap("menuBackground", "img/menuBackground.png");
         background = assetStore.getBitmap("menuBackground");
@@ -67,6 +69,8 @@ public  class OptionsScreen extends  GameScreen {
         //Andrew Bingham
         assetStore.loadAndAddBitmap("faqButton", "img/buttons/faqButton.png");
         assetStore.loadAndAddBitmap("faqButtonPressed", "img/buttons/faqButtonPressed.png");
+        //James Earls
+        assetStore.loadAndAddBitmap("fpsCounterButton", "img/buttons/fpsCounterButton.png");
 
         int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
@@ -97,6 +101,11 @@ public  class OptionsScreen extends  GameScreen {
                 "faqButton", "faqButtonPressed",this);
         faqButton.setPlaySounds(false, false);
 
+        //James Earls - Create fps trigger button
+        fpsCounterButton= new PushButton(
+                spacingX * 4.5f, spacingY * 1.8f, spacingX*0.9f, spacingY*0.5f,
+                "fpsCounterButton", "fpsCounterButton",this);
+        fpsCounterButton.setPlaySounds(true, true);
 
         //Brónach Falls
         // Load music
@@ -122,11 +131,12 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("WhatYouKnow", "img/songs/song4.png");
         assetStore.loadAndAddBitmap("FA", "img/songs/song5.png");
         currentMusicImage = new Sprite(screenWidth /2, screenHeight / 2, 400, 400, null, this);
-//Andrew Bingham
+        //Andrew Bingham
         makeHighButton();
         makeNormalButton();
         makeLowButton();
     }
+
 
     //Andrew Bingham
     public void makeHighButton() {
@@ -216,7 +226,6 @@ public  class OptionsScreen extends  GameScreen {
         List<TouchEvent> touchEvents = input.getTouchEvents();
         if (touchEvents.size() > 0) {
 
-
             timeAccumulator += elapsedTime.stepTime;
             while (timeAccumulator > 0.1) {
                 timeAccumulator -= 0.1;
@@ -230,6 +239,7 @@ public  class OptionsScreen extends  GameScreen {
             homeButton.update(elapsedTime);
             resumeButton.update(elapsedTime);
             faqButton.update(elapsedTime);
+            fpsCounterButton.update(elapsedTime);
             onButtonPressed();
 
             //Brónach Falls
@@ -257,10 +267,17 @@ public  class OptionsScreen extends  GameScreen {
             if (faqButton.isPushTriggered()) {
                 mGame.getScreenManager().addScreen(new MainMenu(mGame));
             }
-
         }
         //Brónach Falls
         changeOrPlayMusic(leftArrow.isPushed(), rightArrow.isPushed());
+        //James Earls
+        if (fpsCounterButton.isPushTriggered()) {
+            if(mGame.getCounterStatus()==true){
+                mGame.setCounterStatus(false);
+            }else{
+                mGame.setCounterStatus(true);
+            }
+        }
 
     }
     //Andrew Bingham
@@ -272,11 +289,14 @@ public  class OptionsScreen extends  GameScreen {
                     new Rect(0, 0, (int) screenWidth, (int) screenHeight),
                     new Paint()
             );
-
             highButton.draw(elapsedTime, graphics2D);
             normalButton.draw(elapsedTime, graphics2D);
             lowButton.draw(elapsedTime, graphics2D);
-            //Brónach Falls
+
+            //James Earls
+             fpsCounterButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+
+        //Brónach Falls
             rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
             homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
@@ -286,6 +306,10 @@ public  class OptionsScreen extends  GameScreen {
 
             if(currentMusicImage.getBitmap() != null)currentMusicImage.draw(elapsedTime, graphics2D);
 
+        if(mGame.getCounterStatus() == true) {
+            FpsCounter fpsCounter = new FpsCounter(mGame, this);
+            fpsCounter.drawFPS(elapsedTime, graphics2D);
+        }
         }
 
        //Brónach Falls
@@ -316,7 +340,6 @@ public  class OptionsScreen extends  GameScreen {
                 break;
         }
         }
-
     }
 
     //Brónach Falls
@@ -329,6 +352,4 @@ public  class OptionsScreen extends  GameScreen {
             return true;
         }
     }
-
-
 }

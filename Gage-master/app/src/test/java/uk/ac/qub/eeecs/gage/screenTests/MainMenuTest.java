@@ -12,7 +12,7 @@ import uk.ac.qub.eeecs.game.matchAttax.screens.MainMenu;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-
+//James Earls
 @RunWith(MockitoJUnitRunner.class)
 public class MainMenuTest {
 

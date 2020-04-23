@@ -35,6 +35,11 @@
       "name": "settingsButtonPressed",
       "file": "img/buttons/settingsButtonPressed.png"
     },
+        {
+      "type": "Bitmap",
+      "name": "fpsCounterButton",
+      "file": "img/buttons/fpsCounterButton.png"
+    },
     {
       "type": "Bitmap",
       "name": "leftArrow",

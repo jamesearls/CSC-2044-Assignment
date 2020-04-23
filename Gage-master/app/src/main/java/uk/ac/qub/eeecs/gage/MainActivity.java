@@ -22,6 +22,10 @@ public class MainActivity extends Activity {
      */
     private Game mGame;
 
+    private boolean isFpsCounterOn = false;
+    public boolean getCounterStatus(boolean isSfxOn){return isFpsCounterOn;}
+
+
     /*
      * (non-Javadoc)
      *

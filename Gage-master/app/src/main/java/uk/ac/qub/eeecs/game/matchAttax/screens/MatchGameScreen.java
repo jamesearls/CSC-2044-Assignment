@@ -33,9 +33,12 @@ import uk.ac.qub.eeecs.game.matchAttax.cards.Card;
 import uk.ac.qub.eeecs.game.matchAttax.cards.ManagerCard;
 import uk.ac.qub.eeecs.game.matchAttax.cards.PlayerCard;
 import uk.ac.qub.eeecs.game.matchAttax.font.Font;
+import uk.ac.qub.eeecs.game.matchAttax.gameBoard.PlayingField;
 import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
 import uk.ac.qub.eeecs.game.matchAttax.player.Player;
 import uk.ac.qub.eeecs.game.matchAttax.player.PlayerAI;
+import uk.ac.qub.eeecs.game.matchAttax.MatchAttaxGame;
+import uk.ac.qub.eeecs.game.matchAttax.util.FpsCounter;
 
 //Adam Kennedy
 public class MatchGameScreen extends GameScreen {
@@ -50,6 +53,8 @@ public class MatchGameScreen extends GameScreen {
 
     private AssetManager assetStore = getGame().getAssetManager();
 
+    private PlayingField playingField;
+
     private String playerName;
     private String aiName;
 
@@ -61,12 +66,13 @@ public class MatchGameScreen extends GameScreen {
 
     private Font font;
 
-    private int playerScore;
-    private int aiScore;
+
+
     private int roundNum;
 
     public ArrayList<PlayerCard> mPlayerCards;
     public ArrayList<ManagerCard> mManagerCards;
+
     private AssetManager assetManager;
 
     //Brónach Falls
@@ -75,8 +81,6 @@ public class MatchGameScreen extends GameScreen {
     public static final int AMOUNT_OF_PLAYER_CARDS = 40;
     public static final int AMOUNT_OF_MANAGER_CARDS = 7;
 
-    public int getPlayerScore(){ return playerScore;}
-    public int getAiScore(){return aiScore;}
 
     public MatchGameScreen(Game game){
         super("MatchGameScreen", game);
@@ -85,6 +89,7 @@ public class MatchGameScreen extends GameScreen {
 
         int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
+        font = new Font(this);
 
         mScreenViewport = new ScreenViewport( 0,0, game.getScreenWidth(), game.getScreenHeight());
         mLayerViewport = new LayerViewport(mScreenViewport.centerX(),
@@ -113,7 +118,6 @@ public class MatchGameScreen extends GameScreen {
         humanPlayer = new Player(playerName, playerDeck);
         aiPlayer = new PlayerAI(aiName, aiDeck, this);
 
-        font = new Font(this);
 
         int spacing = 335;
         for (int i=0; i<humanPlayer.getDeck().getCardsInDeck().size(); i++){
@@ -135,8 +139,6 @@ public class MatchGameScreen extends GameScreen {
                 this
                 );
 
-        playerScore = 0;
-        aiScore = 0;
         roundNum = 1;
 
         humanPlayer.setEndTurn(false);
@@ -314,6 +316,24 @@ public class MatchGameScreen extends GameScreen {
             card.velocity.set(Vector2.Zero);
     }
 
+    //James Earls
+    PlayingField playerPlayingField =  new PlayingField(PlayingField.PlayingFieldType.PLAYER, 0);
+    PlayingField cpuPlayingField =  new PlayingField(PlayingField.PlayingFieldType.CPU, 0);
+    boolean playerWin;
+
+
+
+    private boolean checkIfWinner(){
+        if(playerDeck.getCardsInDeck().size() <= 0 && aiDeck.getCardsInDeck().size() <= 0){
+            if(playerPlayingField.getScore() > cpuPlayingField.getScore() ) {
+                playerWin = true;
+            }
+                playerWin = false;
+            return true;
+        }
+        return false;
+    }
+
     public void update(ElapsedTime elapsedTime){
 
         //get any touch events
@@ -335,7 +355,7 @@ public class MatchGameScreen extends GameScreen {
                 moveCard(card, card.getTargetLocation(), elapsedTime);
             }
             if (card.getPlaced() && !getHumanPlayer().getEndTurn()){
-                playerScore += card.getOverallValue();
+                playerPlayingField.playCard(card);
                 getHumanPlayer().setEndTurn(true);
                 getAiPlayer().setEndTurn(false);
             }
@@ -346,7 +366,7 @@ public class MatchGameScreen extends GameScreen {
 
         //play ai card
         if (aiPlayer.getEndTurn() == false){
-            Card card = aiPlayer.selectCardToPlay(playerScore, aiScore, roundNum);
+            Card card = aiPlayer.selectCardToPlay(playerPlayingField.getScore(), cpuPlayingField.getScore(), roundNum);
             card.update(elapsedTime, true);
             for (int i=0; i<aiPlayer.getDeck().getCardsInDeck().size(); i++) {
                 if (!aiPlayer.getDeck().getCardsInDeck().get(i).equals(card)) {
@@ -356,10 +376,11 @@ public class MatchGameScreen extends GameScreen {
 
             card.setTargetLocation(Card.DEFAULT_BOARD_X, Card.DEFAULT_BOARD_Y-350);
             moveCard(card, card.getTargetLocation(), elapsedTime);
-            if (card.getPlaced() && !aiPlayer.getEndTurn()){
-                aiScore += card.getOverallValue();
-                getHumanPlayer().setEndTurn(false);
+            if (card.getPlaced() && !aiPlayer.getEndTurn()) {
+                cpuPlayingField.playCard(card);
                 getAiPlayer().setEndTurn(true);
+                getHumanPlayer().setEndTurn(false);
+
             }
         }
 
@@ -388,6 +409,10 @@ public class MatchGameScreen extends GameScreen {
 
         mGameBoard.draw(elapsedTime, graphics2D);
 
+        // draw score - James Earls
+        font.drawText(Integer.toString(playerPlayingField.getScore()), "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() * 0.945f), getGame().getScreenHeight() / 1.53f, elapsedTime, graphics2D);
+        font.drawText(Integer.toString(cpuPlayingField.getScore()), "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() * 0.055f), getGame().getScreenHeight() / 2.77f, elapsedTime, graphics2D);
+
         for(int i = 0; i< getHumanPlayer().getDeck().getCardsInDeck().size(); i++) {
             getHumanPlayer().getDeck().getCardsInDeck().get(i).draw(elapsedTime, graphics2D);
         }
@@ -403,10 +428,26 @@ public class MatchGameScreen extends GameScreen {
             font.drawText("Opponent's Turn", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() * 0.14f, elapsedTime, graphics2D);
         }
 
+
         //Brónach Falls
         homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         settingsMenuButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         cardBack.draw(elapsedTime, graphics2D);
 
+        //James Earls
+        if(mGame.getCounterStatus() == true){
+            FpsCounter fpsCounter = new FpsCounter(mGame, this);
+            fpsCounter.drawFPS(elapsedTime, graphics2D);
+        }
+        if(checkIfWinner() == true){
+            graphics2D.clear(Color.WHITE);
+            homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+            if(playerWin == true){
+                font.drawText("You Win!", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() / 2, elapsedTime, graphics2D);
+            } else{
+                font.drawText("You Lose :(", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() / 2, elapsedTime, graphics2D);
+
+            }
+        };
     }
 }

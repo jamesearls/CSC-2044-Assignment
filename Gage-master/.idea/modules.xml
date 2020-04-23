@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/Game-Gage-master.iml" filepath="$PROJECT_DIR$/Game-Gage-master.iml" group="Gage-master" />
       <module fileurl="file://$PROJECT_DIR$/app/Game-Gage-master-app.iml" filepath="$PROJECT_DIR$/app/Game-Gage-master-app.iml" group="Gage-master/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csc2044-45-1920-g49-Gage-master.iml" filepath="$PROJECT_DIR$/csc2044-45-1920-g49-Gage-master.iml" group="Gage-master" />
+      <module fileurl="file://$PROJECT_DIR$/app/csc2044-45-1920-g49-Gage-master-app.iml" filepath="$PROJECT_DIR$/app/csc2044-45-1920-g49-Gage-master-app.iml" group="Gage-master/app" />
     </modules>
   </component>
 </project>

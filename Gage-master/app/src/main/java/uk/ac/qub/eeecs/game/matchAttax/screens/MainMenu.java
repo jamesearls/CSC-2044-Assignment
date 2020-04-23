@@ -14,6 +14,7 @@ import uk.ac.qub.eeecs.gage.engine.input.TouchEvent;
 import uk.ac.qub.eeecs.gage.ui.PushButton;
 import uk.ac.qub.eeecs.gage.world.GameObject;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
+import uk.ac.qub.eeecs.game.matchAttax.util.FpsCounter;
 
 
 /**
@@ -21,6 +22,8 @@ import uk.ac.qub.eeecs.gage.world.GameScreen;
  *
  * @version 1.0
  */
+
+// James Earls
 public class MainMenu extends GameScreen {
 
     // /////////////////////////////////////////////////////////////////////////
@@ -34,7 +37,7 @@ public class MainMenu extends GameScreen {
 
 
     /**
-     * Define the buttons for playing the 'games'
+     * Define the buttons for playing the screens you can visit
      */
     private PushButton mPlayButton;
     private PushButton mSettingsButton;
@@ -153,6 +156,11 @@ public class MainMenu extends GameScreen {
         mCardsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         mSettingsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
+        //James Earls
+        if(mGame.getCounterStatus() == true){
+            FpsCounter fpsCounter = new FpsCounter(mGame, this);
+            fpsCounter.drawFPS(elapsedTime, graphics2D);
+        }
     }
 }
 

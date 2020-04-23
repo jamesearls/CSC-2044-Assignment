@@ -178,6 +178,14 @@ public abstract class Game extends Fragment {
 
     protected float musicvolume = 0.5f;
 
+    public boolean isFpsCounterOn = false;
+    public boolean getCounterStatus(){return isFpsCounterOn;}
+    public boolean setCounterStatus(boolean value){
+        this.isFpsCounterOn = value;
+        return isFpsCounterOn;
+    }
+
+
 
     // /////////////////////////////////////////////////////////////////////////
     // Properties: Game Loop

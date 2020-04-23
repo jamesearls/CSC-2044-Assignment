@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import uk.ac.qub.eeecs.gage.Game;
-import uk.ac.qub.eeecs.game.MenuScreen;
+import uk.ac.qub.eeecs.gage.engine.ElapsedTime;
+import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.game.matchAttax.screens.MainMenu;
 
 public class MatchAttaxGame extends Game {
@@ -65,7 +66,7 @@ public class MatchAttaxGame extends Game {
             mScreenManager.addScreen(new MainMenu(this));
             return true;
         }
-
         return true;
     }
+
 }

@@ -26,9 +26,7 @@ import uk.ac.qub.eeecs.game.matchAttax.util.FpsCounter;
 // James Earls
 public class MainMenu extends GameScreen {
 
-    // /////////////////////////////////////////////////////////////////////////
-    // Properties
-    // /////////////////////////////////////////////////////////////////////////
+
 
     /**
      * Define the background
@@ -43,9 +41,7 @@ public class MainMenu extends GameScreen {
     private PushButton mSettingsButton;
     private PushButton mCardsButton;
 
-    // /////////////////////////////////////////////////////////////////////////
-    // Constructors
-    // /////////////////////////////////////////////////////////////////////////
+
 
     /**
      * Constructor for the menu screen
@@ -98,9 +94,7 @@ public class MainMenu extends GameScreen {
         mSettingsButton.setPlaySounds(true, true);
     }
 
-    // /////////////////////////////////////////////////////////////////////////
-    // Methods
-    // /////////////////////////////////////////////////////////////////////////
+
 
     /**
      * Update the menu screen
@@ -156,7 +150,7 @@ public class MainMenu extends GameScreen {
         mCardsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         mSettingsButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
-        //James Earls
+
         if(mGame.getCounterStatus() == true){
             FpsCounter fpsCounter = new FpsCounter(mGame, this);
             fpsCounter.drawFPS(elapsedTime, graphics2D);

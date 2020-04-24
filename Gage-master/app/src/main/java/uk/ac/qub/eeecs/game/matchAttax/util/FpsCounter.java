@@ -6,21 +6,23 @@ import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.font.Font;
 
+//James Earls FPS Counter
 public class FpsCounter {
 
     private Game mGame;
     private Font fpsFont;
-    private GameScreen gameScreen;
 
 public FpsCounter(Game game, GameScreen gameScreen) {
     mGame = game;
     fpsFont = new Font(gameScreen);
 
 }
+
     private Game getGame() {
         return mGame;
     }
-    //James Earls FPS Counter
+
+    //Method that actually gets the fps and draws it to the screen
     public void drawFPS(ElapsedTime elapsedTime, IGraphics2D graphics2D) {
         int fpsInt = (int) mGame.getAverageFramesPerSecond();
         String fps = Integer.toString(fpsInt);

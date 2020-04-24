@@ -1,16 +1,14 @@
 package uk.ac.qub.eeecs.game.matchAttax.screens;
 
-import android.content.Context;
-import android.graphics.Bitmap;
+
 import android.graphics.Color;
-import android.util.Log;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,7 +35,6 @@ import uk.ac.qub.eeecs.game.matchAttax.gameBoard.PlayingField;
 import uk.ac.qub.eeecs.game.matchAttax.player.Deck;
 import uk.ac.qub.eeecs.game.matchAttax.player.Player;
 import uk.ac.qub.eeecs.game.matchAttax.player.PlayerAI;
-import uk.ac.qub.eeecs.game.matchAttax.MatchAttaxGame;
 import uk.ac.qub.eeecs.game.matchAttax.util.FpsCounter;
 
 //Adam Kennedy
@@ -347,6 +344,7 @@ public class MatchGameScreen extends GameScreen {
             }
         }
 
+        // Adam Kennedy + James Earls
         // play player card
         for (int i = 0; i<getHumanPlayer().getDeck().getCardsInDeck().size(); i++ ){
             Card card = getHumanPlayer().getDeck().getCardsInDeck().get(i);
@@ -354,10 +352,11 @@ public class MatchGameScreen extends GameScreen {
                 card.update(elapsedTime, false);
                 moveCard(card, card.getTargetLocation(), elapsedTime);
             }
-            if (card.getPlaced() && !getHumanPlayer().getEndTurn()){
+            if ((card.getPlaced() && !playerPlayingField.getPlayedCard().contains(card)) && !getHumanPlayer().getEndTurn()){
                 playerPlayingField.playCard(card);
                 getHumanPlayer().setEndTurn(true);
                 getAiPlayer().setEndTurn(false);
+                card.setBeingDragged(false);
             }
             else{
                 card.setBeingDragged(false);
@@ -376,14 +375,14 @@ public class MatchGameScreen extends GameScreen {
 
             card.setTargetLocation(Card.DEFAULT_BOARD_X, Card.DEFAULT_BOARD_Y-350);
             moveCard(card, card.getTargetLocation(), elapsedTime);
-            if (card.getPlaced() && !aiPlayer.getEndTurn()) {
+            if (card.getPlaced() && !cpuPlayingField.getPlayedCard().contains(card) && !aiPlayer.getEndTurn()) {
                 cpuPlayingField.playCard(card);
                 getAiPlayer().setEndTurn(true);
                 getHumanPlayer().setEndTurn(false);
 
-            }
         }
 
+    }
         //Brónach Falls
         if (homeButton.isPushTriggered()){
             mGame.getScreenManager().addScreen(new MainMenu(mGame));

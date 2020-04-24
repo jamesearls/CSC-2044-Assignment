@@ -40,7 +40,7 @@ public  class OptionsScreen extends  GameScreen {
     private int currentSongNumber = 1;
     private PushButton muteButton, unmuteButton, highButton, normalButton, lowButton, returnButton,
             rightArrow, leftArrow, homeButton, homeButtonPressed, resumeButton, resumeButtonPressed,
-            faqButton, faqButtonPressed, fpsCounterButton;
+            faqButton, faqButtonPressed, fpsCounterButton, stressTestButton;
     private Canvas buttonCanvas;
 //Reference- past project Ragnarok helped me start the Options Screen
     public OptionsScreen(Game game) {
@@ -71,6 +71,7 @@ public  class OptionsScreen extends  GameScreen {
         assetStore.loadAndAddBitmap("faqButtonPressed", "img/buttons/faqButtonPressed.png");
         //James Earls
         assetStore.loadAndAddBitmap("fpsCounterButton", "img/buttons/fpsCounterButton.png");
+        assetStore.loadAndAddBitmap("stressTestButton", "img/buttons/stressTestButton.png");
 
         int spacingX = (int)mDefaultLayerViewport.getWidth() / 5;
         int spacingY = (int)mDefaultLayerViewport.getHeight() / 3;
@@ -101,11 +102,16 @@ public  class OptionsScreen extends  GameScreen {
                 "faqButton", "faqButtonPressed",this);
         faqButton.setPlaySounds(false, false);
 
-        //James Earls - Create fps trigger button
+        //James Earls - Create fps trigger button and stress Test button
         fpsCounterButton= new PushButton(
                 spacingX * 4.5f, spacingY * 1.8f, spacingX*0.9f, spacingY*0.5f,
-                "fpsCounterButton", "fpsCounterButton",this);
+                "fpsCounterButton", this);
         fpsCounterButton.setPlaySounds(true, true);
+
+        stressTestButton= new PushButton(
+                spacingX * 4.5f, spacingY * 0.3f, spacingX*0.9f, spacingY*0.5f,
+                "stressTestButton", this);
+        stressTestButton.setPlaySounds(true, true);
 
         //Brónach Falls
         // Load music
@@ -240,6 +246,7 @@ public  class OptionsScreen extends  GameScreen {
             resumeButton.update(elapsedTime);
             faqButton.update(elapsedTime);
             fpsCounterButton.update(elapsedTime);
+            stressTestButton.update(elapsedTime);
             onButtonPressed();
 
             //Brónach Falls
@@ -279,6 +286,10 @@ public  class OptionsScreen extends  GameScreen {
             }
         }
 
+        if(stressTestButton.isPushTriggered()){
+            mGame.getScreenManager().addScreen(new StressTestScreen(mGame));
+        }
+
     }
     //Andrew Bingham
     @Override
@@ -295,6 +306,7 @@ public  class OptionsScreen extends  GameScreen {
 
             //James Earls
              fpsCounterButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+             stressTestButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
         //Brónach Falls
             rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);

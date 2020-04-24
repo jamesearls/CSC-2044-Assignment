@@ -40,6 +40,26 @@
       "name": "fpsCounterButton",
       "file": "img/buttons/fpsCounterButton.png"
     },
+            {
+      "type": "Bitmap",
+      "name": "stressRectangle",
+      "file": "img/buttons/stressRectangle.png"
+    },
+            {
+      "type": "Bitmap",
+      "name": "plusButton",
+      "file": "img/buttons/plusButton.png"
+    },
+                {
+      "type": "Bitmap",
+      "name": "minusButton",
+      "file": "img/buttons/minusButton.png"
+    },
+        {
+      "type": "Bitmap",
+      "name": "stressTestButton",
+      "file": "img/buttons/stressTestButton.png"
+    },
     {
       "type": "Bitmap",
       "name": "leftArrow",

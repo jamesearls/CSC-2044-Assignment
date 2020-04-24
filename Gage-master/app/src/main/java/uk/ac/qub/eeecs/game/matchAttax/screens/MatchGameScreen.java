@@ -445,7 +445,6 @@ public class MatchGameScreen extends GameScreen {
                 font.drawText("You Win!", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() / 2, elapsedTime, graphics2D);
             } else{
                 font.drawText("You Lose :(", "Hemi Head Bold Italic", 72, "Black", (getGame().getScreenWidth() / 2), getGame().getScreenHeight() / 2, elapsedTime, graphics2D);
-
             }
         };
     }

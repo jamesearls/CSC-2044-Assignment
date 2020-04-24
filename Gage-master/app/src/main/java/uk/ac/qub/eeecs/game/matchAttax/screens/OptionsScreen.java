@@ -42,7 +42,7 @@ public  class OptionsScreen extends  GameScreen {
             rightArrow, leftArrow, homeButton, homeButtonPressed, resumeButton, resumeButtonPressed,
             faqButton, faqButtonPressed, fpsCounterButton, stressTestButton;
     private Canvas buttonCanvas;
-//Reference- past project Ragnarok helped me start the Options Screen
+    //Reference- past project Ragnarok helped me start the Options Screen
     public OptionsScreen(Game game) {
         super("OptionsScreen", game);
 
@@ -186,10 +186,10 @@ public  class OptionsScreen extends  GameScreen {
         if(highButton.isPushTriggered()) {
             mGame.setMusicActive(true);
             mGame.setMusicVolume(mGame.getMusicVolume() + 0.1f);
-       }
-       if(normalButton.isPushTriggered()) {
+        }
+        if(normalButton.isPushTriggered()) {
             mGame.setMusicActive(true);
-           mGame.setMusicVolume(0.5f);
+            mGame.setMusicVolume(0.5f);
         }
         if(lowButton.isPushTriggered()) {
             mGame.setMusicActive(true);
@@ -245,6 +245,7 @@ public  class OptionsScreen extends  GameScreen {
             homeButton.update(elapsedTime);
             resumeButton.update(elapsedTime);
             faqButton.update(elapsedTime);
+            //James Earls
             fpsCounterButton.update(elapsedTime);
             stressTestButton.update(elapsedTime);
             onButtonPressed();
@@ -293,64 +294,64 @@ public  class OptionsScreen extends  GameScreen {
     }
     //Andrew Bingham
     @Override
-        public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D) {
-            graphics2D.drawBitmap(
-                    background,
-                    null,
-                    new Rect(0, 0, (int) screenWidth, (int) screenHeight),
-                    new Paint()
-            );
-            highButton.draw(elapsedTime, graphics2D);
-            normalButton.draw(elapsedTime, graphics2D);
-            lowButton.draw(elapsedTime, graphics2D);
+    public void draw(ElapsedTime elapsedTime, IGraphics2D graphics2D) {
+        graphics2D.drawBitmap(
+                background,
+                null,
+                new Rect(0, 0, (int) screenWidth, (int) screenHeight),
+                new Paint()
+        );
+        highButton.draw(elapsedTime, graphics2D);
+        normalButton.draw(elapsedTime, graphics2D);
+        lowButton.draw(elapsedTime, graphics2D);
 
-            //James Earls
-             fpsCounterButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-             stressTestButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        //James Earls
+        fpsCounterButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        stressTestButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
         //Brónach Falls
-            rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-            leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-            homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        rightArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        leftArrow.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        homeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
         //Andrew Bingham
-            faqButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
-            resumeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        faqButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
+        resumeButton.draw(elapsedTime, graphics2D, mDefaultLayerViewport, mDefaultScreenViewport);
 
-            if(currentMusicImage.getBitmap() != null)currentMusicImage.draw(elapsedTime, graphics2D);
-
+        if(currentMusicImage.getBitmap() != null)currentMusicImage.draw(elapsedTime, graphics2D);
+        //James Earls
         if(mGame.getCounterStatus() == true) {
             FpsCounter fpsCounter = new FpsCounter(mGame, this);
             fpsCounter.drawFPS(elapsedTime, graphics2D);
         }
-        }
+    }
 
-       //Brónach Falls
+    //Brónach Falls
     private void changeOrPlayMusic(boolean leftArrowPressed, boolean rightArrowPressed)
     {
         if((leftArrowPressed || rightArrowPressed) || !mGame.getAudioManager().isMusicPlaying()){
-        mGame.getAudioManager().stopMusic();
-        switch(currentSongNumber) {
-            case 1:
-                currentMusicImage.setBitmap(assetStore.getBitmap("ChelseaDagger"));
-                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("ChelseaDagger"));
-                break;
-            case 2:
-                currentMusicImage.setBitmap(assetStore.getBitmap("SevenNationArmy"));
-                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("SevenNationArmy"));
-                break;
-            case 3:
-                currentMusicImage.setBitmap(assetStore.getBitmap("WavinFlag"));
-                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("WavinFlag"));
-                break;
-            case 4:
-                currentMusicImage.setBitmap(assetStore.getBitmap("WhatYouKnow"));
-                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("WhatYouKnow"));
-                break;
-            case 5:
-                currentMusicImage.setBitmap(assetStore.getBitmap("FA"));
-                mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("FA"));
-                break;
-        }
+            mGame.getAudioManager().stopMusic();
+            switch(currentSongNumber) {
+                case 1:
+                    currentMusicImage.setBitmap(assetStore.getBitmap("ChelseaDagger"));
+                    mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("ChelseaDagger"));
+                    break;
+                case 2:
+                    currentMusicImage.setBitmap(assetStore.getBitmap("SevenNationArmy"));
+                    mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("SevenNationArmy"));
+                    break;
+                case 3:
+                    currentMusicImage.setBitmap(assetStore.getBitmap("WavinFlag"));
+                    mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("WavinFlag"));
+                    break;
+                case 4:
+                    currentMusicImage.setBitmap(assetStore.getBitmap("WhatYouKnow"));
+                    mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("WhatYouKnow"));
+                    break;
+                case 5:
+                    currentMusicImage.setBitmap(assetStore.getBitmap("FA"));
+                    mGame.getAudioManager().playMusic(getGame().getAssetManager().getMusic("FA"));
+                    break;
+            }
         }
     }
 

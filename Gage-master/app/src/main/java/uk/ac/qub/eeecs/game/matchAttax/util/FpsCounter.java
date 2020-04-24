@@ -6,7 +6,7 @@ import uk.ac.qub.eeecs.gage.engine.graphics.IGraphics2D;
 import uk.ac.qub.eeecs.gage.world.GameScreen;
 import uk.ac.qub.eeecs.game.matchAttax.font.Font;
 
-//James Earls FPS Counter
+//James Earls
 public class FpsCounter {
 
     private Game mGame;
